@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.SelectionActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/next"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:padding="12sp"
+                android:text="How can we help you?"
+                android:textColor="@color/dark"
+                android:fontFamily="@font/airbnb"
+                android:textStyle="bold"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:padding="12sp"
+                android:text="Pick One"
+                android:textAllCaps="true"
+                android:textColor="@color/light"
+                android:fontFamily="@font/airbnb"
+                android:textStyle="bold"
+                android:includeFontPadding="false" />
+
+            <xyz.teamgravity.imageradiobutton.GravityRadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/procastinating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/procrasting"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Stop Procrastinating"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/adhd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/adhd"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Manage ADHD related routine"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+            </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
+
+            <xyz.teamgravity.imageradiobutton.GravityRadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/time"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Have a better morning routine"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/focus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/focus"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Focus on my tasks better"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+            </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
+
+            <xyz.teamgravity.imageradiobutton.GravityRadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/habit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/habits"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Build better habits"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+                <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
+                    android:id="@+id/other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_btn_uncheck"
+                    android:padding="20dp"
+                    app:girbImage="@drawable/other"
+                    app:girbUnpressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
+                    app:girbPressedTextColor="@color/dark"
+                    app:girbText="Something Else / Other"
+                    app:girbUnpressedTextColor="@color/dark" />
+
+            </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/airbnb"
+        android:padding="15sp"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:text="Next" />
+
+</RelativeLayout>

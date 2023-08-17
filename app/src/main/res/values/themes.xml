@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RoutineApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/light</item>
+        <item name="colorPrimaryVariant">@color/light</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light</item>
+        <item name="colorSecondaryVariant">@color/light</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.RoutineApp" parent="Base.Theme.RoutineApp" />
+</resources>

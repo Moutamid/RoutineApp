@@ -1,0 +1,37 @@
+package com.moutamid.routineapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
+
+import com.moutamid.routineapp.databinding.ActivitySplashScreenBinding;
+import com.moutamid.routineapp.utils.Constants;
+
+public class SplashScreenActivity extends AppCompatActivity {
+    ActivitySplashScreenBinding binding;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.light));
+
+        new Handler().postDelayed(() -> {
+            if (Constants.auth().getCurrentUser() == null){
+                startActivity(new Intent(SplashScreenActivity.this, WelcomeActivity.class));
+                finish();
+            } else {
+                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                finish();
+            }
+        }, 2000);
+
+    }
+}

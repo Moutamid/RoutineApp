@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.SignUpActivity">
+    tools:context=".activities.SignUpActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -63,6 +63,9 @@
         android:layout_marginTop="15dp"
         app:passwordToggleEnabled="true"
         android:hint="Password"
+        app:passwordToggleTint="@color/transparent"
+        app:passwordToggleTintMode="screen"
+        app:passwordToggleDrawable="@drawable/password_toggle"
         app:errorIconDrawable="@drawable/error"
         app:boxBackgroundColor="@color/background"
         app:hintTextColor="@color/black">
@@ -71,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/airbnb"
+            android:password="true"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>

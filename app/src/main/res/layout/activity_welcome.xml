@@ -22,7 +22,7 @@
         android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:fontFamily="@font/airbnb"
+        android:fontFamily="@font/baloo"
         android:textStyle="bold"
         android:includeFontPadding="false" />
 

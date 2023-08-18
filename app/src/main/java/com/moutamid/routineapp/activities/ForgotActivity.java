@@ -1,4 +1,4 @@
-package com.moutamid.routineapp.ui;
+package com.moutamid.routineapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.databinding.ActivityForgotBinding;
 import com.moutamid.routineapp.utils.Constants;
 

@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.moutamid.routineapp.databinding.ActivityWelcomeBinding;
-import com.moutamid.routineapp.ui.LoginActivity;
+import com.moutamid.routineapp.activities.LoginActivity;
 import com.moutamid.routineapp.utils.Constants;
 
 public class WelcomeActivity extends AppCompatActivity {

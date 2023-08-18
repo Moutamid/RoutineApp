@@ -7,7 +7,10 @@
     <color name="button">#3843FF</color>
     <color name="light">#706BFE</color>
     <color name="dark">#171717</color>
+    <color name="transparent">#00171717</color>
     <color name="text">#D7D9FF</color>
     <color name="red">#FF1616</color>
     <color name="radio_uncheck">#E9E9E9</color>
+    <color name="grey">#ACACAC</color>
+    <color name="border">#EAECF0</color>
 </resources>

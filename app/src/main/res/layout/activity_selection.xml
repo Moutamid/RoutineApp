@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.SelectionActivity">
+    tools:context=".activities.SelectionActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -61,9 +61,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/procrasting"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Stop Procrastinating"
                     app:girbUnpressedTextColor="@color/dark" />
 
@@ -77,9 +77,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/adhd"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Manage ADHD related routine"
                     app:girbUnpressedTextColor="@color/dark" />
 
@@ -100,9 +100,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/time"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Have a better morning routine"
                     app:girbUnpressedTextColor="@color/dark" />
 
@@ -116,9 +116,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/focus"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Focus on my tasks better"
                     app:girbUnpressedTextColor="@color/dark" />
 
@@ -139,9 +139,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/habits"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Build better habits"
                     app:girbUnpressedTextColor="@color/dark" />
 
@@ -155,9 +155,9 @@
                     android:padding="20dp"
                     app:girbImage="@drawable/other"
                     app:girbUnpressedImageTint="@color/dark"
-                    app:girbPressedImageTint="@color/dark"
+                    app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
-                    app:girbPressedTextColor="@color/dark"
+                    app:girbPressedTextColor="@color/white"
                     app:girbText="Something Else / Other"
                     app:girbUnpressedTextColor="@color/dark" />
 

@@ -31,6 +31,7 @@ public class Constants {
     static Dialog dialog;
     public static final String DATEFORMATE = "dd/MM/yyyy";
     public static final String USER = "users";
+    public static final String Steps = "Steps";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);

@@ -32,6 +32,7 @@ public class Constants {
     public static final String DATEFORMATE = "dd/MM/yyyy";
     public static final String USER = "users";
     public static final String Steps = "Steps";
+    public static final String Routines = "Routines";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);

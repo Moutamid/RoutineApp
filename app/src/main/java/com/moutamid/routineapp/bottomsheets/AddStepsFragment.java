@@ -2,11 +2,13 @@ package com.moutamid.routineapp.bottomsheets;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.fxn.stash.Stash;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.activities.AddCustomStepsActivity;
 import com.moutamid.routineapp.adapters.AddStepsParentAdapter;
 import com.moutamid.routineapp.listners.BottomSheetDismissListener;
 import com.moutamid.routineapp.listners.StepClickListner;
@@ -41,6 +44,8 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_steps_fragment, container, false);
         View toolbar = view.findViewById(R.id.toolbar);
+
+        Button custom = view.findViewById(R.id.custom);
         TextView title = toolbar.findViewById(R.id.tittle);
         ImageView back = toolbar.findViewById(R.id.back);
 
@@ -49,6 +54,11 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         back.setImageResource(R.drawable.round_close_24);
         title.setText("Add Steps");
         back.setOnClickListener(v -> {
+            dismiss();
+        });
+
+        custom.setOnClickListener(v -> {
+            startActivity(new Intent(view.getContext(), AddCustomStepsActivity.class));
             dismiss();
         });
 

@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
     implementation 'com.fxn769:stash:1.3.2'
     implementation 'com.github.raheemadamboev:image-radio-button-android:1.0.7'

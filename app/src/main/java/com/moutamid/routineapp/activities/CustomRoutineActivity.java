@@ -1,26 +1,41 @@
 package com.moutamid.routineapp.activities;
 
+import static java.util.UUID.randomUUID;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fxn.stash.Stash;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.chip.Chip;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
 import com.moutamid.routineapp.bottomsheets.AddStepsFragment;
 import com.moutamid.routineapp.databinding.ActivityCustomRoutineBinding;
 import com.moutamid.routineapp.listners.BottomSheetDismissListener;
 import com.moutamid.routineapp.listners.StepClickListner;
 import com.moutamid.routineapp.models.AddStepsChildModel;
+import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +43,9 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
     ActivityCustomRoutineBinding binding;
     List<String> context;
     ArrayAdapter<String> partiesAdapter;
-
+    ArrayList<AddStepsChildModel> list;
+    AddStepsChildAdapter adapter;
+    int minute = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +76,90 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
         });
 
+        ItemTouchHelper.Callback ithCallback = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
+                        ItemTouchHelper.DOWN | ItemTouchHelper.UP);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                Collections.swap(list, viewHolder.getAdapterPosition(), target.getAdapterPosition());
+                adapter.notifyItemMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+                Stash.put(Constants.Steps, list);
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        };
+        ItemTouchHelper ith = new ItemTouchHelper(ithCallback);
+        ith.attachToRecyclerView(binding.stepsRC);
+
+        binding.save.setOnClickListener(v -> {
+            if (valid()){
+                Constants.showDialog();
+                String ID = UUID.randomUUID().toString();
+                ArrayList<String> days = getDays();
+                RoutineModel model = new RoutineModel(
+                        ID, binding.name.getEditText().getText().toString(), binding.context.getEditText().getText().toString(),
+                        minute, days, list
+                );
+                Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
+                        .child(ID).setValue(model).addOnSuccessListener(unused -> {
+                            Constants.dismissDialog();
+                            Stash.clear(Constants.Steps);
+                            Toast.makeText(this, "Routine Created", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                        }).addOnFailureListener(e -> {
+                            Constants.dismissDialog();
+                            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            }
+        });
+
+    }
+
+    private boolean valid() {
+        ArrayList<String> days = getDays();
+        if (binding.name.getEditText().getText().toString().isEmpty()){
+            Toast.makeText(this, "Please add name for the routine", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (days.size() == 0){
+            Toast.makeText(this, "Please add at least one day", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (list.size() == 0){
+            Toast.makeText(this, "Please add at least one step", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private ArrayList<String> getDays() {
+        ArrayList<String> day = new ArrayList<>();
+        for (int i = 0; i < binding.days.getChildCount(); i++) {
+            Chip chip = (Chip) binding.days.getChildAt(i);
+            if (chip.isChecked()){
+                day.add(chip.getText().toString());
+            }
+        }
+        return day;
     }
 
     @Override
     public void onBottomSheetDismissed() {
-        ArrayList<AddStepsChildModel> list = Stash.getArrayList(Constants.Steps, AddStepsChildModel.class);
+        onResume();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list = Stash.getArrayList(Constants.Steps, AddStepsChildModel.class);
         if (list.size() > 1){
             binding.stepsRC.setVisibility(View.VISIBLE);
             binding.totalTime.setVisibility(View.VISIBLE);
@@ -71,12 +167,13 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             List<Integer> timeValues = extractTimeValues(list);
             for (int value : timeValues) {
                 min += value;
+                minute = min;
             }
             String formattedTime = "Total time " + convertMinutesToHHMM(min) + "h";
             binding.totalTime.setText(formattedTime);
         }
 
-        AddStepsChildAdapter adapter = new AddStepsChildAdapter(CustomRoutineActivity.this, list, model -> {
+        adapter = new AddStepsChildAdapter(CustomRoutineActivity.this, list, model -> {
 
         });
         binding.stepsRC.setAdapter(adapter);

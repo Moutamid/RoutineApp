@@ -201,5 +201,9 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
         return String.format("%02d:%02d", hours, remainingMinutes);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Stash.clear(Constants.Steps);
+    }
 }

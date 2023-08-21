@@ -67,6 +67,20 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
         binding.stepsRC.setLayoutManager(new LinearLayoutManager(this));
         binding.stepsRC.setHasFixedSize(false);
 
+        if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("ALL")) {
+            binding.name.getEditText().setText("");
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("MORNING")) {
+            binding.name.getEditText().setText("Morning Routine");
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("EVENING")) {
+            binding.name.getEditText().setText("Evening Routine");
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("WORK")) {
+            binding.name.getEditText().setText("Work Routine");
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("SELFCARE")) {
+            binding.name.getEditText().setText("Self Care Routine");
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("STUDY")) {
+            binding.name.getEditText().setText("Study Routine");
+        }
+
         partiesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, context);
         binding.addContext.setAdapter(partiesAdapter);
 
@@ -153,12 +167,16 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
 
     @Override
     public void onBottomSheetDismissed() {
-        onResume();
+        getData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getData();
+    }
+
+    private void getData() {
         list = Stash.getArrayList(Constants.Steps, AddStepsChildModel.class);
         if (list.size() > 1){
             binding.stepsRC.setVisibility(View.VISIBLE);

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -26,7 +27,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -38,15 +39,15 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Mon" />
+                    android:textSize="16sp"
+                    android:text="Mon" />
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/tue"
+            android:id="@+id/tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="6sp"
@@ -56,7 +57,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -68,8 +69,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Tue" />
+                    android:textSize="16sp"
+                    android:text="Tue" />
 
             </LinearLayout>
 
@@ -86,7 +87,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -98,8 +99,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Wed" />
+                    android:textSize="16sp"
+                    android:text="Wed" />
 
             </LinearLayout>
 
@@ -116,7 +117,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -128,8 +129,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Thu" />
+                    android:textSize="16sp"
+                    android:text="Thu" />
 
             </LinearLayout>
 
@@ -146,7 +147,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -158,8 +159,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Fri" />
+                    android:textSize="16sp"
+                    android:text="Fri" />
 
             </LinearLayout>
 
@@ -176,7 +177,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -188,8 +189,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Sat" />
+                    android:textSize="16sp"
+                    android:text="Sat" />
 
             </LinearLayout>
 
@@ -205,7 +206,7 @@
             app:strokeWidth="1dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -217,8 +218,8 @@
                     android:fontFamily="@font/airbnb"
                     android:gravity="center"
                     android:textColor="@color/light"
-                    android:textSize="14sp"
-                    tools:text="Sun" />
+                    android:textSize="16sp"
+                    android:text="Sun" />
 
             </LinearLayout>
 

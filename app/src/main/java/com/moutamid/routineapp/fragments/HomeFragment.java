@@ -30,29 +30,117 @@ public class HomeFragment extends Fragment {
         String today = getToday();
         updateCalender(today);
 
+        binding.monday.setOnClickListener(v -> updateClick("Mon"));
+        binding.tuesday.setOnClickListener(v -> updateClick("Tue"));
+        binding.wednessday.setOnClickListener(v -> updateClick("Wed"));
+        binding.thursday.setOnClickListener(v -> updateClick("Thu"));
+        binding.friday.setOnClickListener(v -> updateClick("Fri"));
+        binding.saturday.setOnClickListener(v -> updateClick("Sat"));
+        binding.sunday.setOnClickListener(v -> updateClick("Sun"));
+
         return binding.getRoot();
+    }
+
+    private void updateClick(String clicked){
+        if (clicked.equalsIgnoreCase("Sun")) {
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Mon")) {
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Tue")) {
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Wed")) {
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Thu")) {
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Fri")) {
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
+        if (clicked.equalsIgnoreCase("Sat")) {
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.text));
+
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.white));
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
+        }
     }
 
     private void updateCalender(String today) {
         if (today.equalsIgnoreCase("Sun")) {
+            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.sunday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Mon")) {
+            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.monday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Tue")) {
-            binding.tue.setStrokeColor(getResources().getColor(R.color.light));
+            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.tuesday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Wed")) {
+            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.wednessday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Thu")) {
+            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.thursday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Fri")) {
+            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.friday.setStrokeColor(getResources().getColor(R.color.light));
         }
         if (today.equalsIgnoreCase("Sat")) {
+            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.saturday.setStrokeColor(getResources().getColor(R.color.light));
         }
     }

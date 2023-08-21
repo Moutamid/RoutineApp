@@ -33,6 +33,7 @@ public class Constants {
     public static final String USER = "users";
     public static final String Steps = "Steps";
     public static final String Routines = "Routines";
+    public static final String STEPS_LIST = "STEPS_LIST";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);

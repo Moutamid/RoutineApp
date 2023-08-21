@@ -67,7 +67,20 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         recyler.setHasFixedSize(false);
 
         list = new ArrayList<>();
-        addData();
+
+        if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("ALL")) {
+            addData();
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("MORNING")) {
+            morningSteps();
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("EVENING")) {
+            eveningSteps();
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("WORK")) {
+            workSteps();
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("SELFCARE")) {
+            selfcareSteps();
+        } else if (Stash.getString(Constants.STEPS_LIST, "ALL").equals("STUDY")) {
+            studySteps();
+        }
 
         adapter = new AddStepsParentAdapter(view.getContext(), list, listner);
         recyler.setAdapter(adapter);
@@ -76,7 +89,7 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         return view;
     }
 
-    private void addData() {
+    private void morningSteps() {
         ArrayList<AddStepsChildModel> child1 = new ArrayList<>();
         child1.add(new AddStepsChildModel("Make Breakfast", "15 min"));
         child1.add(new AddStepsChildModel("Brush my teeth", "3 min"));
@@ -91,7 +104,9 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         child1.add(new AddStepsChildModel("Make some coffee", "8 min"));
         child1.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
         list.add(new AddStepsModel("Morning Routine", child1));
+    }
 
+    private void eveningSteps() {
         ArrayList<AddStepsChildModel> child2 = new ArrayList<>();
         child2.add(new AddStepsChildModel("Wash my face", "1 min"));
         child2.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
@@ -105,7 +120,9 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         child2.add(new AddStepsChildModel("Turn off electronics", "2 min"));
         child2.add(new AddStepsChildModel("Brush my teeth", "3 min"));
         list.add(new AddStepsModel("Evening Routine", child2));
+    }
 
+    private void workSteps() {
         ArrayList<AddStepsChildModel> child3 = new ArrayList<>();
         child3.add(new AddStepsChildModel("Answer emails", "15 min"));
         child3.add(new AddStepsChildModel("Short break", "10 min"));
@@ -117,17 +134,21 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         child3.add(new AddStepsChildModel("Long break", "30 min"));
         child3.add(new AddStepsChildModel("Pomodoro", "25 min"));
         list.add(new AddStepsModel("Ready for work", child3));
+    }
 
+    private void selfcareSteps() {
         ArrayList<AddStepsChildModel> child4 = new ArrayList<>();
         child4.add(new AddStepsChildModel("Write my todo list", "10 min"));
         child4.add(new AddStepsChildModel("Exercise", "20 min"));
-        child1.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
+        child4.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
         child4.add(new AddStepsChildModel("Take a warm bath", "40 min"));
         child4.add(new AddStepsChildModel("Take loved ones", "30 min"));
         child4.add(new AddStepsChildModel("Meditate", "10 min"));
         child4.add(new AddStepsChildModel("Visualize Success", "15 min"));
         list.add(new AddStepsModel("Selfcare Routine", child4));
+    }
 
+    private void studySteps() {
         ArrayList<AddStepsChildModel> child5 = new ArrayList<>();
         child5.add(new AddStepsChildModel("Do practice problems", "30 min"));
         child5.add(new AddStepsChildModel("Study", "25 min"));
@@ -138,6 +159,14 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         child5.add(new AddStepsChildModel("Deep work", "45 min"));
         child5.add(new AddStepsChildModel("Prepare my desk", "3 min"));
         list.add(new AddStepsModel("Study Routine", child5));
+    }
+
+    private void addData() {
+        morningSteps();
+        eveningSteps();
+        workSteps();
+        selfcareSteps();
+        studySteps();
     }
 
     @Override
@@ -153,7 +182,6 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-
         if (listener != null) {
             listener.onBottomSheetDismissed();
         }
@@ -167,7 +195,7 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         ArrayList<AddStepsChildModel> list = Stash.getArrayList(Constants.Steps, AddStepsChildModel.class);
         list.add(model);
         Stash.put(Constants.Steps, list);
-        dismiss();
+        this.dismiss();
     };
 
 }

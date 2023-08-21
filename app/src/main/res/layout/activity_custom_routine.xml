@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
-                android:hint="Morning Routine"
+                android:hint="Routine Name"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/border"
                 app:boxCornerRadiusBottomEnd="10sp"

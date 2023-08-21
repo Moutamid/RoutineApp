@@ -3,6 +3,9 @@ package com.moutamid.routineapp.models;
 public class AddStepsChildModel {
     String name, time;
 
+    public AddStepsChildModel() {
+    }
+
     public AddStepsChildModel(String name, String time) {
         this.name = name;
         this.time = time;

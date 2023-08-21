@@ -182,12 +182,12 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             binding.stepsRC.setVisibility(View.VISIBLE);
             binding.totalTime.setVisibility(View.VISIBLE);
             int min = 0;
-            List<Integer> timeValues = extractTimeValues(list);
+            List<Integer> timeValues = Constants.extractTimeValues(list);
             for (int value : timeValues) {
                 min += value;
                 minute = min;
             }
-            String formattedTime = "Total time " + convertMinutesToHHMM(min) + "h";
+            String formattedTime = "Total time " + Constants.convertMinutesToHHMM(min) + "h";
             binding.totalTime.setText(formattedTime);
         }
 
@@ -197,27 +197,6 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
         binding.stepsRC.setAdapter(adapter);
     }
 
-    public static List<Integer> extractTimeValues(ArrayList<AddStepsChildModel> timeStrings) {
-        List<Integer> timeValues = new ArrayList<>();
-        Pattern pattern = Pattern.compile("(\\d+) min");
-
-        for (AddStepsChildModel timeString : timeStrings) {
-            Matcher matcher = pattern.matcher(timeString.getTime());
-            if (matcher.find()) {
-                int value = Integer.parseInt(matcher.group(1));
-                timeValues.add(value);
-            }
-        }
-
-        return timeValues;
-    }
-
-    public String convertMinutesToHHMM(int minutes) {
-        int hours = minutes / 60;
-        int remainingMinutes = minutes % 60;
-
-        return String.format("%02d:%02d", hours, remainingMinutes);
-    }
 
     @Override
     public void onBackPressed() {

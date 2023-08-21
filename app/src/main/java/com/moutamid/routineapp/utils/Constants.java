@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.models.AddStepsChildModel;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -24,7 +25,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Constants {
 
@@ -46,6 +51,29 @@ public class Constants {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
     }
+
+    public static List<Integer> extractTimeValues(ArrayList<AddStepsChildModel> timeStrings) {
+        List<Integer> timeValues = new ArrayList<>();
+        Pattern pattern = Pattern.compile("(\\d+) min");
+
+        for (AddStepsChildModel timeString : timeStrings) {
+            Matcher matcher = pattern.matcher(timeString.getTime());
+            if (matcher.find()) {
+                int value = Integer.parseInt(matcher.group(1));
+                timeValues.add(value);
+            }
+        }
+
+        return timeValues;
+    }
+
+    public static String convertMinutesToHHMM(int minutes) {
+        int hours = minutes / 60;
+        int remainingMinutes = minutes % 60;
+
+        return String.format("%02d:%02d", hours, remainingMinutes);
+    }
+
 
     public static void showDialog(){
         dialog.show();

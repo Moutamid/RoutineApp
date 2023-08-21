@@ -227,4 +227,54 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seperator"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/baloo"
+        android:gravity="center_vertical"
+        tools:text="Today routines"
+        android:textColor="@color/dark"
+        android:textSize="32sp" />
+
+
+    <Button
+        android:id="@+id/inCompleted"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12sp"
+        android:drawableEnd="@drawable/download"
+        android:drawablePadding="10sp"
+        android:textSize="14sp"
+        android:fontFamily="@font/airbnb"
+        android:text="Incompleted Tasks\t" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/routineRC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/routine_card" />
+
+    <Button
+        android:id="@+id/completed"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12sp"
+        android:drawableEnd="@drawable/download"
+        android:drawablePadding="10sp"
+        android:textSize="14sp"
+        android:fontFamily="@font/airbnb"
+        android:text="Completed Tasks\t" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/routineRCCompleted"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/routine_card" />
+
 </LinearLayout>

@@ -24,8 +24,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -35,13 +38,19 @@ public class Constants {
 
     static Dialog dialog;
     public static final String DATEFORMATE = "dd/MM/yyyy";
+    public static final String CURRENTTIME = "hh:mm a";
     public static final String USER = "users";
     public static final String Steps = "Steps";
     public static final String Routines = "Routines";
+    public static final String MODEL = "MODEL";
     public static final String STEPS_LIST = "STEPS_LIST";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);
+    }
+
+    public static String getCurrentTime(){
+        return new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
     }
 
     public static void initDialog(Context context){
@@ -51,6 +60,33 @@ public class Constants {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
     }
+
+    public static String calculateTimeRange(String currentTime, int additionalMinutes) {
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+
+        try {
+            Date currentTimeDate = sdf.parse(currentTime);
+            if (currentTimeDate == null) {
+                return "";
+            }
+
+            calendar.setTime(currentTimeDate);
+
+            long currentTimeMillis = currentTimeDate.getTime();
+            long endTimeMillis = currentTimeMillis + additionalMinutes * 60000;
+            calendar.setTimeInMillis(endTimeMillis);
+
+            String startTime = sdf.format(new Date(currentTimeMillis));
+            String endTime = sdf.format(calendar.getTime());
+
+            return startTime + " to " + endTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
 
     public static List<Integer> extractTimeValues(ArrayList<AddStepsChildModel> timeStrings) {
         List<Integer> timeValues = new ArrayList<>();

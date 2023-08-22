@@ -241,40 +241,55 @@
         android:textSize="32sp" />
 
 
-    <Button
-        android:id="@+id/inCompleted"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12sp"
-        android:drawableEnd="@drawable/download"
-        android:drawablePadding="10sp"
-        android:textSize="14sp"
-        android:fontFamily="@font/airbnb"
-        android:text="Incompleted Tasks\t" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/routineRC"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/routine_card" />
+        android:fillViewport="true">
 
-    <Button
-        android:id="@+id/completed"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12sp"
-        android:drawableEnd="@drawable/download"
-        android:drawablePadding="10sp"
-        android:textSize="14sp"
-        android:fontFamily="@font/airbnb"
-        android:text="Completed Tasks\t" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/routineRCCompleted"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/routine_card" />
+            <Button
+                android:id="@+id/inCompleted"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12sp"
+                android:drawableEnd="@drawable/download"
+                android:drawablePadding="10sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/airbnb"
+                android:text="Incompleted Tasks\t" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/routineRC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/routine_card" />
+
+            <Button
+                android:id="@+id/completed"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12sp"
+                android:drawableEnd="@drawable/download"
+                android:drawablePadding="10sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/airbnb"
+                android:text="Completed Tasks\t" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/routineRCCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:listitem="@layout/routine_card" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

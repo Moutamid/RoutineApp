@@ -18,6 +18,7 @@ import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.RoutineAdapter;
 import com.moutamid.routineapp.databinding.FragmentHomeBinding;
 import com.moutamid.routineapp.models.AddStepsChildModel;
+import com.moutamid.routineapp.models.CompletedDaysModel;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -73,7 +74,15 @@ public class HomeFragment extends Fragment {
         });
 
         binding.completed.setOnClickListener(v -> {
+            boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
 
+            if (show){
+                binding.routineRC.setVisibility(View.GONE);
+                binding.completed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.upload, 0);
+            } else {
+                binding.routineRC.setVisibility(View.VISIBLE);
+                binding.completed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.download, 0);
+            }
         });
 
 
@@ -108,12 +117,15 @@ public class HomeFragment extends Fragment {
                                 steps.add(d);
                             }
 
+                            CompletedDaysModel completedDays = dataSnapshot.child("daysCompleted").getValue(CompletedDaysModel.class);
+
                             model.setID(ID);
                             model.setName(name);
                             model.setContext(context);
                             model.setMinutes(minutes);
                             model.setDays(days);
                             model.setSteps(steps);
+                            model.setDaysCompleted(completedDays);
 
                             list.add(model);
                         }

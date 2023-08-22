@@ -1,6 +1,7 @@
 package com.moutamid.routineapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.activities.RoutineStartActivity;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -59,7 +62,34 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
             }
         }
 
+        if (model.getDaysCompleted().isMonday()){
+            holder.view1.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isTuesday()){
+            holder.view2.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isWednesday()){
+            holder.view3.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isThursday()){
+            holder.view4.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isFriday()){
+            holder.view5.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isSaturday()){
+            holder.view6.setBackgroundResource(R.drawable.active_bg);
+        }
+        if (model.getDaysCompleted().isSunday()){
+            holder.view7.setBackgroundResource(R.drawable.active_bg);
+        }
+
         holder.steps.setText(steps);
+
+        holder.itemView.setOnClickListener(v -> {
+            Stash.put(Constants.MODEL, model);
+            context.startActivity(new Intent(context, RoutineStartActivity.class));
+        });
 
     }
 

@@ -6,17 +6,19 @@ public class RoutineModel {
     String ID, name, context;
     int minutes;
     ArrayList<String> days;
+    CompletedDaysModel daysCompleted;
     ArrayList<AddStepsChildModel> steps;
 
     public RoutineModel() {
     }
 
-    public RoutineModel(String ID, String name, String context, int minutes, ArrayList<String> days, ArrayList<AddStepsChildModel> steps) {
+    public RoutineModel(String ID, String name, String context, int minutes, ArrayList<String> days, CompletedDaysModel daysCompleted, ArrayList<AddStepsChildModel> steps) {
         this.ID = ID;
         this.name = name;
         this.context = context;
         this.minutes = minutes;
         this.days = days;
+        this.daysCompleted = daysCompleted;
         this.steps = steps;
     }
 
@@ -66,5 +68,13 @@ public class RoutineModel {
 
     public void setSteps(ArrayList<AddStepsChildModel> steps) {
         this.steps = steps;
+    }
+
+    public CompletedDaysModel getDaysCompleted() {
+        return daysCompleted;
+    }
+
+    public void setDaysCompleted(CompletedDaysModel daysCompleted) {
+        this.daysCompleted = daysCompleted;
     }
 }

@@ -61,6 +61,40 @@ public class Constants {
         dialog.setCancelable(false);
     }
 
+    public static String getToday() {
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        String dayOfWeekString;
+        switch (dayOfWeek) {
+            case Calendar.SUNDAY:
+                dayOfWeekString = "Sun";
+                break;
+            case Calendar.MONDAY:
+                dayOfWeekString = "Mon";
+                break;
+            case Calendar.TUESDAY:
+                dayOfWeekString = "Tue";
+                break;
+            case Calendar.WEDNESDAY:
+                dayOfWeekString = "Wed";
+                break;
+            case Calendar.THURSDAY:
+                dayOfWeekString = "Thu";
+                break;
+            case Calendar.FRIDAY:
+                dayOfWeekString = "Fri";
+                break;
+            case Calendar.SATURDAY:
+                dayOfWeekString = "Sat";
+                break;
+            default:
+                dayOfWeekString = "";
+                break;
+        }
+        return dayOfWeekString;
+    }
+
     public static String calculateTimeRange(String currentTime, int additionalMinutes) {
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", Locale.getDefault());
         Calendar calendar = Calendar.getInstance();

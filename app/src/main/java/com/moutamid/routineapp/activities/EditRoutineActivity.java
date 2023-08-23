@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +23,7 @@ import com.moutamid.routineapp.listners.BottomSheetDismissListener;
 import com.moutamid.routineapp.models.AddStepsChildModel;
 import com.moutamid.routineapp.models.CompletedDaysModel;
 import com.moutamid.routineapp.models.RoutineModel;
+import com.moutamid.routineapp.models.StepsLocalModel;
 import com.moutamid.routineapp.utils.Constants;
 
 import java.util.ArrayList;
@@ -44,7 +47,31 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
+        binding.toolbar.delete.setVisibility(View.VISIBLE);
+
         RoutineModel model = (RoutineModel) Stash.getObject(Constants.MODEL, RoutineModel.class);
+
+        binding.toolbar.delete.setOnClickListener(v -> {
+            new AlertDialog.Builder(this).setTitle("Delete Routine")
+                    .setMessage("Do you really want to delete this routine??")
+                    .setPositiveButton("Yes", (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                        Constants.showDialog();
+
+                        Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
+                                .child(model.getID()).removeValue().addOnSuccessListener(unused -> {
+                                    Constants.dismissDialog();
+                                    Toast.makeText(this, "Routine Deleted", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }).addOnFailureListener(e -> {
+                                    Constants.dismissDialog();
+                                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+
+                    }).setNegativeButton("No", (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                    }).show();
+        });
 
         binding.name.getEditText().setText(model.getName());
         binding.context.getEditText().setText(model.getContext());
@@ -138,6 +165,11 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
                 Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
                         .child(ID).setValue(updateModel).addOnSuccessListener(unused -> {
                             Constants.dismissDialog();
+                            ArrayList<StepsLocalModel> localList = new ArrayList<>();
+                            for(AddStepsChildModel childModel : list){
+                                localList.add(new StepsLocalModel(childModel.getName(), childModel.getTime(), false));
+                            }
+                            Stash.put(ID, localList);
                             Stash.clear(Constants.Steps);
                             Toast.makeText(this, "Routine Updated", Toast.LENGTH_SHORT).show();
                             onBackPressed();

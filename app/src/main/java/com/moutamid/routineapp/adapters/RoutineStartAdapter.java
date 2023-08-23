@@ -12,15 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.models.AddStepsChildModel;
+import com.moutamid.routineapp.models.StepsLocalModel;
 
 import java.util.ArrayList;
 
 public class RoutineStartAdapter extends RecyclerView.Adapter<RoutineStartAdapter.RoutineVH> {
 
     Context context;
-    ArrayList<AddStepsChildModel> list;
+    ArrayList<StepsLocalModel> list;
 
-    public RoutineStartAdapter(Context context, ArrayList<AddStepsChildModel> list) {
+    public RoutineStartAdapter(Context context, ArrayList<StepsLocalModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -33,9 +34,12 @@ public class RoutineStartAdapter extends RecyclerView.Adapter<RoutineStartAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RoutineVH holder, int position) {
-        AddStepsChildModel model = list.get(holder.getAdapterPosition());
+        StepsLocalModel model = list.get(holder.getAdapterPosition());
         holder.time.setText(model.getTime());
         holder.title.setText(model.getName());
+
+        holder.switchDone.setChecked(model.isCompleted());
+
     }
 
     @Override

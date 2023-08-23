@@ -92,6 +92,7 @@
                 android:textSize="16sp" />
 
             <LinearLayout
+                android:id="@+id/days_check_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -100,9 +101,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -119,9 +121,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -138,9 +141,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -157,9 +161,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -176,9 +181,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -195,9 +201,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
+                    android:layout_weight="1"
                     android:layout_marginEnd="6sp"
                     app:cardCornerRadius="6sp">
 
@@ -214,10 +221,10 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    app:strokeColor="@color/light"
+                    app:strokeColor="@color/text"
                     app:cardBackgroundColor="@color/text"
                     app:cardElevation="0sp"
-                    android:layout_marginEnd="6sp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="6sp">
 
                     <ImageView

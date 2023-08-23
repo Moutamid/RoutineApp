@@ -30,8 +30,10 @@ import com.moutamid.routineapp.listners.StepClickListner;
 import com.moutamid.routineapp.models.AddStepsChildModel;
 import com.moutamid.routineapp.models.CompletedDaysModel;
 import com.moutamid.routineapp.models.RoutineModel;
+import com.moutamid.routineapp.models.StepsLocalModel;
 import com.moutamid.routineapp.utils.Constants;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -127,6 +129,11 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
                 Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
                         .child(ID).setValue(model).addOnSuccessListener(unused -> {
                             Constants.dismissDialog();
+                            ArrayList<StepsLocalModel> localList = new ArrayList<>();
+                            for(AddStepsChildModel childModel : list){
+                                localList.add(new StepsLocalModel(childModel.getName(), childModel.getTime(), false));
+                            }
+                            Stash.put(ID, localList);
                             Stash.clear(Constants.Steps);
                             Toast.makeText(this, "Routine Created", Toast.LENGTH_SHORT).show();
                             onBackPressed();

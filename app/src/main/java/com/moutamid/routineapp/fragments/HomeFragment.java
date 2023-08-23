@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
 
-        String today = getToday();
+        String today = Constants.getToday();
         updateCalender(today);
 
         Constants.initDialog(requireContext());
@@ -77,10 +77,10 @@ public class HomeFragment extends Fragment {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
 
             if (show){
-                binding.routineRC.setVisibility(View.GONE);
+                binding.routineRCCompleted.setVisibility(View.GONE);
                 binding.completed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.upload, 0);
             } else {
-                binding.routineRC.setVisibility(View.VISIBLE);
+                binding.routineRCCompleted.setVisibility(View.VISIBLE);
                 binding.completed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.download, 0);
             }
         });
@@ -133,7 +133,7 @@ public class HomeFragment extends Fragment {
                         adapter = new RoutineAdapter(binding.getRoot().getContext(), list);
                         binding.routineRC.setAdapter(adapter);
 
-                        String today = getToday();
+                        String today = Constants.getToday();
                         if (today.equalsIgnoreCase("Sun")) {
                             today = "Sunday";
                         }
@@ -170,7 +170,7 @@ public class HomeFragment extends Fragment {
 
     private void updateClick(String clicked) {
 
-        String today = getToday();
+        String today = Constants.getToday();
         if (today.equals(clicked)) {
             binding.tittle.setText("Today Routines");
         } else {
@@ -280,39 +280,5 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.text));
             binding.saturday.setStrokeColor(getResources().getColor(R.color.light));
         }
-    }
-
-    private String getToday() {
-        Calendar calendar = Calendar.getInstance();
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
-        String dayOfWeekString;
-        switch (dayOfWeek) {
-            case Calendar.SUNDAY:
-                dayOfWeekString = "Sun";
-                break;
-            case Calendar.MONDAY:
-                dayOfWeekString = "Mon";
-                break;
-            case Calendar.TUESDAY:
-                dayOfWeekString = "Tue";
-                break;
-            case Calendar.WEDNESDAY:
-                dayOfWeekString = "Wed";
-                break;
-            case Calendar.THURSDAY:
-                dayOfWeekString = "Thu";
-                break;
-            case Calendar.FRIDAY:
-                dayOfWeekString = "Fri";
-                break;
-            case Calendar.SATURDAY:
-                dayOfWeekString = "Sat";
-                break;
-            default:
-                dayOfWeekString = "";
-                break;
-        }
-        return dayOfWeekString;
     }
 }

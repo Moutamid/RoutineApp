@@ -4,11 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fxn.stash.Stash;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.models.AddStepsChildModel;
@@ -40,6 +44,11 @@ public class RoutineStartAdapter extends RecyclerView.Adapter<RoutineStartAdapte
 
         holder.switchDone.setChecked(model.isCompleted());
 
+        holder.switchDone.setOnCheckedChangeListener((compoundButton, b) -> {
+            list.get(holder.getAdapterPosition()).setCompleted(b);
+            Stash.put(model.getID(), list);
+        });
+
     }
 
     @Override
@@ -49,7 +58,7 @@ public class RoutineStartAdapter extends RecyclerView.Adapter<RoutineStartAdapte
 
     public class RoutineVH extends RecyclerView.ViewHolder{
         TextView title, time;
-        MaterialRadioButton switchDone;
+        MaterialCheckBox switchDone;
         public RoutineVH(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);

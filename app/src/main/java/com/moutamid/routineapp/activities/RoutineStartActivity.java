@@ -32,6 +32,7 @@ public class RoutineStartActivity extends AppCompatActivity {
     ActivityRoutineStartBinding binding;
     RoutineModel model;
     boolean monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+    boolean allDone = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,19 +83,33 @@ public class RoutineStartActivity extends AppCompatActivity {
 
         binding.routineRC.setLayoutManager(new LinearLayoutManager(this));
         binding.routineRC.setHasFixedSize(false);
-
         ArrayList<StepsLocalModel> list = Stash.getArrayList(model.getID(), StepsLocalModel.class);
-
         RoutineStartAdapter adapter = new RoutineStartAdapter(this, list);
         binding.routineRC.setAdapter(adapter);
 
         binding.daysCheckLayout.setOnClickListener(v -> showDialog());
 
         binding.start.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimerActivity.class));
-            finish();
+            if (getAllDone()) {
+                Stash.put(Constants.ROUTINE_LIST, model);
+                Stash.put(Constants.DAY, model);
+                startActivity(new Intent(this, TimerActivity.class));
+                finish();
+            } else {
+                Toast.makeText(this, "You already finish all task", Toast.LENGTH_SHORT).show();
+            }
         });
 
+    }
+
+    private boolean getAllDone() {
+        ArrayList<StepsLocalModel> list = Stash.getArrayList(model.getID(), StepsLocalModel.class);
+        for (StepsLocalModel model : list) {
+            if (!model.isCompleted()) {
+                allDone = true;
+            }
+        }
+        return allDone;
     }
 
 

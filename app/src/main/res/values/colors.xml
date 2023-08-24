@@ -13,4 +13,21 @@
     <color name="radio_uncheck">#E9E9E9</color>
     <color name="grey">#ACACAC</color>
     <color name="border">#EAECF0</color>
+    <color name="yellow">#D0FD3E</color>
+<!--   Palete -->
+    <color name="green">#4F976F</color>
+    <color name="purple">#9783D3</color>
+    <color name="pink">#FF799F</color>
+    <color name="seeGreen">#25D7C0</color>
+    <color name="blue">#2A75FE</color>
+
+    <array name="color_picker">
+        <item>@color/light</item>
+        <item>@color/pink</item>
+        <item>@color/seeGreen</item>
+        <item>@color/green</item>
+        <item>@color/purple</item>
+        <item>@color/blue</item>
+    </array>
+
 </resources>

@@ -42,6 +42,8 @@ public class Constants {
     public static final String USER = "users";
     public static final String Steps = "Steps";
     public static final String Routines = "Routines";
+    public static final String ROUTINE_LIST = "ROUTINE_LIST";
+    public static final String DAY = "DAY";
     public static final String MODEL = "MODEL";
     public static final String STEPS_LIST = "STEPS_LIST";
 
@@ -95,6 +97,32 @@ public class Constants {
         return dayOfWeekString;
     }
 
+    public static String finishTime(String currentTime, int additionalMinutes) {
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+
+        try {
+            Date currentTimeDate = sdf.parse(currentTime);
+            if (currentTimeDate == null) {
+                return "";
+            }
+
+            calendar.setTime(currentTimeDate);
+
+            long currentTimeMillis = currentTimeDate.getTime();
+            long endTimeMillis = currentTimeMillis + additionalMinutes * 60000;
+            calendar.setTimeInMillis(endTimeMillis);
+
+            String startTime = sdf.format(new Date(currentTimeMillis));
+            String endTime = sdf.format(calendar.getTime());
+
+            return endTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
     public static String calculateTimeRange(String currentTime, int additionalMinutes) {
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a", Locale.getDefault());
         Calendar calendar = Calendar.getInstance();
@@ -121,6 +149,16 @@ public class Constants {
         }
     }
 
+    public static int extractSingleTimeValue(String timeString){
+        int time = 0;
+        Pattern pattern = Pattern.compile("(\\d+) min");
+        Matcher matcher = pattern.matcher(timeString);
+        if (matcher.find()) {
+            time = Integer.parseInt(matcher.group(1));
+        }
+        return time;
+
+    }
 
     public static List<Integer> extractTimeValues(ArrayList<AddStepsChildModel> timeStrings) {
         List<Integer> timeValues = new ArrayList<>();

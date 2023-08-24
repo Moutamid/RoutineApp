@@ -1,16 +1,26 @@
 package com.moutamid.routineapp.models;
 
 public class StepsLocalModel {
-    String name, time;
+    String ID, name, time;
     boolean completed;
 
     public StepsLocalModel() {
     }
 
-    public StepsLocalModel(String name, String time, boolean completed) {
+
+    public StepsLocalModel(String ID, String name, String time, boolean completed) {
+        this.ID = ID;
         this.name = name;
         this.time = time;
         this.completed = completed;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getName() {

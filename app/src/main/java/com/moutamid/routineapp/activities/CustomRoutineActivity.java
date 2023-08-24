@@ -131,7 +131,7 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
                             Constants.dismissDialog();
                             ArrayList<StepsLocalModel> localList = new ArrayList<>();
                             for(AddStepsChildModel childModel : list){
-                                localList.add(new StepsLocalModel(childModel.getName(), childModel.getTime(), false));
+                                localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
                             }
                             Stash.put(ID, localList);
                             Stash.clear(Constants.Steps);

@@ -3,9 +3,12 @@ package com.moutamid.routineapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.databinding.ActivitySettingBinding;
 import com.moutamid.routineapp.utils.Constants;
+import com.thebluealliance.spectrum.SpectrumPalette;
 
 public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding binding;
@@ -19,5 +22,11 @@ public class SettingActivity extends AppCompatActivity {
         Constants.initDialog(this);
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
+
+        binding.colorPicker.setSelectedColor(getResources().getColor(R.color.light));
+
+        binding.colorPicker.setOnColorSelectedListener(color -> {
+
+        });
     }
 }

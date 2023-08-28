@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.fxn.stash.Stash;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -20,6 +21,7 @@ import com.moutamid.routineapp.databinding.FragmentHomeBinding;
 import com.moutamid.routineapp.models.AddStepsChildModel;
 import com.moutamid.routineapp.models.CompletedDaysModel;
 import com.moutamid.routineapp.models.RoutineModel;
+import com.moutamid.routineapp.models.StepsLocalModel;
 import com.moutamid.routineapp.utils.Constants;
 
 import java.util.ArrayList;
@@ -58,7 +60,6 @@ public class HomeFragment extends Fragment {
         binding.routineRC.setHasFixedSize(false);
 
         list = new ArrayList<>();
-        getData();
 
         binding.inCompleted.setOnClickListener(v -> {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
@@ -89,6 +90,16 @@ public class HomeFragment extends Fragment {
         return binding.getRoot();
     }
 
+    ArrayList<Long> times = new ArrayList<>();
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (list.size() == 0){
+            getData();
+        }
+    }
+
     private void getData() {
         Constants.showDialog();
         Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
@@ -104,8 +115,14 @@ public class HomeFragment extends Fragment {
                             String name = dataSnapshot.child("name").getValue(String.class);
                             String context = dataSnapshot.child("context").getValue(String.class);
                             int minutes = dataSnapshot.child("minutes").getValue(Integer.class);
+                            long reminder = dataSnapshot.child("reminder").getValue(Long.class);
+
                             ArrayList<String> days = new ArrayList<>();
                             ArrayList<AddStepsChildModel> steps = new ArrayList<>();
+
+                            if (reminder != 0){
+                                times.add(reminder);
+                            }
 
                             for (DataSnapshot day : dataSnapshot.child("days").getChildren()){
                                 String d = day.getValue(String.class);
@@ -126,8 +143,25 @@ public class HomeFragment extends Fragment {
                             model.setDays(days);
                             model.setSteps(steps);
                             model.setDaysCompleted(completedDays);
+                            model.setReminder(reminder);
 
                             list.add(model);
+                        }
+
+
+                        if (list.size() > 0){
+                            for (int i = 0; i < list.size(); i++) {
+                                RoutineModel model = list.get(i);
+                                String ID = model.getID();
+
+                                ArrayList<StepsLocalModel> localList = Stash.getArrayList(ID, StepsLocalModel.class);
+                                if (localList.size() == 0) {
+                                    for (AddStepsChildModel childModel : model.getSteps()) {
+                                        localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
+                                    }
+                                    Stash.put(ID, localList);
+                                }
+                            }
                         }
 
                         adapter = new RoutineAdapter(binding.getRoot().getContext(), list);
@@ -157,6 +191,7 @@ public class HomeFragment extends Fragment {
                         }
 
                         adapter.getFilter().filter(today);
+                        Stash.put(Constants.TIME_LIST, times);
                         Constants.dismissDialog();
                     }
 

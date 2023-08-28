@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.databinding.ActivityLoginBinding;
 import com.moutamid.routineapp.utils.Constants;
@@ -17,6 +18,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
         Constants.initDialog(this);

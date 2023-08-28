@@ -12,6 +12,7 @@ import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.databinding.ActivityTimerBinding;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.models.StepsLocalModel;
+import com.moutamid.routineapp.notification.NotificationHelper;
 import com.moutamid.routineapp.utils.Constants;
 
 import java.util.ArrayList;
@@ -30,6 +31,9 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTimerBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);
@@ -102,6 +106,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void finishTask() {
+        Stash.put("CONGRATS", model);
         startActivity(new Intent(this, CompletedActivity.class));
         finish();
     }
@@ -125,6 +130,10 @@ public class TimerActivity extends AppCompatActivity {
     private void startTimer() {
         if (countDownTimer != null) {
             countDownTimer.cancel();
+        } else {
+            NotificationHelper helper = new NotificationHelper(this);
+            String body = stepsModel.getName() + " " + stepsModel.getTime() + " left";
+            helper.sendHighPriorityNotification("Start Routine", body, TimerActivity.class);
         }
 
         countDownTimer = new CountDownTimer(remainingTimeInMillis, 1000) {

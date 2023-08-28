@@ -20,6 +20,7 @@
     <color name="pink">#FF799F</color>
     <color name="seeGreen">#25D7C0</color>
     <color name="blue">#2A75FE</color>
+    <color name="light1">#D5DFFC</color>
 
     <array name="color_picker">
         <item>@color/light</item>

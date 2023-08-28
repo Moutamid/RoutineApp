@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.databinding.ActivitySignUpBinding;
 import com.moutamid.routineapp.models.UserModel;
 import com.moutamid.routineapp.utils.Constants;
@@ -18,6 +19,9 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
         Constants.initDialog(this);

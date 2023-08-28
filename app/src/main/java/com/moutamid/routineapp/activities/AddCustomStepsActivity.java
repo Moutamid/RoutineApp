@@ -27,6 +27,9 @@ public class AddCustomStepsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddCustomStepsBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
         binding.toolbar.tittle.setText("Add Custom Sep");

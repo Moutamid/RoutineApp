@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.databinding.ActivitySelectionBinding;
 import com.moutamid.routineapp.utils.Constants;
@@ -20,6 +21,9 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySelectionBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
         binding.toolbar.tittle.setText("Select Which Describes You");
         Constants.initDialog(this);

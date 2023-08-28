@@ -1,5 +1,6 @@
 package com.moutamid.routineapp.utils;
 
+import com.fxn.stash.Stash;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.view.Window;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,21 +40,29 @@ public class Constants {
 
     static Dialog dialog;
     public static final String DATEFORMATE = "dd/MM/yyyy";
-    public static final String CURRENTTIME = "hh:mm a";
+    public static String CURRENTTIME = "hh:mm a";
     public static final String USER = "users";
     public static final String Steps = "Steps";
+    public static final String THEME = "THEME";
     public static final String Routines = "Routines";
     public static final String ROUTINE_LIST = "ROUTINE_LIST";
+    public static final String TIME_LIST = "TIME_LIST";
     public static final String DAY = "DAY";
     public static final String MODEL = "MODEL";
     public static final String STEPS_LIST = "STEPS_LIST";
+    public static final String SHOW_24 = "SHOW_24";
+    public static final String DARK_MODE = "DARK_MODE";
+    public static final String COLOR = "COLOR";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);
     }
 
     public static String getCurrentTime(){
-        return new SimpleDateFormat("hh:mm a", Locale.getDefault()).format(new Date());
+        if (Stash.getBoolean(Constants.SHOW_24, false)){
+            CURRENTTIME = "HH:mm";
+        }
+        return new SimpleDateFormat(CURRENTTIME, Locale.getDefault()).format(new Date());
     }
 
     public static void initDialog(Context context){
@@ -61,6 +71,14 @@ public class Constants {
         dialog.setContentView(R.layout.loading_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
+    }
+
+    public static void changeTheme(Context context){
+        if (Stash.getBoolean(Constants.DARK_MODE, false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     public static String getToday() {
@@ -157,7 +175,6 @@ public class Constants {
             time = Integer.parseInt(matcher.group(1));
         }
         return time;
-
     }
 
     public static List<Integer> extractTimeValues(ArrayList<AddStepsChildModel> timeStrings) {

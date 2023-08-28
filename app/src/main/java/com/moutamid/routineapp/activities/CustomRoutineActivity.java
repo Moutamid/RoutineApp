@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fxn.stash.Stash;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
 import com.moutamid.routineapp.bottomsheets.AddStepsFragment;
@@ -34,10 +36,14 @@ import com.moutamid.routineapp.models.StepsLocalModel;
 import com.moutamid.routineapp.utils.Constants;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,10 +55,14 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
     ArrayList<AddStepsChildModel> list;
     AddStepsChildAdapter adapter;
     int minute = 0;
+    long reminder = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCustomRoutineBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
         binding.toolbar.tittle.setText("Add Routine");
@@ -93,6 +103,10 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
         });
 
+        binding.addReminder.setOnClickListener(v -> {
+            openTimePicker();
+        });
+
         ItemTouchHelper.Callback ithCallback = new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
@@ -124,7 +138,7 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
                 CompletedDaysModel daysCompleted = new CompletedDaysModel(false,false,false,false,false,false,false);
                 RoutineModel model = new RoutineModel(
                         ID, binding.name.getEditText().getText().toString(), binding.context.getEditText().getText().toString(),
-                        minute, days, daysCompleted, list
+                        minute, days, daysCompleted, list, reminder
                 );
                 Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
                         .child(ID).setValue(model).addOnSuccessListener(unused -> {
@@ -144,6 +158,42 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             }
         });
 
+    }
+
+    private void openTimePicker() {
+        int format = Stash.getBoolean(Constants.SHOW_24) ? TimeFormat.CLOCK_24H : TimeFormat.CLOCK_12H;
+        MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                .setTimeFormat(format)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Select Time")
+                .setPositiveButtonText("Add")
+                .setNegativeButtonText("No Reminder")
+                .build();
+
+
+        timePicker.addOnNegativeButtonClickListener(view -> {
+            binding.timeText.setText("No reminder");
+        });
+
+        timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int hour = timePicker.getHour();
+                int minute = timePicker.getMinute();
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                calendar.set(Calendar.MINUTE, minute);
+
+                reminder = calendar.getTimeInMillis();
+                String form = Stash.getBoolean(Constants.SHOW_24) ? "HH:mm" : "hh:mm";
+                String formattedTime = new SimpleDateFormat(form, Locale.getDefault()).format(reminder);
+                binding.timeText.setText(formattedTime);
+            }
+        });
+
+        timePicker.show(getSupportFragmentManager(), "timePicker");
     }
 
     private boolean valid() {

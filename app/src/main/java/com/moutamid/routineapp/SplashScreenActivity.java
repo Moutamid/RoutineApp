@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.databinding.ActivitySplashScreenBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -17,11 +18,13 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
         setContentView(binding.getRoot());
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.light));
+        window.setStatusBarColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
 
         new Handler().postDelayed(() -> {
             if (Constants.auth().getCurrentUser() == null){

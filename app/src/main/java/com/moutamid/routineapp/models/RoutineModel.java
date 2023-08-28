@@ -8,6 +8,7 @@ public class RoutineModel {
     ArrayList<String> days;
     CompletedDaysModel daysCompleted;
     ArrayList<AddStepsChildModel> steps;
+    long reminder;
 
     public RoutineModel() {
     }
@@ -20,6 +21,17 @@ public class RoutineModel {
         this.days = days;
         this.daysCompleted = daysCompleted;
         this.steps = steps;
+    }
+
+    public RoutineModel(String ID, String name, String context, int minutes, ArrayList<String> days, CompletedDaysModel daysCompleted, ArrayList<AddStepsChildModel> steps, long reminder) {
+        this.ID = ID;
+        this.name = name;
+        this.context = context;
+        this.minutes = minutes;
+        this.days = days;
+        this.daysCompleted = daysCompleted;
+        this.steps = steps;
+        this.reminder = reminder;
     }
 
     public String getID() {
@@ -76,5 +88,13 @@ public class RoutineModel {
 
     public void setDaysCompleted(CompletedDaysModel daysCompleted) {
         this.daysCompleted = daysCompleted;
+    }
+
+    public long getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(long reminder) {
+        this.reminder = reminder;
     }
 }

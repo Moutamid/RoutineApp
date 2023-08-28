@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.databinding.ActivityWelcomeBinding;
 import com.moutamid.routineapp.activities.LoginActivity;
 import com.moutamid.routineapp.utils.Constants;
@@ -17,6 +18,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
         setContentView(binding.getRoot());
         Constants.checkApp(this);
 

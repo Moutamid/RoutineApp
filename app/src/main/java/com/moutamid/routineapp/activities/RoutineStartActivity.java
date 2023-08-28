@@ -37,6 +37,9 @@ public class RoutineStartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRoutineStartBinding.inflate(getLayoutInflater());
+        int theme = Stash.getInt(Constants.THEME);
+        setTheme(theme);
+        Constants.changeTheme(this);
         setContentView(binding.getRoot());
         binding.toolbar.tittle.setText("Start Routine");
         Constants.initDialog(this);

@@ -45,6 +45,7 @@ public class Constants {
     public static final String Steps = "Steps";
     public static final String THEME = "THEME";
     public static final String Routines = "Routines";
+    public static final String LANGUAGE = "LANGUAGE";
     public static final String ROUTINE_LIST = "ROUTINE_LIST";
     public static final String TIME_LIST = "TIME_LIST";
     public static final String DAY = "DAY";
@@ -53,6 +54,10 @@ public class Constants {
     public static final String SHOW_24 = "SHOW_24";
     public static final String DARK_MODE = "DARK_MODE";
     public static final String COLOR = "COLOR";
+    public static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArBueEiTWfZk7O+BE104DZiZh6Dj8tIMJdZter0tO2KH0MUzn1UB14nrg6bb5IGup29NEvG6UI0ZelHgxClkYvLxzgXjagFgFKN46U6kijHxsccY9evn06NWNyJbPFoAkTQyVIPk44SBufx7g4H5f0azOtY28DL3fg5nvLDJ7yPAejGSvdZXuiVGopwS1A05QrjrgA6ol1YOUzxu22Vanb4ncIDTdF35MA2arbVf74fYFcqkJgWcfWkENRDxoj8IPo1tzWH2rO1/vaILmosJKd1SOrMhrmmyLita0AzJXH/d59Gwu3ed53Ct/Qcq9bDIX3TOALPdQ+NaRkapT2w0twQIDAQAB";
+    public static final  String VIP_MONTH = "vip.month.com.moutamid.routineapp";
+    public static final  String VIP_LIFE = "vip.lifetime.com.moutamid.routineapp";
+    public static final  String IS_VIP = "IS_VIP";
 
     public static String getFormatedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);

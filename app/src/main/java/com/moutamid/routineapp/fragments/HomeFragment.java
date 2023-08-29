@@ -46,8 +46,6 @@ public class HomeFragment extends Fragment {
         String today = Constants.getToday();
         updateCalender(today);
 
-        Constants.initDialog(requireContext());
-
         binding.monday.setOnClickListener(v -> updateClick("Mon"));
         binding.tuesday.setOnClickListener(v -> updateClick("Tue"));
         binding.wednessday.setOnClickListener(v -> updateClick("Wed"));
@@ -95,8 +93,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (list.size() == 0){
-            getData();
+
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            getActivity().runOnUiThread(() -> {
+                Constants.initDialog(requireContext());
+                if (list.size() == 0){
+                    getData();
+                }
+            });
         }
     }
 
@@ -285,7 +289,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void updateCalender(String today) {
+    private void updateCalender(@NonNull String today) {
         binding.tittle.setText("Today Routines");
         if (today.equalsIgnoreCase("Sun")) {
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.text));

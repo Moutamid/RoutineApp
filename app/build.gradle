@@ -36,6 +36,14 @@ android {
 }
 
 dependencies {
+
+    def billing_version = "6.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'com.anjlab.android.iab.v3:library:2.0.0'
+
+    implementation 'com.google.android.gms:play-services-ads:22.3.0'
+
     implementation 'com.github.angads25:toggle:1.1.0'
     implementation 'com.thebluealliance:spectrum:0.7.1'
     implementation 'io.github.ShawnLin013:number-picker:2.4.13'

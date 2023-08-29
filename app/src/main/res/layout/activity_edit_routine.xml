@@ -239,7 +239,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/airbnb"
                         android:text="Add time"
-                        android:textColor="@color/dark"
+                        android:textColor="@color/light"
                         android:gravity="center"
                         android:textSize="16sp" />
 
@@ -327,6 +327,7 @@
         android:layout_marginBottom="12sp"
         android:fontFamily="@font/airbnb"
         android:text="Update"
+        android:textColor="@color/text_white"
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold" />

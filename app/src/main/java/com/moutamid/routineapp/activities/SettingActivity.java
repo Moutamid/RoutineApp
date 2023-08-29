@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.fxn.stash.Stash;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.github.angads25.toggle.model.ToggleableView;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.SplashScreenActivity;
 import com.moutamid.routineapp.databinding.ActivitySettingBinding;
@@ -26,12 +27,12 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         int theme = Stash.getInt(Constants.THEME);
         Log.d("COLOR123", theme+"");
         setTheme(theme);
-        Constants.changeTheme(this);
         setContentView(binding.getRoot());
+
+        Constants.changeTheme(this);
 
         currentTheme = theme;
 
@@ -48,7 +49,22 @@ public class SettingActivity extends AppCompatActivity {
         binding.time24Switch.setOnToggledListener((toggleableView, isOn) -> Stash.put(Constants.SHOW_24, isOn));
         binding.darkSwitch.setOnToggledListener((toggleableView, isOn) -> {
             Stash.put(Constants.DARK_MODE, isOn);
-            recreate();
+            onBackPressed();
+        });
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            binding.defaultLanguage.setText("English");
+        } else {
+            binding.defaultLanguage.setText("Spanish");
+        }
+
+        binding.language.setOnClickListener(v -> {
+            startActivity(new Intent(this, LanguageActivity.class));
+            finish();
+        });
+
+        binding.pro.setOnClickListener(v -> {
+            startActivity(new Intent(this, PaymentActivity.class));
         });
 
         binding.colorPicker.setOnColorSelectedListener(color -> {
@@ -130,5 +146,11 @@ public class SettingActivity extends AppCompatActivity {
                     }))
                     .show();
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+        finish();
     }
 }

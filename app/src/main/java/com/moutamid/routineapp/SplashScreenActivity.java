@@ -22,6 +22,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         setTheme(theme);
         setContentView(binding.getRoot());
 
+        Constants.changeTheme(this);
+
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));

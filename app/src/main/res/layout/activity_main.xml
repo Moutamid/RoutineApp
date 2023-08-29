@@ -49,9 +49,9 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_nav_bg"
         android:elevation="12sp"
+        android:layout_above="@id/adView"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="12dp">
@@ -79,7 +79,7 @@
                 android:layout_height="32dp"
                 android:layout_margin="10sp"
                 android:src="@drawable/round_add_24"
-                app:tint="@color/white" />
+                app:tint="@color/text_white" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -93,5 +93,16 @@
             android:src="@drawable/insights" />
 
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

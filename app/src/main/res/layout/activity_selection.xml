@@ -176,6 +176,7 @@
         android:fontFamily="@font/airbnb"
         android:padding="15sp"
         android:textSize="16sp"
+        android:textColor="@color/text_white"
         android:layout_alignParentBottom="true"
         android:text="Next" />
 

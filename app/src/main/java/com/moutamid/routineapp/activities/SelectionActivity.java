@@ -88,7 +88,8 @@ public class SelectionActivity extends AppCompatActivity {
             Constants.databaseReference().child(Constants.USER).child(Constants.auth().getCurrentUser().getUid())
                     .updateChildren(map).addOnSuccessListener(unused -> {
                         Constants.dismissDialog();
-                        startActivity(new Intent(this, MainActivity.class));
+                        Stash.put("backShow", false);
+                        startActivity(new Intent(this, LanguageActivity.class));
                         finish();
                     }).addOnFailureListener(e -> {
                         Constants.dismissDialog();

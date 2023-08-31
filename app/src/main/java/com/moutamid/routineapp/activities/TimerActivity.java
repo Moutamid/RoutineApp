@@ -3,6 +3,7 @@ package com.moutamid.routineapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -173,6 +174,23 @@ public class TimerActivity extends AppCompatActivity {
         isPaused = false;
         binding.startPauseText.setText("Pause");
         binding.startPauseIcon.setImageResource(R.drawable.pause);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateViews();
+    }
+
+    private void updateViews() {
+        binding.mainCard.setCardBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.skip.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.completed.setBackgroundTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+        binding.completed.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.skipIco.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.finishTime.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.remainingSteps.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.skipText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private void pauseTimer() {

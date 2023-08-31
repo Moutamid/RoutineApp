@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
+import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityLoginBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -24,6 +26,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Constants.initDialog(this);
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+
 
         binding.toolbar.tittle.setText("Continue with E-Mail");
 
@@ -49,6 +60,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateViews();
+    }
+
+    private void updateViews() {
+        binding.create.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.forgot.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.email.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.password.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.login.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private boolean valid() {

@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.Window;
@@ -49,11 +50,14 @@ public class Constants {
     public static final String ROUTINE_LIST = "ROUTINE_LIST";
     public static final String TIME_LIST = "TIME_LIST";
     public static final String DAY = "DAY";
+    public static final String EN = "en";
+    public static final String ES = "es";
     public static final String MODEL = "MODEL";
     public static final String STEPS_LIST = "STEPS_LIST";
     public static final String SHOW_24 = "SHOW_24";
     public static final String DARK_MODE = "DARK_MODE";
     public static final String COLOR = "COLOR";
+    public static final String COLOR_TEXT = "COLOR_TEXT";
     public static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArBueEiTWfZk7O+BE104DZiZh6Dj8tIMJdZter0tO2KH0MUzn1UB14nrg6bb5IGup29NEvG6UI0ZelHgxClkYvLxzgXjagFgFKN46U6kijHxsccY9evn06NWNyJbPFoAkTQyVIPk44SBufx7g4H5f0azOtY28DL3fg5nvLDJ7yPAejGSvdZXuiVGopwS1A05QrjrgA6ol1YOUzxu22Vanb4ncIDTdF35MA2arbVf74fYFcqkJgWcfWkENRDxoj8IPo1tzWH2rO1/vaILmosJKd1SOrMhrmmyLita0AzJXH/d59Gwu3ed53Ct/Qcq9bDIX3TOALPdQ+NaRkapT2w0twQIDAQAB";
     public static final  String VIP_MONTH = "vip.month.com.moutamid.routineapp";
     public static final  String VIP_LIFE = "vip.lifetime.com.moutamid.routineapp";
@@ -68,6 +72,16 @@ public class Constants {
             CURRENTTIME = "HH:mm";
         }
         return new SimpleDateFormat(CURRENTTIME, Locale.getDefault()).format(new Date());
+    }
+
+    // en - English
+    // es - Spanish
+    public static void setLocale(Context context, String lng) {
+        Locale locale = new Locale(lng);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
     }
 
     public static void initDialog(Context context){

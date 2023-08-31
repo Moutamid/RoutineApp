@@ -23,7 +23,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Base.Theme.RoutineApp3" parent="Theme.Material3.Dark.NoActionBar">
@@ -36,7 +36,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Base.Theme.RoutineApp4" parent="Theme.Material3.Dark.NoActionBar">
@@ -49,7 +49,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Base.Theme.RoutineApp5" parent="Theme.Material3.Dark.NoActionBar">
@@ -62,7 +62,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Base.Theme.RoutineApp6" parent="Theme.Material3.Dark.NoActionBar">
@@ -75,7 +75,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="ChipsColor" parent="Widget.MaterialComponents.Chip.Choice">

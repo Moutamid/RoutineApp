@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,9 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.moutamid.routineapp.MainActivity;
+import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.bottomsheets.AddStepsFragment;
 import com.moutamid.routineapp.databinding.ActivityCustomRoutineBinding;
 import com.moutamid.routineapp.listners.BottomSheetDismissListener;
@@ -67,6 +70,20 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
 
         binding.toolbar.tittle.setText("Add Routine");
         Constants.initDialog(this);
+
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
         context = new ArrayList<>();
@@ -233,11 +250,53 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
     protected void onResume() {
         super.onResume();
         getData();
+        updateViews();
+    }
+
+    private void updateViews() {
+        binding.save.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.addReminder.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.addReminder.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.addSteps.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.addSteps.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.timeText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.totalTime.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.name.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.context.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.addIco.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+
+        binding.monday.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.monday.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.monday.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.tuesday.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.tuesday.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.tuesday.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.wednesday.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.wednesday.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.wednesday.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.thursday.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.thursday.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.thursday.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.friday.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.friday.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.friday.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.sat.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.sat.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.sat.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
+
+        binding.sun.setCheckedIconTint(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.sun.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.sun.setChipBackgroundColor(ColorStateList.valueOf(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text))));
     }
 
     private void getData() {
         list = Stash.getArrayList(Constants.Steps, AddStepsChildModel.class);
-        if (list.size() > 1){
+        if (list.size() >= 1){
             binding.stepsRC.setVisibility(View.VISIBLE);
             binding.totalTime.setVisibility(View.VISIBLE);
             int min = 0;

@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:layout_above="@id/adView"
         android:layout_below="@id/toolbar">
 
         <LinearLayout
@@ -37,9 +38,10 @@
                     android:padding="12sp">
 
                     <TextView
+                        android:id="@+id/text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="App Setting"
+                        android:text="@string/app_setting"
                         android:textColor="?attr/colorPrimary"
                         android:fontFamily="@font/airbnb" />
 
@@ -55,7 +57,7 @@
                             android:layout_centerInParent="true"
                             android:layout_toLeftOf="@id/darkSwitch"
                             android:fontFamily="@font/airbnb"
-                            android:text="Enable dark mode"
+                            android:text="@string/enable_dark_mode"
                             android:textSize="16sp"
                             android:textColor="@color/dark" />
 
@@ -81,7 +83,7 @@
                         android:layout_centerInParent="true"
                         android:layout_toLeftOf="@id/darkSwitch"
                         android:fontFamily="@font/airbnb"
-                        android:text="Color Palette"
+                        android:text="@string/color_palette"
                         android:textSize="16sp"
                         android:layout_marginTop="10sp"
                         android:textColor="@color/dark" />
@@ -113,7 +115,7 @@
                                 android:id="@+id/languageTile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Change Language"
+                                android:text="@string/change_language"
                                 android:textColor="?attr/colorPrimary"
                                 android:fontFamily="@font/airbnb" />
 
@@ -125,7 +127,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_marginTop="10sp"
                                 android:fontFamily="@font/airbnb"
-                                android:text="Default Language"
+                                android:text="@string/default_language"
                                 android:textColor="@color/dark"
                                 android:textSize="16sp" />
 
@@ -164,9 +166,10 @@
                     android:padding="12sp">
 
                     <TextView
+                        android:id="@+id/text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Routines Setting"
+                        android:text="@string/routines_setting"
                         android:textColor="?attr/colorPrimary"
                         android:fontFamily="@font/airbnb" />
 
@@ -182,7 +185,7 @@
                             android:layout_centerInParent="true"
                             android:layout_toLeftOf="@id/time24Switch"
                             android:fontFamily="@font/airbnb"
-                            android:text="Show 24h time"
+                            android:text="@string/show_24h_time"
                             android:textColor="@color/dark"
                             android:textSize="16sp" />
 
@@ -229,9 +232,10 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/text3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Remove Ads"
+                            android:text="@string/remove_ads"
                             android:textColor="?attr/colorPrimary"
                             android:fontFamily="@font/airbnb" />
 
@@ -241,7 +245,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_centerInParent="true"
                             android:fontFamily="@font/airbnb"
-                            android:text="Go Pro"
+                            android:text="@string/go_pro"
                             android:layout_marginTop="10sp"
                             android:textColor="@color/dark"
                             android:textSize="16sp" />
@@ -285,9 +289,10 @@
                     android:padding="12sp">
 
                     <TextView
+                        android:id="@+id/text4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Us"
+                        android:text="@string/contact_us"
                         android:textColor="?attr/colorPrimary"
                         android:fontFamily="@font/airbnb" />
 
@@ -316,7 +321,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Email : example@gmail.com"
+                                    android:text="@string/email_example_gmail_com"
                                     android:textColor="@color/dark"
                                     android:textSize="20sp"
                                     android:fontFamily="@font/airbnb" />
@@ -324,7 +329,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Your 1 sentence is something to us"
+                                    android:text="@string/your_1_sentence_is_something_to_us"
                                     android:textSize="16sp"
                                     android:layout_marginTop="5sp"
                                     android:fontFamily="@font/airbnb" />
@@ -383,7 +388,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Follow us @example"
+                                    android:text="@string/follow_us_example"
                                     android:textColor="@color/dark"
                                     android:textSize="20sp"
                                     android:fontFamily="@font/airbnb" />
@@ -391,7 +396,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Your 1 follow help us to motivate"
+                                    android:text="@string/your_1_follow_help_us_to_motivate"
                                     android:textSize="16sp"
                                     android:layout_marginTop="5sp"
                                     android:fontFamily="@font/airbnb" />
@@ -439,9 +444,10 @@
                     android:padding="12sp">
 
                     <TextView
+                        android:id="@+id/text5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FAQs"
+                        android:text="@string/faqs"
                         android:textColor="?attr/colorPrimary"
                         android:fontFamily="@font/airbnb" />
 
@@ -462,9 +468,10 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="How to duplicate a routine?"
+                                android:text="@string/how_to_duplicate_a_routine"
                                 android:textColor="?attr/colorPrimary"
                                 android:fontFamily="@font/airbnb" />
 
@@ -499,6 +506,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I'm having problems wih the notifications"
@@ -535,6 +543,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="How to edit a routine?"
@@ -571,6 +580,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Can I reorder tasks while doing a routine?"
@@ -607,6 +617,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Where are already completed routines?"
@@ -643,6 +654,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/text11"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I can't see the routine somebody has shared with me"
@@ -681,6 +693,7 @@
                     android:padding="12sp">
 
                     <TextView
+                        android:id="@+id/text12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Account"
@@ -710,10 +723,20 @@
 
             </androidx.cardview.widget.CardView>
 
-
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

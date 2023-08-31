@@ -20,7 +20,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins"
         android:gravity="center_vertical"
-        android:text="Create your routine from a template or start with a custom one"
+        android:text="@string/create_your_routine_from_a_template_or_start_with_a_custom_one"
         android:textSize="18sp" />
 
     <Button
@@ -36,7 +36,7 @@
         android:fontFamily="@font/airbnb"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:text="Custom Routine"
+        android:text="@string/custom_routine"
         android:textColor="@color/light" />
 
     <LinearLayout
@@ -80,7 +80,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/baloo"
         android:gravity="center_vertical"
-        android:text="Suggested routines"
+        android:text="@string/suggested_routines"
         android:textColor="@color/dark"
         android:textSize="32sp" />
 
@@ -88,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tittle"
+        android:layout_above="@id/adView"
         android:fillViewport="true">
 
         <LinearLayout
@@ -126,7 +127,7 @@
                             android:layout_below="@id/seperator"
                             android:fontFamily="@font/airbnb"
                             android:gravity="center_vertical"
-                            android:text="Morning Routine"
+                            android:text="@string/morning_routine"
                             android:textColor="@color/dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -137,7 +138,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins"
                             android:includeFontPadding="false"
-                            android:text="Start the day energized"
+                            android:text="@string/start_the_day_energized"
                             android:textSize="14sp" />
 
 
@@ -145,6 +146,7 @@
 
 
                     <ImageView
+                        android:id="@+id/image1"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="10sp"
@@ -185,7 +187,7 @@
                             android:layout_below="@id/seperator"
                             android:fontFamily="@font/airbnb"
                             android:gravity="center_vertical"
-                            android:text="Evening Routine"
+                            android:text="@string/evening_routine"
                             android:textColor="@color/dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -196,7 +198,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins"
                             android:includeFontPadding="false"
-                            android:text="Get better sleep"
+                            android:text="@string/get_better_sleep"
                             android:textSize="14sp" />
 
 
@@ -204,6 +206,7 @@
 
 
                     <ImageView
+                        android:id="@+id/image2"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="10sp"
@@ -244,7 +247,7 @@
                             android:layout_below="@id/seperator"
                             android:fontFamily="@font/airbnb"
                             android:gravity="center_vertical"
-                            android:text="Study Routine"
+                            android:text="@string/study_routine"
                             android:textColor="@color/dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -255,7 +258,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins"
                             android:includeFontPadding="false"
-                            android:text="Better focus while studying"
+                            android:text="@string/better_focus_while_studying"
                             android:textSize="14sp" />
 
 
@@ -263,6 +266,7 @@
 
 
                     <ImageView
+                        android:id="@+id/image3"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="10sp"
@@ -303,7 +307,7 @@
                             android:layout_below="@id/seperator"
                             android:fontFamily="@font/airbnb"
                             android:gravity="center_vertical"
-                            android:text="Selfcare Routine"
+                            android:text="@string/selfcare_routine"
                             android:textColor="@color/dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -314,7 +318,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins"
                             android:includeFontPadding="false"
-                            android:text="Improve your mental health"
+                            android:text="@string/improve_your_mental_health"
                             android:textSize="14sp" />
 
 
@@ -322,6 +326,7 @@
 
 
                     <ImageView
+                        android:id="@+id/image4"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="10sp"
@@ -362,7 +367,7 @@
                             android:layout_below="@id/seperator"
                             android:fontFamily="@font/airbnb"
                             android:gravity="center_vertical"
-                            android:text="Ready for work Routine"
+                            android:text="@string/ready_for_work_routine"
                             android:textColor="@color/dark"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -373,7 +378,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins"
                             android:includeFontPadding="false"
-                            android:text="Get more done with a ritual"
+                            android:text="@string/get_more_done_with_a_ritual"
                             android:textSize="14sp" />
 
 
@@ -381,6 +386,7 @@
 
 
                     <ImageView
+                        android:id="@+id/image5"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="10sp"
@@ -394,5 +400,17 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

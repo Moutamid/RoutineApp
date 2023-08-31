@@ -11,6 +11,11 @@
     <color name="dark">#171717</color>
     <color name="transparent">#00171717</color>
     <color name="text">#D7D9FF</color>
+    <color name="text_blue">#A8B4BF</color>
+    <color name="text_purple">#D7BAE7</color>
+    <color name="text_seagreen">#B5EDE5</color>
+    <color name="text_green">#C2D9CD</color>
+    <color name="text_pink">#FFD2DF</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="red">#FF1616</color>
     <color name="radio_uncheck">#E9E9E9</color>
@@ -19,10 +24,10 @@
     <color name="yellow">#D0FD3E</color>
 <!--   Palete -->
     <color name="green">#4F976F</color>
-    <color name="purple">#9783D3</color>
+    <color name="purple">#8932B7</color>
     <color name="pink">#FF799F</color>
     <color name="seeGreen">#25D7C0</color>
-    <color name="blue">#2A75FE</color>
+    <color name="blue">#03254c</color>
     <color name="light1">#D5DFFC</color>
 
     <array name="color_picker">

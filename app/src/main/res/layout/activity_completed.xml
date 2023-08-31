@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
+    android:id="@+id/bg"
     tools:context=".activities.CompletedActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -28,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
-                android:text="Amazing Job!"
+                android:text="@string/amazing_job"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
-                android:text="You have completed your Today's routine"
+                android:text="@string/you_have_completed_your_today_s_routine"
                 android:textColor="@color/text"
                 android:textSize="18sp" />
 
@@ -75,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/baloo"
-                    android:text="Number of Steps you completed"
+                    android:text="@string/number_of_steps_you_completed"
                     android:textColor="@color/text"
                     android:layout_weight="1"
                     android:textSize="16sp" />
@@ -102,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/baloo"
-                    android:text="Total Time"
+                    android:text="@string/total_time"
                     android:textColor="@color/text"
                     android:layout_weight="1"
                     android:textSize="16sp" />
@@ -127,11 +128,23 @@
         android:id="@+id/done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/adView"
         android:layout_margin="12sp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/airbnb"
-        android:text="Done"
+        android:text="@string/done"
         android:textColor="@color/dark" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

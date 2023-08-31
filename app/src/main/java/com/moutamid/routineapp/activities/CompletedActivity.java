@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityCompletedBinding;
 import com.moutamid.routineapp.models.CompletedDaysModel;
 import com.moutamid.routineapp.models.RoutineModel;
@@ -34,6 +35,22 @@ public class CompletedActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
+
+        binding.bg.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
 
         Constants.initDialog(this);
 

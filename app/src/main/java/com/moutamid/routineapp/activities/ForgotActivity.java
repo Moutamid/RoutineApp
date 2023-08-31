@@ -7,6 +7,8 @@ import android.util.Patterns;
 import android.widget.Toast;
 
 import com.fxn.stash.Stash;
+import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityForgotBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -20,6 +22,14 @@ public class ForgotActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
 
         Constants.initDialog(this);
 
@@ -41,6 +51,13 @@ public class ForgotActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.email.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.next.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private boolean valid() {

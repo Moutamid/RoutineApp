@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         Constants.changeTheme(this);
         Constants.checkApp(this);
 
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);
         bp.initialize();
 
@@ -72,6 +80,13 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             Ads.showInterstitial(this, this);
         }
 
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
+
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new HomeFragment()).commit();
 
         binding.home.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new HomeFragment()).commit());
@@ -83,11 +98,17 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         });
         binding.add.setOnClickListener(v -> startActivity(new Intent(this, AddActivity.class)));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             shouldShowRequestPermissionRationale(android.Manifest.permission.POST_NOTIFICATIONS);
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.add.setCardBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     @Override

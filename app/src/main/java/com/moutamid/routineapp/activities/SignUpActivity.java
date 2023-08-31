@@ -8,6 +8,8 @@ import android.util.Patterns;
 import android.widget.Toast;
 
 import com.fxn.stash.Stash;
+import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivitySignUpBinding;
 import com.moutamid.routineapp.models.UserModel;
 import com.moutamid.routineapp.utils.Constants;
@@ -23,6 +25,13 @@ public class SignUpActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
 
         Constants.initDialog(this);
         binding.toolbar.tittle.setText("Create Account");
@@ -62,6 +71,16 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.name.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.email.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.password.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.create.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.login.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private boolean valid() {

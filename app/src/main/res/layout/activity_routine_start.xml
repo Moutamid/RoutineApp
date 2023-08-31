@@ -14,6 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/adView"
         android:layout_below="@id/toolbar">
 
         <LinearLayout
@@ -48,7 +49,7 @@
                     android:id="@+id/edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit\t"
+                    android:text="@string/edit_t"
                     android:textColor="@color/text_white"
                     android:drawableEnd="@drawable/edit"
                     android:layout_alignParentEnd="true"
@@ -65,7 +66,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins"
                 android:gravity="center_vertical"
-                android:text="If you start now"
+                android:text="@string/if_you_start_now"
                 android:textSize="16sp" />
 
             <TextView
@@ -88,7 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/airbnb"
                 android:gravity="center_vertical"
-                android:text="Last 7 days"
+                android:text="@string/last_7_days"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -100,6 +101,7 @@
                 android:padding="12sp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/monday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -120,6 +122,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tuesday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -140,6 +143,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/wednesday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -160,6 +164,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/thursday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -180,6 +185,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/friday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -200,6 +206,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/saturday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -220,6 +227,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sunday"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     app:strokeColor="@color/text"
@@ -266,7 +274,7 @@
                     android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Share Routine\t"
+                    android:text="@string/share_routine_t"
                     android:backgroundTint="@color/border"
                     android:fontFamily="@font/airbnb"
                     android:drawableEnd="@drawable/link"
@@ -300,7 +308,7 @@
             android:id="@+id/start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start"
+            android:text="@string/start"
             android:layout_marginBottom="10sp"
             android:layout_marginHorizontal="15sp"
             android:layout_alignParentBottom="true"
@@ -311,5 +319,17 @@
             android:fontFamily="@font/airbnb" />
 
     </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

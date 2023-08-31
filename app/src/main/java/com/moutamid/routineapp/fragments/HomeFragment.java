@@ -94,6 +94,8 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        updateViews();
+        
         if (getActivity() != null && !getActivity().isFinishing()) {
             getActivity().runOnUiThread(() -> {
                 Constants.initDialog(requireContext());
@@ -102,6 +104,18 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+        
+        
+    }
+
+    private void updateViews() {
+        binding.monText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.tueText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.wedText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.thuText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.friText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.satText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.sunText.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private void getData() {
@@ -217,7 +231,7 @@ public class HomeFragment extends Fragment {
         }
 
         if (clicked.equalsIgnoreCase("Sun")) {
-            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Sunday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -228,7 +242,7 @@ public class HomeFragment extends Fragment {
 
         }
         if (clicked.equalsIgnoreCase("Mon")) {
-            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Monday");
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -238,7 +252,7 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
         }
         if (clicked.equalsIgnoreCase("Tue")) {
-            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Tuesday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -248,7 +262,7 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
         }
         if (clicked.equalsIgnoreCase("Wed")) {
-            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.wednessday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Wednesday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -258,7 +272,7 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
         }
         if (clicked.equalsIgnoreCase("Thu")) {
-            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Thursday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -268,7 +282,7 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
         }
         if (clicked.equalsIgnoreCase("Fri")) {
-            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Friday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -278,7 +292,7 @@ public class HomeFragment extends Fragment {
             binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.white));
         }
         if (clicked.equalsIgnoreCase("Sat")) {
-            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.text));
+            binding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             adapter.getFilter().filter("Saturday");
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -292,32 +306,32 @@ public class HomeFragment extends Fragment {
     private void updateCalender(@NonNull String today) {
         binding.tittle.setText("Today Routines");
         if (today.equalsIgnoreCase("Sun")) {
-            binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.sunday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.sunday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Mon")) {
-            binding.monday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.monday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.monday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Tue")) {
-            binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.tuesday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.tuesday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Wed")) {
-            binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.wednessday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.wednessday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.wednessday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Thu")) {
-            binding.thursday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.thursday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.thursday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Fri")) {
-            binding.friday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.friday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.friday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Sat")) {
-            binding.saturday.setCardBackgroundColor(getResources().getColor(R.color.text));
-            binding.saturday.setStrokeColor(getResources().getColor(R.color.light));
+            binding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+            binding.saturday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
     }
 }

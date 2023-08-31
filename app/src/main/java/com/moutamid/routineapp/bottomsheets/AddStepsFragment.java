@@ -62,6 +62,9 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
             dismiss();
         });
 
+        custom.setBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        custom.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+
         recyler = view.findViewById(R.id.recyler);
         recyler.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyler.setHasFixedSize(false);

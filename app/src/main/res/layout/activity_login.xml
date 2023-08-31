@@ -19,7 +19,7 @@
         android:layout_below="@id/toolbar"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
-        android:hint="E-mail"
+        android:hint="@string/e_mail"
         app:errorIconDrawable="@drawable/error"
         app:boxBackgroundColor="@color/background"
         app:hintTextColor="@color/black">
@@ -41,7 +41,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
         app:passwordToggleEnabled="true"
-        android:hint="Password"
+        android:hint="@string/password"
         app:passwordToggleTint="@color/transparent"
         app:passwordToggleTintMode="screen"
         app:passwordToggleDrawable="@drawable/password_toggle"
@@ -54,7 +54,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/airbnb"
             android:password="true"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +68,7 @@
         android:fontFamily="@font/airbnb"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
-        android:text="I forgot my password" />
+        android:text="@string/i_forgot_my_password" />
 
 
     <Button
@@ -77,11 +77,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/login"
+        android:layout_centerInParent="true"
         android:layout_marginHorizontal="15dp"
         android:fontFamily="@font/airbnb"
-        android:textSize="16sp"
-        android:layout_centerInParent="true"
-        android:text="Don't have account? Let's Create" />
+        android:text="@string/don_t_have_account_let_s_create"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/login"
@@ -94,6 +94,6 @@
         android:textSize="16sp"
         android:textColor="@color/text_white"
         android:layout_alignParentBottom="true"
-        android:text="Next" />
+        android:text="@string/next" />
 
 </RelativeLayout>

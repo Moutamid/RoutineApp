@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
+import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivitySelectionBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -27,6 +29,13 @@ public class SelectionActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.toolbar.tittle.setText("Select Which Describes You");
         Constants.initDialog(this);
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
@@ -98,6 +107,13 @@ public class SelectionActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.pickOne.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.next.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     private String getGoal() {

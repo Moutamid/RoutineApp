@@ -24,18 +24,19 @@
             android:fontFamily="@font/airbnb"
             android:includeFontPadding="false"
             android:padding="12sp"
-            android:text="Choose You Language"
+            android:text="@string/choose_you_language"
             android:textColor="@color/dark"
             android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/pickOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnb"
             android:includeFontPadding="false"
             android:padding="12sp"
-            android:text="Pick One"
+            android:text="@string/pick_one"
             android:textAllCaps="true"
             android:textColor="@color/light"
             android:textSize="18sp"
@@ -57,7 +58,7 @@
                 app:girbImage="@drawable/united_kingdom"
                 app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                 app:girbPressedTextColor="@color/white"
-                app:girbText="English"
+                app:girbText="@string/english"
                 app:girbUnpressedTextColor="@color/dark" />
 
             <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
@@ -71,7 +72,7 @@
                 app:girbImage="@drawable/spain"
                 app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                 app:girbPressedTextColor="@color/white"
-                app:girbText="Spanish"
+                app:girbText="@string/spanish"
                 app:girbUnpressedTextColor="@color/dark" />
 
         </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
@@ -89,7 +90,19 @@
         android:padding="15sp"
         android:textSize="16sp"
         android:textColor="@color/text_white"
+        android:layout_above="@id/adView"
+        android:text="@string/next" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:text="Next" />
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

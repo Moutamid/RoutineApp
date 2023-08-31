@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7sp"
             android:fontFamily="@font/airbnb"
-            android:text="Pick from library of steps or create a custom step"
+            android:text="@string/pick_from_library_of_steps_or_create_a_custom_step"
             android:textColor="@color/grey"
             android:textStyle="bold"
             android:textSize="16sp" />
@@ -39,7 +39,7 @@
             android:fontFamily="@font/airbnb"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:text="Custom Step"
+            android:text="@string/custom_step"
             android:textColor="@color/light" />
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_marginHorizontal="10sp"
                 android:fontFamily="@font/baloo"
                 android:gravity="center_vertical"
-                android:text="Or"
+                android:text="@string/or"
                 android:textSize="18sp" />
 
             <View

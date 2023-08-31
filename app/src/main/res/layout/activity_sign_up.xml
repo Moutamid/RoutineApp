@@ -19,7 +19,7 @@
         android:layout_below="@id/toolbar"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         app:errorIconDrawable="@drawable/error"
         app:boxBackgroundColor="@color/background"
         app:hintTextColor="@color/black">
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/airbnb"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,7 +40,7 @@
         android:layout_below="@id/name"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
-        android:hint="E-mail"
+        android:hint="@string/e_mail"
         app:errorIconDrawable="@drawable/error"
         app:boxBackgroundColor="@color/background"
         app:hintTextColor="@color/black">
@@ -62,7 +62,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="15dp"
         app:passwordToggleEnabled="true"
-        android:hint="Password"
+        android:hint="@string/password"
         app:passwordToggleTint="@color/transparent"
         app:passwordToggleTintMode="screen"
         app:passwordToggleDrawable="@drawable/password_toggle"
@@ -75,7 +75,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/airbnb"
             android:password="true"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,11 +86,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/create"
+        android:layout_centerInParent="true"
         android:layout_marginHorizontal="15dp"
         android:fontFamily="@font/airbnb"
-        android:textSize="16sp"
-        android:layout_centerInParent="true"
-        android:text="Already have account? Sign In" />
+        android:text="@string/already_have_account_sign_in"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/create"
@@ -103,6 +103,6 @@
         android:textSize="16sp"
         android:textColor="@color/text_white"
         android:layout_alignParentBottom="true"
-        android:text="Next" />
+        android:text="@string/next" />
 
 </RelativeLayout>

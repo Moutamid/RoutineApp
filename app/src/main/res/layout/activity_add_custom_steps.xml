@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnb"
-            android:text="Name"
+            android:text="@string/name"
             android:textColor="@color/dark"
             android:textSize="16sp" />
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
-            android:hint="Custom Step"
+            android:hint="@string/custom_step"
             android:textColorHint="@color/grey"
             app:boxBackgroundColor="@color/border"
             app:boxCornerRadiusBottomEnd="10sp"
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnb"
-            android:text="Time"
+            android:text="@string/time"
             android:textColor="@color/dark"
             android:textSize="16sp" />
 
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnb"
-            android:text="or"
+            android:text="@string/or"
             android:layout_marginTop="12sp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/dark"
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:layout_gravity="center_horizontal"
-            android:text="No explicit time"
+            android:text="@string/no_explicit_time"
             android:fontFamily="@font/airbnb"
             app:switchPadding="25sp" />
 
@@ -107,16 +107,28 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/adView"
         android:layout_marginStart="12sp"
         android:layout_marginTop="12sp"
         android:layout_marginEnd="12sp"
         android:layout_marginBottom="12sp"
         android:fontFamily="@font/airbnb"
         android:textColor="@color/text_white"
-        android:text="Save Step"
+        android:text="@string/save_step"
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

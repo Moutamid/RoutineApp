@@ -22,7 +22,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/airbnb"
             android:gravity="center_vertical"
-            android:text="Edit last 7 days"
+            android:text="@string/edit_last_7_days"
             android:textColor="@color/dark"
             android:textSize="22sp" />
 
@@ -34,7 +34,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/airbnb"
             android:gravity="center_vertical"
-            android:text="If you forgot tomark your routine as completed, you can change it here."
+            android:text="@string/if_you_forgot_to_mark_your_routine_as_completed_you_can_change_it_here"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -266,7 +266,7 @@
             android:id="@+id/update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update"
+            android:text="@string/update"
             android:layout_marginVertical="15dp"
             android:fontFamily="@font/airbnb" />
 

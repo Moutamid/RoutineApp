@@ -16,6 +16,7 @@ import com.github.angads25.toggle.model.ToggleableView;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.SplashScreenActivity;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivitySettingBinding;
 import com.moutamid.routineapp.utils.Constants;
 import com.thebluealliance.spectrum.SpectrumPalette;
@@ -31,6 +32,20 @@ public class SettingActivity extends AppCompatActivity {
         Log.d("COLOR123", theme+"");
         setTheme(theme);
         setContentView(binding.getRoot());
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
 
         Constants.changeTheme(this);
 
@@ -72,34 +87,42 @@ public class SettingActivity extends AppCompatActivity {
                 case -9409538:
                     currentTheme = R.style.Theme_RoutineApp;
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.light));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text));
                     Log.d("COLOR123", currentTheme+"Light");
                     break;
                 case -34401:
                     currentTheme = R.style.Theme_Pink;
                     Log.d("COLOR123", currentTheme+"PINK");
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.pink));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text_pink));
                     break;
                 case -14297152:
                     currentTheme = R.style.Theme_SeaGreen;
                     Log.d("COLOR123", currentTheme+"");
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.seeGreen));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text_seagreen));
                     break;
                 case -11561105:
                     currentTheme = R.style.Theme_Green;
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.green));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text_green));
                     Log.d("COLOR123", currentTheme+"");
                     break;
-                case -6847533:
+                case -7785801:
                     currentTheme = R.style.Theme_Purple;
                     Log.d("COLOR123", currentTheme+"");
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.purple));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text_purple));
                     break;
-                case -13994498:
+                case -16571060:
                     currentTheme = R.style.Theme_Blue;
                     Log.d("COLOR123", currentTheme+"");
                     Stash.put(Constants.COLOR, getResources().getColor(R.color.blue));
+                    Stash.put(Constants.COLOR_TEXT, getResources().getColor(R.color.text_blue));
                     break;
             }
+
+            Log.d("COLOR123", color+"\t\tcolor");
             Stash.put(Constants.THEME, currentTheme);
             recreate();
         });
@@ -146,6 +169,35 @@ public class SettingActivity extends AppCompatActivity {
                     }))
                     .show();
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateViews();
+    }
+
+    private void updateViews() {
+        binding.text1.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text2.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text3.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text4.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text5.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text6.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text7.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text8.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text9.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text10.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text11.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.text12.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.languageTile.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.logout.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.logout.setBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+
+        binding.time24Switch.setColorBorder(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.time24Switch.setColorOn(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.darkSwitch.setColorBorder(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.darkSwitch.setColorOn(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }
 
     @Override

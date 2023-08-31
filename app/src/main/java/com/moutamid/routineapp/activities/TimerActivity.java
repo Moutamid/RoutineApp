@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityTimerBinding;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.models.StepsLocalModel;
@@ -35,6 +36,20 @@ public class TimerActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);
 

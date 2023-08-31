@@ -28,18 +28,19 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:padding="12sp"
-                android:text="How can we help you?"
+                android:text="@string/how_can_we_help_you"
                 android:textColor="@color/dark"
                 android:fontFamily="@font/airbnb"
                 android:textStyle="bold"
                 android:includeFontPadding="false" />
 
             <TextView
+                android:id="@+id/pickOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:padding="12sp"
-                android:text="Pick One"
+                android:text="@string/pick_one"
                 android:textAllCaps="true"
                 android:textColor="@color/light"
                 android:fontFamily="@font/airbnb"
@@ -64,7 +65,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Stop Procrastinating"
+                    app:girbText="@string/stop_procrastinating"
                     app:girbUnpressedTextColor="@color/dark" />
 
                 <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
@@ -80,7 +81,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Manage ADHD related routine"
+                    app:girbText="@string/manage_adhd_related_routine"
                     app:girbUnpressedTextColor="@color/dark" />
 
             </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
@@ -103,7 +104,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Have a better morning routine"
+                    app:girbText="@string/have_a_better_morning_routine"
                     app:girbUnpressedTextColor="@color/dark" />
 
                 <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
@@ -119,7 +120,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Focus on my tasks better"
+                    app:girbText="@string/focus_on_my_tasks_better"
                     app:girbUnpressedTextColor="@color/dark" />
 
             </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
@@ -142,7 +143,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Build better habits"
+                    app:girbText="@string/build_better_habits"
                     app:girbUnpressedTextColor="@color/dark" />
 
                 <xyz.teamgravity.imageradiobutton.GravityImageRadioButton
@@ -158,7 +159,7 @@
                     app:girbPressedImageTint="@color/white"
                     app:girbPressedBackgroundDrawable="@drawable/radio_btn_checked"
                     app:girbPressedTextColor="@color/white"
-                    app:girbText="Something Else / Other"
+                    app:girbText="@string/something_else_other"
                     app:girbUnpressedTextColor="@color/dark" />
 
             </xyz.teamgravity.imageradiobutton.GravityRadioGroup>
@@ -178,6 +179,6 @@
         android:textSize="16sp"
         android:textColor="@color/text_white"
         android:layout_alignParentBottom="true"
-        android:text="Next" />
+        android:text="@string/next" />
 
 </RelativeLayout>

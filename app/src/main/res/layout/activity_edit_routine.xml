@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnb"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
-                android:hint="Routine Name"
+                android:hint="@string/routine_name"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/border"
                 app:boxCornerRadiusBottomEnd="10sp"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnb"
-                android:text="Add context"
+                android:text="@string/add_context"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7sp"
                 android:fontFamily="@font/airbnb"
-                android:text="Pick from library or create a custom"
+                android:text="@string/pick_from_library_or_create_a_custom"
                 android:textColor="@color/grey"
                 android:textSize="16sp" />
 
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
-                android:hint="Wake up in the morning"
+                android:hint="@string/wake_up_in_the_morning"
                 android:textColorHint="@color/grey"
                 app:boxBackgroundColor="@color/border"
                 app:boxCornerRadiusBottomEnd="10sp"
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnb"
-                android:text="Days"
+                android:text="@string/days"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -120,89 +120,89 @@
                 app:singleSelection="false">
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/monday"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Monday"
+                    android:text="@string/monday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true"
                     app:chipIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/tuesday"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Tuesday"
+                    android:text="@string/tuesday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/wednesday"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Wednesday"
+                    android:text="@string/wednesday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true"
                     app:chipIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/thursday"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Thursday"
+                    android:text="@string/thursday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/friday"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Friday"
+                    android:text="@string/friday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true"
                     app:chipIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/sat"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Saturday"
+                    android:text="@string/saturday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/sun"
                     style="@style/ChipsColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:checked="false"
                     android:clickable="true"
                     android:focusable="true"
-                    android:text="Sunday"
+                    android:text="@string/sunday"
                     android:textSize="16sp"
                     app:checkedIconEnabled="true" />
 
@@ -212,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnb"
-                android:text="Reminder Timer"
+                android:text="@string/reminder_timer"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -238,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/airbnb"
-                        android:text="Add time"
+                        android:text="@string/add_time"
                         android:textColor="@color/light"
                         android:gravity="center"
                         android:textSize="16sp" />
@@ -252,7 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnb"
-                android:text="Create new steps"
+                android:text="@string/create_new_steps"
                 android:textColor="@color/dark"
                 android:layout_marginTop="10sp"
                 android:textSize="20sp" />
@@ -262,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7sp"
                 android:fontFamily="@font/airbnb"
-                android:text="Pick from library of steps or create a custom step"
+                android:text="@string/pick_from_library_of_steps_or_create_a_custom_step"
                 android:textColor="@color/grey"
                 android:textSize="16sp" />
 
@@ -303,6 +303,7 @@
                     android:padding="12sp">
 
                     <ImageView
+                        android:id="@+id/addIco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/round_add_24"
@@ -320,16 +321,28 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/adView"
         android:layout_marginStart="12sp"
         android:layout_marginTop="12sp"
         android:layout_marginEnd="12sp"
         android:layout_marginBottom="12sp"
         android:fontFamily="@font/airbnb"
-        android:text="Update"
+        android:text="@string/update"
         android:textColor="@color/text_white"
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
 
 </RelativeLayout>

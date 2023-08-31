@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light"
+    android:id="@+id/bg"
     tools:context=".WelcomeActivity">
 
     <ImageView
@@ -53,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="28sp"
                     android:padding="12sp"
-                    android:text="Improve your Routine"
+                    android:text="@string/improve_your_routine"
                     android:textColor="@color/text_white"
                     android:fontFamily="@font/airbnb"
                     android:textStyle="bold"
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:paddingStart="12sp"
-                    android:text="Change your life by slowly adding new healthy habits and sticking to them."
+                    android:text="@string/change_your_life_by_slowly_adding_new_healthy_habits_and_sticking_to_them"
                     android:textColor="@color/text"
                     android:fontFamily="@font/airbnb"
                     android:layout_marginBottom="15sp"
@@ -94,7 +95,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:padding="12sp"
-                            android:text="Continue with E-mail"
+                            android:text="@string/continue_with_e_mail"
                             android:textColor="@color/dark"
                             android:fontFamily="@font/airbnb"
                             android:drawablePadding="12sp"

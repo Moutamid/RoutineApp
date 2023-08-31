@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.listners.StepClickListner;
 import com.moutamid.routineapp.models.AddStepsModel;
+import com.moutamid.routineapp.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +42,7 @@ public class AddStepsParentAdapter extends RecyclerView.Adapter<AddStepsParentAd
     public void onBindViewHolder(@NonNull AddPaVH holder, int position) {
         AddStepsModel model  = list.get(holder.getAdapterPosition());
         holder.title.setText(model.getTitle());
+        holder.title.setTextColor(Stash.getInt(Constants.COLOR, context.getResources().getColor(R.color.light)));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(holder.rc.getContext());
 

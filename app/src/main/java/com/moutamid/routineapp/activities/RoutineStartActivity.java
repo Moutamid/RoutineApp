@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.RoutineStartAdapter;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityRoutineStartBinding;
 import com.moutamid.routineapp.databinding.UpdateDaysBottomsheetBinding;
 import com.moutamid.routineapp.models.AddStepsChildModel;
@@ -43,6 +45,20 @@ public class RoutineStartActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.toolbar.tittle.setText("Start Routine");
         Constants.initDialog(this);
+
+
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(getBaseContext(), Constants.EN);
+        } else {
+            Constants.setLocale(getBaseContext(), Constants.ES);
+        }
+
+        if (!Stash.getBoolean(Constants.IS_VIP)){
+            Stash.put(Constants.IS_VIP, false);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        }
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
@@ -122,26 +138,43 @@ public class RoutineStartActivity extends AppCompatActivity {
         UpdateDaysBottomsheetBinding bottomsheetBinding = UpdateDaysBottomsheetBinding.inflate(getLayoutInflater());
         dialog.setContentView(bottomsheetBinding.getRoot());
         String today = Constants.getToday();
+
+        bottomsheetBinding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.wednesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        bottomsheetBinding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+
+        bottomsheetBinding.sundayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.mondayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.teusdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.wednessCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.thursdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.fridayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        bottomsheetBinding.saturdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+
         if (today.equalsIgnoreCase("Sun")) {
-            bottomsheetBinding.sunday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.sunday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Mon")) {
-            bottomsheetBinding.monday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.monday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Tue")) {
-            bottomsheetBinding.tuesday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.tuesday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Wed")) {
-            bottomsheetBinding.wednesday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.wednesday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Thu")) {
-            bottomsheetBinding.thursday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.thursday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Fri")) {
-            bottomsheetBinding.friday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.friday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
         if (today.equalsIgnoreCase("Sat")) {
-            bottomsheetBinding.saturday.setStrokeColor(getResources().getColor(R.color.light));
+            bottomsheetBinding.saturday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         }
 
         if (model.getDaysCompleted().isMonday()){
@@ -247,4 +280,32 @@ public class RoutineStartActivity extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateViews();
+    }
+
+    private void updateViews() {
+        binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.wednesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+        binding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
+
+        binding.sundayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.mondayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.teusdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.wednessCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.thursdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.fridayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+        binding.saturdayCheck.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
+
+        binding.totalTime.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.time.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.edit.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+        binding.start.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+    }
 }

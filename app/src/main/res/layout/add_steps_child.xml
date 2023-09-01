@@ -35,7 +35,9 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/airbnb"
-            android:gravity="end"
+            android:gravity="end|center"
+            android:drawableStart="@drawable/time_square"
+            android:drawablePadding="10sp"
             android:textColor="@color/dark"
             android:textSize="16sp"
             android:text="1 min" />

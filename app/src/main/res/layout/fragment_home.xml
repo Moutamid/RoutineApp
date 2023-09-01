@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Mon" />
+                    android:text="@string/mon" />
 
             </LinearLayout>
 
@@ -72,7 +72,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Tue" />
+                    android:text="@string/tue" />
 
             </LinearLayout>
 
@@ -103,7 +103,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Wed" />
+                    android:text="@string/wed" />
 
             </LinearLayout>
 
@@ -134,7 +134,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Thu" />
+                    android:text="@string/thu" />
 
             </LinearLayout>
 
@@ -165,7 +165,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Fri" />
+                    android:text="@string/fri" />
 
             </LinearLayout>
 
@@ -196,7 +196,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Sat" />
+                    android:text="@string/sat" />
 
             </LinearLayout>
 
@@ -226,7 +226,7 @@
                     android:gravity="center"
                     android:textColor="@color/light"
                     android:textSize="16sp"
-                    android:text="Sun" />
+                    android:text="@string/sun" />
 
             </LinearLayout>
 

@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.view.Window;
 
@@ -41,11 +43,13 @@ public class Constants {
 
     static Dialog dialog;
     public static final String DATEFORMATE = "dd/MM/yyyy";
+    public static final String DATEFORMATEHISTORY = "ddMMyyyy";
     public static String CURRENTTIME = "hh:mm a";
     public static final String USER = "users";
     public static final String Steps = "Steps";
     public static final String THEME = "THEME";
     public static final String Routines = "Routines";
+    public static final String HISTORY = "History";
     public static final String LANGUAGE = "LANGUAGE";
     public static final String ROUTINE_LIST = "ROUTINE_LIST";
     public static final String TIME_LIST = "TIME_LIST";
@@ -63,8 +67,11 @@ public class Constants {
     public static final  String VIP_LIFE = "vip.lifetime.com.moutamid.routineapp";
     public static final  String IS_VIP = "IS_VIP";
 
-    public static String getFormatedDate(long date){
+    public static String getFormattedDate(long date){
         return new SimpleDateFormat(DATEFORMATE, Locale.getDefault()).format(date);
+    }
+    public static String getFormattedDate(){
+        return new SimpleDateFormat(DATEFORMATEHISTORY, Locale.getDefault()).format(new Date());
     }
 
     public static String getCurrentTime(){
@@ -72,6 +79,19 @@ public class Constants {
             CURRENTTIME = "HH:mm";
         }
         return new SimpleDateFormat(CURRENTTIME, Locale.getDefault()).format(new Date());
+    }
+    public static FirebaseAuth auth() {
+        return FirebaseAuth.getInstance();
+    }
+
+    public static DatabaseReference databaseReference() {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("routineApp");
+        db.keepSynced(true);
+        return db;
+    }
+
+    public static float historyDay(long timestamp) {
+        return Float.parseFloat(new SimpleDateFormat("dd", Locale.getDefault()).format(timestamp));
     }
 
     // en - English
@@ -82,6 +102,14 @@ public class Constants {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
+    }
+
+    public static boolean isInternetConnected(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
     public static void initDialog(Context context){
@@ -247,9 +275,7 @@ public class Constants {
             StringBuffer stringBuffer = new StringBuffer();
             while (true) {
                 try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        if ((input = in != null ? in.readLine() : null) == null) break;
-                    }
+                    if ((input = in != null ? in.readLine() : null) == null) break;
                 } catch (final IOException e) {
                     e.printStackTrace();
                 }
@@ -284,14 +310,5 @@ public class Constants {
             }
 
         }).start();
-    }
-    public static FirebaseAuth auth() {
-        return FirebaseAuth.getInstance();
-    }
-
-    public static DatabaseReference databaseReference() {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("routineApp");
-        db.keepSynced(true);
-        return db;
     }
 }

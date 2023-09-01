@@ -38,13 +38,6 @@
     <string name="pick_from_library_or_create_a_custom">Pick from library or create a custom</string>
     <string name="wake_up_in_the_morning">Wake up in the morning</string>
     <string name="days">Days</string>
-    <string name="monday">Monday</string>
-    <string name="tuesday">Tuesday</string>
-    <string name="wednesday">Wednesday</string>
-    <string name="thursday">Thursday</string>
-    <string name="friday">Friday</string>
-    <string name="saturday">Saturday</string>
-    <string name="sunday">Sunday</string>
     <string name="reminder_timer">Reminder Timer</string>
     <string name="add_time">Add time</string>
     <string name="create_new_steps">Create new steps</string>
@@ -109,9 +102,39 @@
     <string name="improve_your_routine">Improve your Routine</string>
     <string name="change_your_life_by_slowly_adding_new_healthy_habits_and_sticking_to_them">Change your life by slowly adding new healthy habits and sticking to them.</string>
     <string name="continue_with_e_mail">Continue with E-mail</string>
-    <string name="please_wait">Please Wait...</string>
+    <string name="please_wait">Please Wait…</string>
     <string name="edit_last_7_days">Edit last 7 days</string>
     <string name="if_you_forgot_to_mark_your_routine_as_completed_you_can_change_it_here">If you forgot to mark your routine as completed, you can change it here.</string>
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
+    <string name="going_pretty_good">Going Pretty Good!</string>
+
+
+    <string name="sunday_routines">Sunday Routines</string>
+    <string name="monday_routines">Monday Routines</string>
+    <string name="tuesday_routines">Tuesday Routines</string>
+    <string name="wednesday_routines">Wednesday Routines</string>
+    <string name="thursday_routines">Thursday Routines</string>
+    <string name="friday_routines">Friday Routines</string>
+    <string name="saturday_routines">Saturday Routines</string>
+
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+
+    <string name="today_routines">Today Routines</string>
+    <string name="routines_followed">Routines Completed</string>
+
 </resources>

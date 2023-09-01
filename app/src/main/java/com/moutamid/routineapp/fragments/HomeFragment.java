@@ -46,6 +46,13 @@ public class HomeFragment extends Fragment {
         String today = Constants.getToday();
         updateCalender(today);
 
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(requireContext(), Constants.EN);
+        } else {
+            Constants.setLocale(requireContext(), Constants.ES);
+        }
+
+
         binding.monday.setOnClickListener(v -> updateClick("Mon"));
         binding.tuesday.setOnClickListener(v -> updateClick("Tue"));
         binding.wednessday.setOnClickListener(v -> updateClick("Wed"));
@@ -100,7 +107,11 @@ public class HomeFragment extends Fragment {
             getActivity().runOnUiThread(() -> {
                 Constants.initDialog(requireContext());
                 if (list.size() == 0){
-                    getData();
+                    if (Constants.isInternetConnected(requireContext())) {
+                        getData();
+                    } else {
+                        Toast.makeText(requireContext(), "Internet is not connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -124,92 +135,94 @@ public class HomeFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        list.clear();
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (snapshot.exists()){
+                            list.clear();
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 //                            RoutineModel model = dataSnapshot.getValue(RoutineModel.class);
 
-                            RoutineModel model = new RoutineModel();
-                            String ID = dataSnapshot.child("id").getValue(String.class);
-                            String name = dataSnapshot.child("name").getValue(String.class);
-                            String context = dataSnapshot.child("context").getValue(String.class);
-                            int minutes = dataSnapshot.child("minutes").getValue(Integer.class);
-                            long reminder = dataSnapshot.child("reminder").getValue(Long.class);
+                                RoutineModel model = new RoutineModel();
+                                String ID = dataSnapshot.child("id").getValue(String.class);
+                                String name = dataSnapshot.child("name").getValue(String.class);
+                                String context = dataSnapshot.child("context").getValue(String.class);
+                                int minutes = dataSnapshot.child("minutes").getValue(Integer.class);
+                                long reminder = dataSnapshot.child("reminder").getValue(Long.class);
 
-                            ArrayList<String> days = new ArrayList<>();
-                            ArrayList<AddStepsChildModel> steps = new ArrayList<>();
+                                ArrayList<String> days = new ArrayList<>();
+                                ArrayList<AddStepsChildModel> steps = new ArrayList<>();
 
-                            if (reminder != 0){
-                                times.add(reminder);
+                                if (reminder != 0){
+                                    times.add(reminder);
+                                }
+
+                                for (DataSnapshot day : dataSnapshot.child("days").getChildren()){
+                                    String d = day.getValue(String.class);
+                                    days.add(d);
+                                }
+
+                                for (DataSnapshot step : dataSnapshot.child("steps").getChildren()){
+                                    AddStepsChildModel d = step.getValue(AddStepsChildModel.class);
+                                    steps.add(d);
+                                }
+
+                                CompletedDaysModel completedDays = dataSnapshot.child("daysCompleted").getValue(CompletedDaysModel.class);
+
+                                model.setID(ID);
+                                model.setName(name);
+                                model.setContext(context);
+                                model.setMinutes(minutes);
+                                model.setDays(days);
+                                model.setSteps(steps);
+                                model.setDaysCompleted(completedDays);
+                                model.setReminder(reminder);
+
+                                list.add(model);
                             }
 
-                            for (DataSnapshot day : dataSnapshot.child("days").getChildren()){
-                                String d = day.getValue(String.class);
-                                days.add(d);
-                            }
 
-                            for (DataSnapshot step : dataSnapshot.child("steps").getChildren()){
-                                AddStepsChildModel d = step.getValue(AddStepsChildModel.class);
-                                steps.add(d);
-                            }
+                            if (list.size() > 0){
+                                for (int i = 0; i < list.size(); i++) {
+                                    RoutineModel model = list.get(i);
+                                    String ID = model.getID();
 
-                            CompletedDaysModel completedDays = dataSnapshot.child("daysCompleted").getValue(CompletedDaysModel.class);
-
-                            model.setID(ID);
-                            model.setName(name);
-                            model.setContext(context);
-                            model.setMinutes(minutes);
-                            model.setDays(days);
-                            model.setSteps(steps);
-                            model.setDaysCompleted(completedDays);
-                            model.setReminder(reminder);
-
-                            list.add(model);
-                        }
-
-
-                        if (list.size() > 0){
-                            for (int i = 0; i < list.size(); i++) {
-                                RoutineModel model = list.get(i);
-                                String ID = model.getID();
-
-                                ArrayList<StepsLocalModel> localList = Stash.getArrayList(ID, StepsLocalModel.class);
-                                if (localList.size() == 0) {
-                                    for (AddStepsChildModel childModel : model.getSteps()) {
-                                        localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
+                                    ArrayList<StepsLocalModel> localList = Stash.getArrayList(ID, StepsLocalModel.class);
+                                    if (localList.size() == 0) {
+                                        for (AddStepsChildModel childModel : model.getSteps()) {
+                                            localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
+                                        }
+                                        Stash.put(ID, localList);
                                     }
-                                    Stash.put(ID, localList);
                                 }
                             }
-                        }
 
-                        adapter = new RoutineAdapter(binding.getRoot().getContext(), list);
-                        binding.routineRC.setAdapter(adapter);
+                            adapter = new RoutineAdapter(binding.getRoot().getContext(), list);
+                            binding.routineRC.setAdapter(adapter);
 
-                        String today = Constants.getToday();
-                        if (today.equalsIgnoreCase("Sun")) {
-                            today = "Sunday";
-                        }
-                        if (today.equalsIgnoreCase("Mon")) {
-                            today = "Monday";
-                        }
-                        if (today.equalsIgnoreCase("Tue")) {
-                            today = "Tuesday";
-                        }
-                        if (today.equalsIgnoreCase("Wed")) {
-                            today = "Wednesday";
-                        }
-                        if (today.equalsIgnoreCase("Thu")) {
-                            today = "Thursday";
-                        }
-                        if (today.equalsIgnoreCase("Fri")) {
-                            today = "Friday";
-                        }
-                        if (today.equalsIgnoreCase("Sat")) {
-                            today = "Saturday";
-                        }
+                            String today = Constants.getToday();
+                            if (today.equalsIgnoreCase("Sun")) {
+                                today = "Sunday";
+                            }
+                            if (today.equalsIgnoreCase("Mon")) {
+                                today = "Monday";
+                            }
+                            if (today.equalsIgnoreCase("Tue")) {
+                                today = "Tuesday";
+                            }
+                            if (today.equalsIgnoreCase("Wed")) {
+                                today = "Wednesday";
+                            }
+                            if (today.equalsIgnoreCase("Thu")) {
+                                today = "Thursday";
+                            }
+                            if (today.equalsIgnoreCase("Fri")) {
+                                today = "Friday";
+                            }
+                            if (today.equalsIgnoreCase("Sat")) {
+                                today = "Saturday";
+                            }
 
-                        adapter.getFilter().filter(today);
-                        Stash.put(Constants.TIME_LIST, times);
+                            adapter.getFilter().filter(today);
+                            Stash.put(Constants.TIME_LIST, times);
+                        }
                         Constants.dismissDialog();
                     }
 
@@ -225,14 +238,36 @@ public class HomeFragment extends Fragment {
 
         String today = Constants.getToday();
         if (today.equals(clicked)) {
-            binding.tittle.setText("Today Routines");
+            binding.tittle.setText(getResources().getString(R.string.today_routines));
         } else {
-            binding.tittle.setText(clicked + " Routines");
+            if (clicked.equalsIgnoreCase("Sun")){
+                binding.tittle.setText(getResources().getString(R.string.sunday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Mon")){
+                binding.tittle.setText(getResources().getString(R.string.monday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Tue")){
+                binding.tittle.setText(getResources().getString(R.string.tuesday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Wed")){
+                binding.tittle.setText(getResources().getString(R.string.wednesday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Thu")){
+                binding.tittle.setText(getResources().getString(R.string.thursday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Fri")){
+                binding.tittle.setText(getResources().getString(R.string.friday_routines));
+            }
+            if (clicked.equalsIgnoreCase("Sat")){
+                binding.tittle.setText(getResources().getString(R.string.saturday_routines));
+            }
         }
 
         if (clicked.equalsIgnoreCase("Sun")) {
             binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Sunday");
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.sunday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -243,7 +278,9 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Mon")) {
             binding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Monday");
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.monday));
+            }
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -253,7 +290,9 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Tue")) {
             binding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Tuesday");
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.tuesday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -263,7 +302,10 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Wed")) {
             binding.wednessday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Wednesday");
+
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.wednesday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -273,7 +315,10 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Thu")) {
             binding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Thursday");
+
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.thursday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -283,7 +328,10 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Fri")) {
             binding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Friday");
+
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.friday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -293,7 +341,10 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Sat")) {
             binding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            adapter.getFilter().filter("Saturday");
+
+            if (list.size()>0){
+                adapter.getFilter().filter(getResources().getString(R.string.saturday));
+            }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.tuesday.setCardBackgroundColor(getResources().getColor(R.color.white));
             binding.wednessday.setCardBackgroundColor(getResources().getColor(R.color.white));

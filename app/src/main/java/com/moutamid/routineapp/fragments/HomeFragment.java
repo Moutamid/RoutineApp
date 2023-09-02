@@ -1,5 +1,6 @@
 package com.moutamid.routineapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     ArrayList<RoutineModel> list;
     RoutineAdapter adapter;
+    Context context;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,14 +44,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
+        context = binding.getRoot().getContext();
+        Constants.initDialog(context);
 
         String today = Constants.getToday();
         updateCalender(today);
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
-            Constants.setLocale(requireContext(), Constants.EN);
+            Constants.setLocale(context, Constants.EN);
         } else {
-            Constants.setLocale(requireContext(), Constants.ES);
+            Constants.setLocale(context, Constants.ES);
         }
 
 
@@ -61,10 +65,11 @@ public class HomeFragment extends Fragment {
         binding.saturday.setOnClickListener(v -> updateClick("Sat"));
         binding.sunday.setOnClickListener(v -> updateClick("Sun"));
 
-        binding.routineRC.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.routineRC.setLayoutManager(new LinearLayoutManager(context));
         binding.routineRC.setHasFixedSize(false);
 
         list = new ArrayList<>();
+
 
         binding.inCompleted.setOnClickListener(v -> {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
@@ -100,23 +105,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         updateViews();
-        
-        if (getActivity() != null && !getActivity().isFinishing()) {
-            getActivity().runOnUiThread(() -> {
-                Constants.initDialog(requireContext());
-                if (list.size() == 0){
-                    if (Constants.isInternetConnected(requireContext())) {
-                        getData();
-                    } else {
-                        Toast.makeText(requireContext(), "Internet is not connected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+        if (Constants.isInternetConnected(context)) {
+            getData();
+        } else {
+            Toast.makeText(context, "Internet is not connected", Toast.LENGTH_SHORT).show();
         }
-        
-        
+
     }
 
     private void updateViews() {

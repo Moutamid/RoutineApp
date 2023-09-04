@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         Constants.initDialog(this);
-        binding.toolbar.tittle.setText("Create Account");
+        binding.toolbar.tittle.setText(getString(R.string.create_account));
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
         binding.login.setOnClickListener(v -> {
@@ -86,22 +86,22 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean valid() {
         if (binding.name.getEditText().getText().toString().isEmpty()) {
             binding.name.setErrorEnabled(true);
-            binding.name.setError("Name is Empty!");
+            binding.name.setError(getString(R.string.name_is_empty));
             return false;
         }
         if (binding.email.getEditText().getText().toString().isEmpty()) {
             binding.email.setErrorEnabled(true);
-            binding.email.setError("Email is Empty!");
+            binding.email.setError(getString(R.string.email_is_empty));
             return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.getEditText().getText().toString()).matches()) {
             binding.email.setErrorEnabled(true);
-            binding.email.setError("Email is not valid!");
+            binding.email.setError(getString(R.string.email_is_not_valid));
             return false;
         }
         if (binding.password.getEditText().getText().toString().isEmpty()) {
             binding.password.setErrorEnabled(true);
-            binding.password.setError("Password is Empty!");
+            binding.password.setError(getString(R.string.password_is_empty));
             return false;
         }
         return true;

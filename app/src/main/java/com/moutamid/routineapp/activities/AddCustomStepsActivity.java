@@ -20,11 +20,7 @@ import java.util.ArrayList;
 public class AddCustomStepsActivity extends AppCompatActivity {
     ActivityAddCustomStepsBinding binding;
     int val = 14;
-    String[] data = {
-            "1 min", "2 min", "3 min", "4 min", "5 min", "6 min", "7 min", "8 min", "9 min", "10 min", "11 min", "12 min", "13 min", "14 min", "15 min",
-            "16 min", "17 min", "18 min", "19 min", "20 min", "21 min", "22 min", "23 min", "24 min", "25 min", "26 min", "27 min", "28 min", "29 min", "30 min",
-            "31 min", "32 min", "33 min", "34 min", "35 min", "36 min", "37 min", "38 min", "39 min", "40 min", "41 min", "42 min", "43 min", "44 min", "45 min"
-    };
+    String[] data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +30,9 @@ public class AddCustomStepsActivity extends AppCompatActivity {
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
-        binding.toolbar.tittle.setText("Add Custom Sep");
+        binding.toolbar.tittle.setText(getResources().getString(R.string.add_custom_sep));
 
+        data = getResources().getStringArray(R.array.time_intervals);
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
             Constants.setLocale(getBaseContext(), Constants.EN);

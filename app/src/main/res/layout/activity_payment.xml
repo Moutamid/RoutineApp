@@ -114,7 +114,7 @@
                                 android:id="@+id/mony1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$12.00 / month"
+                                android:text="@string/_1_99_month"
                                 android:textColor="?attr/colorPrimary"
                                 android:textSize="18sp"
                                 android:fontFamily="@font/airbnb" />
@@ -173,7 +173,7 @@
                                 android:id="@+id/mony2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$99.99 / month"
+                                android:text="@string/_9_99_month"
                                 android:textSize="18sp"
                                 android:textColor="?attr/colorPrimary"
                                 android:fontFamily="@font/airbnb" />

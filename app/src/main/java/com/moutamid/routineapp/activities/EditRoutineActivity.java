@@ -32,6 +32,7 @@ import com.moutamid.routineapp.utils.Constants;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +54,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
-        binding.toolbar.tittle.setText("Edit Routine");
+        binding.toolbar.tittle.setText(getString(R.string.edit_routine));
         Constants.initDialog(this);
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
@@ -79,23 +80,23 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
 
 
         binding.toolbar.delete.setOnClickListener(v -> {
-            new AlertDialog.Builder(this).setTitle("Delete Routine")
-                    .setMessage("Do you really want to delete this routine??")
-                    .setPositiveButton("Yes", (dialogInterface, i) -> {
+            new AlertDialog.Builder(this).setTitle(getString(R.string.delete_routine))
+                    .setMessage(getString(R.string.do_you_really_want_to_delete_this_routine))
+                    .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
                         dialogInterface.dismiss();
                         Constants.showDialog();
 
                         Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
                                 .child(model.getID()).removeValue().addOnSuccessListener(unused -> {
                                     Constants.dismissDialog();
-                                    Toast.makeText(this, "Routine Deleted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(this, getString(R.string.routine_deleted), Toast.LENGTH_SHORT).show();
                                     finish();
                                 }).addOnFailureListener(e -> {
                                     Constants.dismissDialog();
                                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
 
-                    }).setNegativeButton("No", (dialogInterface, i) -> {
+                    }).setNegativeButton(getString(R.string.no), (dialogInterface, i) -> {
                         dialogInterface.dismiss();
                     }).show();
         });
@@ -104,12 +105,8 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
         binding.context.getEditText().setText(model.getContext());
 
         context = new ArrayList<>();
-        context.add("After waking up");
-        context.add("After coming home");
-        context.add("After watching YouTube");
-        context.add("After brushing teeth");
-        context.add("At 3 Am");
-        context.add("After checking Instagram");
+        String[] stringArray = getResources().getStringArray(R.array.my_context_array);
+        context.addAll(Arrays.asList(stringArray));
 
         binding.stepsRC.setLayoutManager(new LinearLayoutManager(this));
         binding.stepsRC.setHasFixedSize(false);
@@ -131,7 +128,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
                 min += value;
                 minute = min;
             }
-            String formattedTime = "Total time " + Constants.convertMinutesToHHMM(min) + "h";
+            String formattedTime = getString(R.string.total_time) + " " + Constants.convertMinutesToHHMM(min) + "h";
             binding.totalTime.setText(formattedTime);
         }
 
@@ -202,7 +199,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
                             }
                             Stash.put(ID, localList);
                             Stash.clear(Constants.Steps);
-                            Toast.makeText(this, "Routine Updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getString(R.string.routine_updated), Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         }).addOnFailureListener(e -> {
                             Constants.dismissDialog();
@@ -219,13 +216,14 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
                 .setTimeFormat(format)
                 .setHour(12)
                 .setMinute(0)
-                .setPositiveButtonText("Add")
-                .setNegativeButtonText("No Reminder")
-                .setTitleText("Select Time")
+                .setTitleText(getString(R.string.select_time))
+                .setPositiveButtonText(getString(R.string.add))
+                .setNegativeButtonText(getString(R.string.no_reminder))
                 .build();
 
+
         timePicker.addOnNegativeButtonClickListener(view -> {
-            binding.timeText.setText("No reminder");
+            binding.timeText.setText(getString(R.string.no_reminder));
         });
 
         timePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
@@ -271,7 +269,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
                 min += value;
                 minute = min;
             }
-            String formattedTime = "Total time " + Constants.convertMinutesToHHMM(min) + "h";
+            String formattedTime = getString(R.string.total_time) + " " + Constants.convertMinutesToHHMM(min) + "h";
             binding.totalTime.setText(formattedTime);
         }
 
@@ -284,15 +282,15 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
     private boolean valid() {
         ArrayList<String> days = getDays();
         if (binding.name.getEditText().getText().toString().isEmpty()){
-            Toast.makeText(this, "Please add name for the routine", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.please_add_name_for_the_routine), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (days.size() == 0){
-            Toast.makeText(this, "Please add at least one day", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.please_add_at_least_one_day), Toast.LENGTH_SHORT).show();
             return false;
         }
         if (list.size() == 0){
-            Toast.makeText(this, "Please add at least one step", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.please_add_at_least_one_step), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -50,13 +51,6 @@ public class HomeFragment extends Fragment {
         String today = Constants.getToday();
         updateCalender(today);
 
-        if (Stash.getBoolean(Constants.LANGUAGE, true)){
-            Constants.setLocale(context, Constants.EN);
-        } else {
-            Constants.setLocale(context, Constants.ES);
-        }
-
-
         binding.monday.setOnClickListener(v -> updateClick("Mon"));
         binding.tuesday.setOnClickListener(v -> updateClick("Tue"));
         binding.wednessday.setOnClickListener(v -> updateClick("Wed"));
@@ -98,6 +92,16 @@ public class HomeFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+            Constants.setLocale(context, Constants.EN);
+        } else {
+            Constants.setLocale(context, Constants.ES);
+        }
     }
 
     ArrayList<Long> times = new ArrayList<>();
@@ -194,25 +198,25 @@ public class HomeFragment extends Fragment {
 
                             String today = Constants.getToday();
                             if (today.equalsIgnoreCase("Sun")) {
-                                today = "Sunday";
+                                today = getString(R.string.sunday);
                             }
                             if (today.equalsIgnoreCase("Mon")) {
-                                today = "Monday";
+                                today = getString(R.string.monday);
                             }
                             if (today.equalsIgnoreCase("Tue")) {
-                                today = "Tuesday";
+                                today = getString(R.string.tuesday);
                             }
                             if (today.equalsIgnoreCase("Wed")) {
-                                today = "Wednesday";
+                                today = getString(R.string.wednesday);
                             }
                             if (today.equalsIgnoreCase("Thu")) {
-                                today = "Thursday";
+                                today = getString(R.string.thursday);
                             }
                             if (today.equalsIgnoreCase("Fri")) {
-                                today = "Friday";
+                                today = getString(R.string.friday);
                             }
                             if (today.equalsIgnoreCase("Sat")) {
-                                today = "Saturday";
+                                today = getString(R.string.saturday);
                             }
 
                             adapter.getFilter().filter(today);
@@ -350,7 +354,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateCalender(@NonNull String today) {
-        binding.tittle.setText("Today Routines");
+        binding.tittle.setText(getString(R.string.today_routines));
         if (today.equalsIgnoreCase("Sun")) {
             binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
             binding.sunday.setStrokeColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));

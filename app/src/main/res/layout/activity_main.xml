@@ -34,7 +34,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="12sp"
-            android:src="@drawable/grid" />
+            android:src="@drawable/round_settings_24" />
 
     </RelativeLayout>
 

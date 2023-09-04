@@ -37,7 +37,7 @@ public class LanguageActivity extends AppCompatActivity {
             Ads.showInterstitial(this, this);
         }
 
-        binding.toolbar.tittle.setText("Languages");
+        binding.toolbar.tittle.setText(getString(R.string.languages));
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
         if (!Stash.getBoolean("backShow")) {

@@ -33,7 +33,7 @@ public class ForgotActivity extends AppCompatActivity {
 
         Constants.initDialog(this);
 
-        binding.toolbar.tittle.setText("Forgot Password?");
+        binding.toolbar.tittle.setText(getString(R.string.forgot_password));
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
@@ -43,7 +43,7 @@ public class ForgotActivity extends AppCompatActivity {
                 Constants.auth().sendPasswordResetEmail(binding.email.getEditText().getText().toString())
                         .addOnSuccessListener(unused -> {
                             Constants.dismissDialog();
-                            Toast.makeText(this, "A Password Reset link is sent to your email", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, getString(R.string.a_password_reset_link_is_sent_to_your_email), Toast.LENGTH_SHORT).show();
                         }).addOnFailureListener(e -> {
                             Constants.dismissDialog();
                             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -63,12 +63,12 @@ public class ForgotActivity extends AppCompatActivity {
     private boolean valid() {
         if (binding.email.getEditText().getText().toString().isEmpty()){
             binding.email.setErrorEnabled(true);
-            binding.email.setError("Email is Empty!");
+            binding.email.setError(getString(R.string.email_is_empty));
             return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.getEditText().getText().toString()).matches()){
             binding.email.setErrorEnabled(true);
-            binding.email.setError("Email is not valid!");
+            binding.email.setError(getString(R.string.email_is_not_valid));
             return false;
         }
         return true;

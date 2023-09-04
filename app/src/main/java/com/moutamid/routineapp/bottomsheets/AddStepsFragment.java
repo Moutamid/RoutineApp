@@ -52,7 +52,7 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
         context = view.getContext();
 
         back.setImageResource(R.drawable.round_close_24);
-        title.setText("Add Steps");
+        title.setText(getString(R.string.add_steps));
         back.setOnClickListener(v -> {
             dismiss();
         });
@@ -94,74 +94,78 @@ public class AddStepsFragment extends BottomSheetDialogFragment {
 
     private void morningSteps() {
         ArrayList<AddStepsChildModel> child1 = new ArrayList<>();
-        child1.add(new AddStepsChildModel("Make Breakfast", "15 min"));
-        child1.add(new AddStepsChildModel("Brush my teeth", "3 min"));
-        child1.add(new AddStepsChildModel("Make my bed", "2 min"));
-        child1.add(new AddStepsChildModel("Get some sunlight", "10 min"));
-        child1.add(new AddStepsChildModel("Stretch", "10 min"));
-        child1.add(new AddStepsChildModel("Write down goals", "10 min"));
-        child1.add(new AddStepsChildModel("Wash my face", "1 min"));
-        child1.add(new AddStepsChildModel("Take a shower", "15 min"));
-        child1.add(new AddStepsChildModel("Meditate", "10 min"));
-        child1.add(new AddStepsChildModel("Drink Water", "1 min"));
-        child1.add(new AddStepsChildModel("Make some coffee", "8 min"));
-        child1.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
-        list.add(new AddStepsModel("Morning Routine", child1));
+        child1.add(new AddStepsChildModel(getString(R.string.make_breakfast), "15 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.brush_teeth), "3 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.make_bed), "2 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.get_sunlight), "10 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.stretch), "10 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.write_down_goals), "10 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.wash_face), "1 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.take_shower), "15 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.meditate), "10 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.drink_water), "1 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.make_coffee), "8 min"));
+        child1.add(new AddStepsChildModel(getString(R.string.write_grateful), "15 min"));
+        list.add(new AddStepsModel(getString(R.string.morning_routine), child1));
     }
 
     private void eveningSteps() {
         ArrayList<AddStepsChildModel> child2 = new ArrayList<>();
-        child2.add(new AddStepsChildModel("Wash my face", "1 min"));
-        child2.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
-        child2.add(new AddStepsChildModel("Reflect on my day", "15 min"));
-        child2.add(new AddStepsChildModel("Read some fiction", "30 min"));
-        child2.add(new AddStepsChildModel("Talk to my family", "20 min"));
-        child2.add(new AddStepsChildModel("Meditate", "10 min"));
-        child2.add(new AddStepsChildModel("Write down goals", "10 min"));
-        child2.add(new AddStepsChildModel("Take a shower", "15 min"));
-        child2.add(new AddStepsChildModel("Prepare outfit for next day", "10 min"));
-        child2.add(new AddStepsChildModel("Turn off electronics", "2 min"));
-        child2.add(new AddStepsChildModel("Brush my teeth", "3 min"));
-        list.add(new AddStepsModel("Evening Routine", child2));
+        child2.add(new AddStepsChildModel(getString(R.string.wash_face_2), "1 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.write_grateful_2), "15 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.reflect_on_day), "15 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.read_fiction), "30 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.talk_to_family), "20 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.meditate_2), "10 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.write_down_goals_2), "10 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.take_shower_2), "15 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.prepare_outfit), "10 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.turn_off_electronics), "2 min"));
+        child2.add(new AddStepsChildModel(getString(R.string.brush_teeth_2), "3 min"));
+
+        list.add(new AddStepsModel(getString(R.string.evening_routine), child2));
     }
 
     private void workSteps() {
         ArrayList<AddStepsChildModel> child3 = new ArrayList<>();
-        child3.add(new AddStepsChildModel("Answer emails", "15 min"));
-        child3.add(new AddStepsChildModel("Short break", "10 min"));
-        child3.add(new AddStepsChildModel("Deep work", "45 min"));
-        child3.add(new AddStepsChildModel("Write down priorities", "8 min"));
-        child3.add(new AddStepsChildModel("Prepare meetings", "20 min"));
-        child3.add(new AddStepsChildModel("Do a breathing exercise", "3 min"));
-        child3.add(new AddStepsChildModel("Make some coffee", "8 min"));
-        child3.add(new AddStepsChildModel("Long break", "30 min"));
-        child3.add(new AddStepsChildModel("Pomodoro", "25 min"));
-        list.add(new AddStepsModel("Ready for work", child3));
+        child3.add(new AddStepsChildModel(getString(R.string.answer_emails), "15 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.short_break), "10 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.deep_work), "45 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.write_down_priorities), "8 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.prepare_meetings), "20 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.breathing_exercise), "3 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.make_coffee_3), "8 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.long_break), "30 min"));
+        child3.add(new AddStepsChildModel(getString(R.string.pomodoro), "25 min"));
+
+        list.add(new AddStepsModel(getString(R.string.ready_for_work_routine), child3));
     }
 
     private void selfcareSteps() {
         ArrayList<AddStepsChildModel> child4 = new ArrayList<>();
-        child4.add(new AddStepsChildModel("Write my todo list", "10 min"));
-        child4.add(new AddStepsChildModel("Exercise", "20 min"));
-        child4.add(new AddStepsChildModel("Write down what i'm grateful for", "15 min"));
-        child4.add(new AddStepsChildModel("Take a warm bath", "40 min"));
-        child4.add(new AddStepsChildModel("Take loved ones", "30 min"));
-        child4.add(new AddStepsChildModel("Meditate", "10 min"));
-        child4.add(new AddStepsChildModel("Visualize Success", "15 min"));
-        list.add(new AddStepsModel("Selfcare Routine", child4));
+        child4.add(new AddStepsChildModel(getString(R.string.write_todo_list), "10 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.exercise), "20 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.write_grateful_4), "15 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.take_warm_bath), "40 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.take_loved_ones), "30 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.meditate_4), "10 min"));
+        child4.add(new AddStepsChildModel(getString(R.string.visualize_success), "15 min"));
+
+        list.add(new AddStepsModel(getString(R.string.selfcare_routine), child4));
     }
 
     private void studySteps() {
         ArrayList<AddStepsChildModel> child5 = new ArrayList<>();
-        child5.add(new AddStepsChildModel("Do practice problems", "30 min"));
-        child5.add(new AddStepsChildModel("Study", "25 min"));
-        child5.add(new AddStepsChildModel("Read about the subject", "20 min"));
-        child5.add(new AddStepsChildModel("Do a breathing exercise", "3 min"));
-        child5.add(new AddStepsChildModel("Figure out what you don't yet understand", "15 min"));
-        child5.add(new AddStepsChildModel("Write down your task", "10 min"));
-        child5.add(new AddStepsChildModel("Deep work", "45 min"));
-        child5.add(new AddStepsChildModel("Prepare my desk", "3 min"));
-        list.add(new AddStepsModel("Study Routine", child5));
+        child5.add(new AddStepsChildModel(getString(R.string.practice_problems), "30 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.study), "25 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.read_subject), "20 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.breathing_exercise_5), "3 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.figure_out), "15 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.write_task), "10 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.deep_work_5), "45 min"));
+        child5.add(new AddStepsChildModel(getString(R.string.prepare_desk), "3 min"));
+
+        list.add(new AddStepsModel(getString(R.string.study_routine), child5));
     }
 
     private void addData() {

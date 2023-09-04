@@ -43,7 +43,7 @@ public class RoutineStartActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
-        binding.toolbar.tittle.setText("Start Routine");
+        binding.toolbar.tittle.setText(getString(R.string.start_routine));
         Constants.initDialog(this);
 
 
@@ -73,10 +73,10 @@ public class RoutineStartActivity extends AppCompatActivity {
 
         binding.name.setText(model.getName());
         binding.time.setText(startNow);
-        String s = model.getSteps().size() > 1 ? " steps" : " step";
+        String s = model.getSteps().size() > 1 ? getString(R.string.steps) : getString(R.string.step);
         binding.totalSteps.setText(model.getSteps().size() + s);
 
-        binding.totalTime.setText("Total time " + Constants.convertMinutesToHHMM(model.getMinutes()) + " h" );
+        binding.totalTime.setText(getString(R.string.total_time) + " " + Constants.convertMinutesToHHMM(model.getMinutes()) + " h" );
 
         if (model.getDaysCompleted().isMonday()){
             binding.mondayCheck.setVisibility(View.VISIBLE);
@@ -115,7 +115,7 @@ public class RoutineStartActivity extends AppCompatActivity {
                 startActivity(new Intent(this, TimerActivity.class));
                 finish();
             } else {
-                Toast.makeText(this, "You already finish all task", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.you_already_finish_all_task), Toast.LENGTH_SHORT).show();
             }
         });
 

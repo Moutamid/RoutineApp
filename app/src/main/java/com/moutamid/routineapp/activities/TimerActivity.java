@@ -54,7 +54,7 @@ public class TimerActivity extends AppCompatActivity {
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);
 
-        binding.toolbar.tittle.setText("Start Routine");
+        binding.toolbar.tittle.setText(getString(R.string.start_routine));
         Constants.initDialog(this);
 
         ArrayList<StepsLocalModel> modelList = Stash.getArrayList(model.getID(), StepsLocalModel.class);
@@ -128,7 +128,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void setValue(StepsLocalModel stepsModel, int count) {
-        binding.minutesSchedule.setText(Constants.extractSingleTimeValue(stepsModel.getTime()) + " mint scheduled." );
+        binding.minutesSchedule.setText(Constants.extractSingleTimeValue(stepsModel.getTime()) + " " + getString(R.string.mint_scheduled) );
         binding.stepName.setText(stepsModel.getName());
         String startNow = Constants.finishTime(Constants.getCurrentTime(), Constants.extractSingleTimeValue(stepsModel.getTime()));
         binding.finishTime.setText(startNow);
@@ -138,9 +138,9 @@ public class TimerActivity extends AppCompatActivity {
             binding.nextStep.setText(stepsList.get(count + 1).getName());
         } else {
             binding.skip.setVisibility(View.INVISIBLE);
-            binding.nextStep.setText("You're done with everything!");
+            binding.nextStep.setText(R.string.you_re_done_with_everything);
         }
-        binding.clock.setText(Constants.extractSingleTimeValue(stepsModel.getTime()) + ":00 min.");
+        binding.clock.setText(Constants.extractSingleTimeValue(stepsModel.getTime()) + getString(R.string._00_min));
     }
 
     private void startTimer() {
@@ -148,8 +148,8 @@ public class TimerActivity extends AppCompatActivity {
             countDownTimer.cancel();
         } else {
             NotificationHelper helper = new NotificationHelper(this);
-            String body = stepsModel.getName() + " " + stepsModel.getTime() + " left";
-            helper.sendHighPriorityNotification("Start Routine", body, TimerActivity.class);
+            String body = stepsModel.getName() + " " + stepsModel.getTime() + " " + getString(R.string.left);
+            helper.sendHighPriorityNotification(getString(R.string.start_routine), body, TimerActivity.class);
         }
 
         countDownTimer = new CountDownTimer(remainingTimeInMillis, 1000) {
@@ -172,7 +172,7 @@ public class TimerActivity extends AppCompatActivity {
 
         countDownTimer.start();
         isPaused = false;
-        binding.startPauseText.setText("Pause");
+        binding.startPauseText.setText(getString(R.string.pause));
         binding.startPauseIcon.setImageResource(R.drawable.pause);
     }
 
@@ -197,7 +197,7 @@ public class TimerActivity extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
             isPaused = true;
-            binding.startPauseText.setText("Resume");
+            binding.startPauseText.setText(getString(R.string.resume));
             binding.startPauseIcon.setImageResource(R.drawable.play);
         }
     }
@@ -210,7 +210,7 @@ public class TimerActivity extends AppCompatActivity {
         updateCountdownText();
         updateProgressBar();
         isPaused = true;
-        binding.startPauseText.setText("Start");
+        binding.startPauseText.setText(getString(R.string.start));
         binding.startPauseIcon.setImageResource(R.drawable.play);
     }
 
@@ -218,7 +218,7 @@ public class TimerActivity extends AppCompatActivity {
         long minutes = (remainingTimeInMillis / 1000) / 60;
         long seconds = (remainingTimeInMillis / 1000) % 60;
         String formattedTime = String.format("%d:%02d", minutes, seconds);
-        binding.clock.setText(formattedTime + " min.");
+        binding.clock.setText(formattedTime + " " + getString(R.string.mint));
     }
 
     private void updateProgressBar() {

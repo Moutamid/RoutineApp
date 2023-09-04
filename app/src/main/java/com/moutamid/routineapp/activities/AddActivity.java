@@ -24,7 +24,7 @@ public class AddActivity extends AppCompatActivity {
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
-        binding.toolbar.tittle.setText("Add Routine");
+        binding.toolbar.tittle.setText(getResources().getString(R.string.add_routine));
         Constants.initDialog(this);
 
 

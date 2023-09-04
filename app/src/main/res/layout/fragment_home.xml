@@ -243,7 +243,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/baloo"
         android:gravity="center_vertical"
-        tools:text="Today routines"
+        tools:text="@string/today_routines"
         android:textColor="@color/dark"
         android:textSize="32sp" />
 
@@ -268,7 +268,7 @@
                 android:drawablePadding="10sp"
                 android:textSize="14sp"
                 android:fontFamily="@font/airbnb"
-                android:text="Tasks\t" />
+                android:text="@string/tasks" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/routineRC"

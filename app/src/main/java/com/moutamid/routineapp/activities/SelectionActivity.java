@@ -27,7 +27,7 @@ public class SelectionActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
-        binding.toolbar.tittle.setText("Select Which Describes You");
+        binding.toolbar.tittle.setText(getString(R.string.select_which_describes_you));
         Constants.initDialog(this);
 
 
@@ -87,6 +87,8 @@ public class SelectionActivity extends AppCompatActivity {
             binding.habit.setChecked(false);
             binding.other.setChecked(true);
         });
+
+
 
         binding.next.setOnClickListener(v -> {
             Constants.showDialog();

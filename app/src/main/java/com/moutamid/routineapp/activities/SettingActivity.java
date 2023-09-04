@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +52,7 @@ public class SettingActivity extends AppCompatActivity {
 
         currentTheme = theme;
 
-        binding.toolbar.tittle.setText("Settings");
+        binding.toolbar.tittle.setText(getString(R.string.settings));
         Constants.initDialog(this);
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
@@ -68,9 +69,9 @@ public class SettingActivity extends AppCompatActivity {
         });
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
-            binding.defaultLanguage.setText("English");
+            binding.defaultLanguage.setText(getString(R.string.english));
         } else {
-            binding.defaultLanguage.setText("Spanish");
+            binding.defaultLanguage.setText(getString(R.string.spanish));
         }
 
         binding.language.setOnClickListener(v -> {
@@ -80,6 +81,28 @@ public class SettingActivity extends AppCompatActivity {
 
         binding.pro.setOnClickListener(v -> {
             startActivity(new Intent(this, PaymentActivity.class));
+        });
+
+        binding.contactInstagram.setOnClickListener(v -> {
+            String instagramUsername = "ikervitoriapsicologo";
+            if ( isInstagramAppInstalled()) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://instagram.com/_u/" + instagramUsername));
+                intent.setPackage("com.instagram.android");
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://instagram.com/" + instagramUsername));
+                startActivity(intent);
+            }
+        });
+
+        binding.contactEmail.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("message/rfc822");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"contacto@ikervitoria.com"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            startActivity(Intent.createChooser(intent, ""));
         });
 
         binding.colorPicker.setOnColorSelectedListener(color -> {
@@ -159,16 +182,46 @@ public class SettingActivity extends AppCompatActivity {
 
         binding.logout.setOnClickListener(v ->{
             new AlertDialog.Builder(this)
-                    .setTitle("Logout")
-                    .setMessage("Do you really want to logout?")
-                    .setNegativeButton("No", ((dialogInterface, i) -> dialogInterface.dismiss()))
-                    .setPositiveButton("Yes", ((dialogInterface, i) -> {
+                    .setTitle(getString(R.string.logout))
+                    .setMessage(getString(R.string.do_you_really_want_to_logout))
+                    .setNegativeButton(getString(R.string.no), ((dialogInterface, i) -> dialogInterface.dismiss()))
+                    .setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
                         Constants.auth().signOut();
                         startActivity(new Intent(this, SplashScreenActivity.class));
                         finish();
                     }))
                     .show();
         });
+
+        binding.deleteAll.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.delete_all_data_irreversible))
+                    .setMessage(getString(R.string.do_you_really_want_to_delete))
+                    .setNegativeButton(getString(R.string.no), ((dialogInterface, i) -> dialogInterface.dismiss()))
+                    .setPositiveButton(getString(R.string.yes), ((dialogInterface, i) -> {
+                        deleteData();
+                    }))
+                    .show();
+        });
+
+    }
+
+    private void deleteData() {
+        Constants.showDialog();
+        Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid()).removeValue()
+                .addOnSuccessListener(unused -> {
+                    Constants.databaseReference().child(Constants.HISTORY).child(Constants.auth().getCurrentUser().getUid()).removeValue()
+                            .addOnSuccessListener(unused1 -> {
+                                Constants.dismissDialog();
+                                Toast.makeText(this, getString(R.string.all_data_deleted_successfully), Toast.LENGTH_SHORT).show();
+                            }).addOnFailureListener(e -> {
+                                Constants.dismissDialog();
+                                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                }).addOnFailureListener(e -> {
+                    Constants.dismissDialog();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     @Override
@@ -198,6 +251,15 @@ public class SettingActivity extends AppCompatActivity {
         binding.time24Switch.setColorOn(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.darkSwitch.setColorBorder(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.darkSwitch.setColorOn(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+    }
+
+    private boolean isInstagramAppInstalled() {
+        try {
+            getPackageManager().getPackageInfo("com.instagram.android", 0);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

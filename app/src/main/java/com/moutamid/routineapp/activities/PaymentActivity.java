@@ -26,7 +26,7 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
 
         Constants.changeTheme(this);
 
-        binding.toolbar.tittle.setText("Become a Pro member");
+        binding.toolbar.tittle.setText(getString(R.string.become_a_pro_member));
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
 

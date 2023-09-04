@@ -84,9 +84,9 @@
     <string name="remove_ads">Remove Ads</string>
     <string name="go_pro">Go Pro</string>
     <string name="contact_us">Contact Us</string>
-    <string name="email_example_gmail_com">Email : example@gmail.com</string>
+    <string name="email_example_gmail_com">Email : contacto@ikervitoria.com</string>
     <string name="your_1_sentence_is_something_to_us">Your 1 sentence is something to us</string>
-    <string name="follow_us_example">Follow us @example</string>
+    <string name="follow_us_example">Follow us @ikervitoriapsicologo</string>
     <string name="your_1_follow_help_us_to_motivate">Your 1 follow help us to motivate</string>
     <string name="faqs">FAQs</string>
     <string name="how_to_duplicate_a_routine">How to duplicate a routine?</string>
@@ -136,5 +136,175 @@
 
     <string name="today_routines">Today Routines</string>
     <string name="routines_followed">Routines Completed</string>
+    <string name="add_routine">Add Routine</string>
+    <string name="add_custom_sep">Add Custom Sep</string>
+    <string name="no_reminder">No reminder</string>
+    <string name="add">Add</string>
+    <string name="select_time">Select Time</string>
+    <string name="edit_routine">Edit Routine</string>
+    <string name="delete_routine">Delete Routine</string>
+    <string name="do_you_really_want_to_delete_this_routine">Do you really want to delete this routine??</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="please_add_name_for_the_routine">Please add name for the routine</string>
+    <string name="please_add_at_least_one_day">Please add at least one day</string>
+    <string name="please_add_at_least_one_step">Please add at least one step</string>
+    <string name="routine_created">Routine Created</string>
+    <string name="routine_updated">Routine Updated</string>
+    <string name="routine_deleted">Routine Deleted</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="a_password_reset_link_is_sent_to_your_email">A Password Reset link is sent to your email</string>
+    <string name="email_is_empty">Email is Empty!</string>
+    <string name="email_is_not_valid">Email is not valid!</string>
+    <string name="languages">Languages</string>
+    <string name="password_is_empty">Password is Empty!</string>
+    <string name="become_a_pro_member">Become a Pro member</string>
+    <string name="_1_99_month">1.99€ / month</string>
+    <string name="_9_99_month">9.99€ / month</string>
+    <string name="start_routine">Start Routine</string>
+    <string name="steps">" steps"</string>
+    <string name="step">" step"</string>
+    <string name="you_already_finish_all_task">You already finished all the task</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="do_you_really_want_to_logout">Do you really want to logout?</string>
+    <string name="do_you_really_want_to_delete">Do you really want to Delete All your data?</string>
+    <string name="select_which_describes_you">Select Which Describes You</string>
+    <string name="create_account">Create Account</string>
+    <string name="_1_swipe_the_routine_card_to_the_side_n2_tap_on_duplicate_routine_n3_confirm">1. Swipe the routine card to the side\n2. Tap on \'duplicate routine\'\n3. Confirm</string>
+    <string name="i_m_having_problems_wih_the_notifications">I\'m having problems with the notifications</string>
+    <string name="how_to_edit_a_routine">How to edit a routine?</string>
+    <string name="_1_tap_on_the_routine_n2_tap_on_the_edit_button_n3_edit_your_routine_n4_save_changes">1. Tap on the routine\n2. Tap on the Edit Button\n3. Edit your routine\n4. Save changes</string>
+    <string name="can_i_reorder_tasks_while_doing_a_routine">Can I reorder tasks while doing a routine?</string>
+    <string name="not_yet_but_you_can_use_the_push_task_to_the_end_button_to_go_to_the_next_task_and_do_the_current_task_later">Not yet, but you can use the \'Push task to the end\' button to go to the next task and do the current task later.</string>
+    <string name="where_are_already_completed_routines">Where are already completed routines?</string>
+    <string name="i_can_t_see_the_routine_somebody_has_shared_with_me">I can\'t see the routine somebody has shared with me</string>
+    <string name="please_tap_the_link_again_and_make_sure_routine_app_is_open_in_the_background_if_that_doesn_t_work_please_reach_out_to_me_at_example_gmail_com">Please tap the link again and make sure Routine App is open in the background. If that doesn\'t work, please reach out to me at example@gmail.com</string>
+    <string name="delete_all_data_irreversible">Delete all data(irreversible)</string>
+    <string name="name_is_empty">Name is Empty!</string>
+    <string name="_00_min">:00 min.</string>
+    <string name="you_re_done_with_everything">You\'re done with everything!</string>
+    <string name="mint_scheduled">mint scheduled.</string>
+    <string name="left">quedan</string>
+    <string name="mint">mint</string>
+    <string name="resume">Resume</string>
+    <string name="pause">Pause</string>
+    <string name="tasks">Tasks</string>
+    <string name="add_steps">Add Steps</string>
+    <string name="_7_days">7 days</string>
+    <string name="_30_days">30 days</string>
+    <string name="_365_days">365 days</string>
+
+    <string name="make_breakfast">Make Breakfast</string>
+    <string name="brush_teeth">Brush my teeth</string>
+    <string name="make_bed">Make my bed</string>
+    <string name="get_sunlight">Get some sunlight</string>
+    <string name="stretch">Stretch</string>
+    <string name="write_down_goals">Write down goals</string>
+    <string name="wash_face">Wash my face</string>
+    <string name="take_shower">Take a shower</string>
+    <string name="meditate">Meditate</string>
+    <string name="drink_water">Drink Water</string>
+    <string name="make_coffee">Make some coffee</string>
+    <string name="write_grateful">Write down what I\'m grateful for</string>
+
+    <string name="wash_face_2">Wash my face</string>
+    <string name="write_grateful_2">Write down what I\'m grateful for</string>
+    <string name="reflect_on_day">Reflect on my day</string>
+    <string name="read_fiction">Read some fiction</string>
+    <string name="talk_to_family">Talk to my family</string>
+    <string name="meditate_2">Meditate</string>
+    <string name="write_down_goals_2">Write down goals</string>
+    <string name="take_shower_2">Take a shower</string>
+    <string name="prepare_outfit">Prepare outfit for next day</string>
+    <string name="turn_off_electronics">Turn off electronics</string>
+    <string name="brush_teeth_2">Brush my teeth</string>
+
+    <string name="answer_emails">Answer emails</string>
+    <string name="short_break">Short break</string>
+    <string name="deep_work">Deep work</string>
+    <string name="write_down_priorities">Write down priorities</string>
+    <string name="prepare_meetings">Prepare meetings</string>
+    <string name="breathing_exercise">Do a breathing exercise</string>
+    <string name="make_coffee_3">Make some coffee</string>
+    <string name="long_break">Long break</string>
+    <string name="pomodoro">Pomodoro</string>
+
+    <string name="write_todo_list">Write my todo list</string>
+    <string name="exercise">Exercise</string>
+    <string name="write_grateful_4">Write down what I\'m grateful for</string>
+    <string name="take_warm_bath">Take a warm bath</string>
+    <string name="take_loved_ones">Take loved ones</string>
+    <string name="meditate_4">Meditate</string>
+    <string name="visualize_success">Visualize Success</string>
+
+    <string name="practice_problems">Do practice problems</string>
+    <string name="study">Study</string>
+    <string name="read_subject">Read about the subject</string>
+    <string name="breathing_exercise_5">Do a breathing exercise</string>
+    <string name="figure_out">Figure out what you don\'t yet understand</string>
+    <string name="write_task">Write down your task</string>
+    <string name="deep_work_5">Deep work</string>
+    <string name="prepare_desk">Prepare my desk</string>
+    <string name="all_data_deleted_successfully">All Data Deleted Successfully</string>
+
+
+    <string-array name="my_context_array">
+        <item>After waking up</item>
+        <item>After coming home</item>
+        <item>After watching YouTube</item>
+        <item>After brushing teeth</item>
+        <item>At 3 AM</item>
+        <item>After checking Instagram</item>
+    </string-array>
+
+
+    <string-array name="time_intervals">
+        <item>1 min</item>
+        <item>2 min</item>
+        <item>3 min</item>
+        <item>4 min</item>
+        <item>5 min</item>
+        <item>6 min</item>
+        <item>7 min</item>
+        <item>8 min</item>
+        <item>9 min</item>
+        <item>10 min</item>
+        <item>11 min</item>
+        <item>12 min</item>
+        <item>13 min</item>
+        <item>14 min</item>
+        <item>15 min</item>
+        <item>16 min</item>
+        <item>17 min</item>
+        <item>18 min</item>
+        <item>19 min</item>
+        <item>20 min</item>
+        <item>21 min</item>
+        <item>22 min</item>
+        <item>23 min</item>
+        <item>24 min</item>
+        <item>25 min</item>
+        <item>26 min</item>
+        <item>27 min</item>
+        <item>28 min</item>
+        <item>29 min</item>
+        <item>30 min</item>
+        <item>31 min</item>
+        <item>32 min</item>
+        <item>33 min</item>
+        <item>34 min</item>
+        <item>35 min</item>
+        <item>36 min</item>
+        <item>37 min</item>
+        <item>38 min</item>
+        <item>39 min</item>
+        <item>40 min</item>
+        <item>41 min</item>
+        <item>42 min</item>
+        <item>43 min</item>
+        <item>44 min</item>
+        <item>45 min</item>
+    </string-array>
 
 </resources>

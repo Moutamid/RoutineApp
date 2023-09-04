@@ -222,12 +222,16 @@ public class HomeFragment extends Fragment {
                             adapter.getFilter().filter(today);
                             Stash.put(Constants.TIME_LIST, times);
                         }
-                        Constants.dismissDialog();
+                        if (getActivity() != null){
+                            Constants.dismissDialog();
+                        }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Constants.dismissDialog();
+                        if (getActivity() != null){
+                            Constants.dismissDialog();
+                        }
                         Toast.makeText(binding.getRoot().getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

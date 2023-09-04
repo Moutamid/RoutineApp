@@ -60,9 +60,9 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
 
         binding.upgrade.setOnClickListener(v -> {
             if (monthly){
-                bp.purchase(PaymentActivity.this, Constants.VIP_MONTH);
+                bp.subscribe(PaymentActivity.this, Constants.VIP_MONTH);
             } else {
-                bp.purchase(PaymentActivity.this, Constants.VIP_LIFE);
+                bp.subscribe(PaymentActivity.this, Constants.VIP_LIFE);
             }
         });
 

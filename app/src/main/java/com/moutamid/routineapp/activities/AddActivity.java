@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 
 import com.fxn.stash.Stash;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityAddBinding;
@@ -87,5 +88,11 @@ public class AddActivity extends AppCompatActivity {
         binding.image4.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
         binding.image5.setImageTintList(ColorStateList.valueOf(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light))));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

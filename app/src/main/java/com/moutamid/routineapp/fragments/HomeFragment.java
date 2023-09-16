@@ -17,8 +17,10 @@ import com.fxn.stash.Stash;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.RoutineAdapter;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.FragmentHomeBinding;
 import com.moutamid.routineapp.models.AddStepsChildModel;
 import com.moutamid.routineapp.models.CompletedDaysModel;
@@ -45,7 +47,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
-        context = binding.getRoot().getContext();
+        context = requireContext();
         Constants.initDialog(context);
 
         String today = Constants.getToday();
@@ -68,7 +70,7 @@ public class HomeFragment extends Fragment {
         binding.inCompleted.setOnClickListener(v -> {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
 
-            if (show){
+            if (show) {
                 binding.routineRC.setVisibility(View.GONE);
                 binding.inCompleted.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.upload, 0);
             } else {
@@ -81,7 +83,7 @@ public class HomeFragment extends Fragment {
         binding.completed.setOnClickListener(v -> {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
 
-            if (show){
+            if (show) {
                 binding.routineRCCompleted.setVisibility(View.GONE);
                 binding.completed.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.upload, 0);
             } else {
@@ -97,7 +99,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (Stash.getBoolean(Constants.LANGUAGE, true)){
+        if (Stash.getBoolean(Constants.LANGUAGE, true)) {
             Constants.setLocale(context, Constants.EN);
         } else {
             Constants.setLocale(context, Constants.ES);
@@ -134,7 +136,7 @@ public class HomeFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
+                        if (snapshot.exists()) {
                             list.clear();
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 //                            RoutineModel model = dataSnapshot.getValue(RoutineModel.class);
@@ -149,16 +151,16 @@ public class HomeFragment extends Fragment {
                                 ArrayList<String> days = new ArrayList<>();
                                 ArrayList<AddStepsChildModel> steps = new ArrayList<>();
 
-                                if (reminder != 0){
+                                if (reminder != 0) {
                                     times.add(reminder);
                                 }
 
-                                for (DataSnapshot day : dataSnapshot.child("days").getChildren()){
+                                for (DataSnapshot day : dataSnapshot.child("days").getChildren()) {
                                     String d = day.getValue(String.class);
                                     days.add(d);
                                 }
 
-                                for (DataSnapshot step : dataSnapshot.child("steps").getChildren()){
+                                for (DataSnapshot step : dataSnapshot.child("steps").getChildren()) {
                                     AddStepsChildModel d = step.getValue(AddStepsChildModel.class);
                                     steps.add(d);
                                 }
@@ -178,7 +180,7 @@ public class HomeFragment extends Fragment {
                             }
 
 
-                            if (list.size() > 0){
+                            if (list.size() > 0) {
                                 for (int i = 0; i < list.size(); i++) {
                                     RoutineModel model = list.get(i);
                                     String ID = model.getID();
@@ -193,7 +195,7 @@ public class HomeFragment extends Fragment {
                                 }
                             }
 
-                            adapter = new RoutineAdapter(binding.getRoot().getContext(), list);
+                            adapter = new RoutineAdapter(requireContext(), list);
                             binding.routineRC.setAdapter(adapter);
 
                             String today = Constants.getToday();
@@ -222,14 +224,14 @@ public class HomeFragment extends Fragment {
                             adapter.getFilter().filter(today);
                             Stash.put(Constants.TIME_LIST, times);
                         }
-                        if (getActivity() != null){
+                        if (getActivity() != null) {
                             Constants.dismissDialog();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        if (getActivity() != null){
+                        if (getActivity() != null) {
                             Constants.dismissDialog();
                         }
                         Toast.makeText(binding.getRoot().getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
@@ -243,32 +245,32 @@ public class HomeFragment extends Fragment {
         if (today.equals(clicked)) {
             binding.tittle.setText(getResources().getString(R.string.today_routines));
         } else {
-            if (clicked.equalsIgnoreCase("Sun")){
+            if (clicked.equalsIgnoreCase("Sun")) {
                 binding.tittle.setText(getResources().getString(R.string.sunday_routines));
             }
-            if (clicked.equalsIgnoreCase("Mon")){
+            if (clicked.equalsIgnoreCase("Mon")) {
                 binding.tittle.setText(getResources().getString(R.string.monday_routines));
             }
-            if (clicked.equalsIgnoreCase("Tue")){
+            if (clicked.equalsIgnoreCase("Tue")) {
                 binding.tittle.setText(getResources().getString(R.string.tuesday_routines));
             }
-            if (clicked.equalsIgnoreCase("Wed")){
+            if (clicked.equalsIgnoreCase("Wed")) {
                 binding.tittle.setText(getResources().getString(R.string.wednesday_routines));
             }
-            if (clicked.equalsIgnoreCase("Thu")){
+            if (clicked.equalsIgnoreCase("Thu")) {
                 binding.tittle.setText(getResources().getString(R.string.thursday_routines));
             }
-            if (clicked.equalsIgnoreCase("Fri")){
+            if (clicked.equalsIgnoreCase("Fri")) {
                 binding.tittle.setText(getResources().getString(R.string.friday_routines));
             }
-            if (clicked.equalsIgnoreCase("Sat")){
+            if (clicked.equalsIgnoreCase("Sat")) {
                 binding.tittle.setText(getResources().getString(R.string.saturday_routines));
             }
         }
 
         if (clicked.equalsIgnoreCase("Sun")) {
             binding.sunday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.sunday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -281,7 +283,7 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Mon")) {
             binding.monday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.monday));
             }
             binding.sunday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -293,7 +295,7 @@ public class HomeFragment extends Fragment {
         }
         if (clicked.equalsIgnoreCase("Tue")) {
             binding.tuesday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.tuesday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -306,7 +308,7 @@ public class HomeFragment extends Fragment {
         if (clicked.equalsIgnoreCase("Wed")) {
             binding.wednessday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
 
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.wednesday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -319,7 +321,7 @@ public class HomeFragment extends Fragment {
         if (clicked.equalsIgnoreCase("Thu")) {
             binding.thursday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
 
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.thursday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -332,7 +334,7 @@ public class HomeFragment extends Fragment {
         if (clicked.equalsIgnoreCase("Fri")) {
             binding.friday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
 
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.friday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));
@@ -345,7 +347,7 @@ public class HomeFragment extends Fragment {
         if (clicked.equalsIgnoreCase("Sat")) {
             binding.saturday.setCardBackgroundColor(Stash.getInt(Constants.COLOR_TEXT, getResources().getColor(R.color.text)));
 
-            if (list.size()>0){
+            if (list.size() > 0) {
                 adapter.getFilter().filter(getResources().getString(R.string.saturday));
             }
             binding.monday.setCardBackgroundColor(getResources().getColor(R.color.white));

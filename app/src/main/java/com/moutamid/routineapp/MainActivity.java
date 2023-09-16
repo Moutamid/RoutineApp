@@ -89,7 +89,10 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             startActivity(new Intent(this, SettingActivity.class));
             finish();
         });
-        binding.add.setOnClickListener(v -> startActivity(new Intent(this, AddActivity.class)));
+        binding.add.setOnClickListener(v -> {
+            startActivity(new Intent(this, AddActivity.class));
+            finish();
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             shouldShowRequestPermissionRationale(android.Manifest.permission.POST_NOTIFICATIONS);

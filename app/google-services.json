@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "661045994469",
+    "firebase_url": "https://tdha-pro-default-rtdb.firebaseio.com",
     "project_id": "tdha-pro",
     "storage_bucket": "tdha-pro.appspot.com"
   },
@@ -10,6 +11,25 @@
         "mobilesdk_app_id": "1:661045994469:android:d29d87219a9ebb9237450c",
         "android_client_info": {
           "package_name": "com.ivitoria.routineapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHxXLxJP9ZaXJPCHyq5mioYjgT65ynroo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661045994469:android:8ebcdb424c6c393237450c",
+        "android_client_info": {
+          "package_name": "com.moutamid.routineapp"
         }
       },
       "oauth_client": [],

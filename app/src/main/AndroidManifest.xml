@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ivitoria.routineapp">
+    package="com.moutamid.routineapp">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.moutamid.routineapp.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,52 +20,52 @@
         android:theme="@style/Theme.RoutineApp"
         tools:targetApi="31">
         <activity
-            android:name=".activities.PaymentActivity"
+            android:name="com.moutamid.routineapp.activities.PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LanguageActivity"
+            android:name="com.moutamid.routineapp.activities.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CompletedActivity"
+            android:name="com.moutamid.routineapp.activities.CompletedActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TimerActivity"
+            android:name="com.moutamid.routineapp.activities.TimerActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.EditRoutineActivity"
+            android:name="com.moutamid.routineapp.activities.EditRoutineActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RoutineStartActivity"
+            android:name="com.moutamid.routineapp.activities.RoutineStartActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AddCustomStepsActivity"
+            android:name="com.moutamid.routineapp.activities.AddCustomStepsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.CustomRoutineActivity"
+            android:name="com.moutamid.routineapp.activities.CustomRoutineActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AddActivity"
+            android:name="com.moutamid.routineapp.activities.AddActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SettingActivity"
+            android:name="com.moutamid.routineapp.activities.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SelectionActivity"
+            android:name="com.moutamid.routineapp.activities.SelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ForgotActivity"
+            android:name="com.moutamid.routineapp.activities.ForgotActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name="com.moutamid.routineapp.activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.moutamid.routineapp.activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.moutamid.routineapp.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.moutamid.routineapp.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,15 +74,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.moutamid.routineapp.MainActivity"
             android:exported="false"/>
 
         <receiver
-            android:name=".notification.NotificationReceiver"
+            android:name="com.moutamid.routineapp.notification.NotificationReceiver"
             android:enabled="true"
             android:exported="false" />
         <receiver
-            android:name=".notification.RestartBootReceiiver"
+            android:name="com.moutamid.routineapp.notification.RestartBootReceiiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

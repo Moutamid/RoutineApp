@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace 'com.moutamid.routineapp'
+    namespace 'com.ivitoria.routineapp'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.moutamid.routineapp"
+        applicationId "com.ivitoria.routineapp"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         setProperty("archivesBaseName", "RoutineApp-$versionName")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

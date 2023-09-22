@@ -30,18 +30,17 @@ public class LanguageActivity extends AppCompatActivity {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
-        if (!Stash.getBoolean(Constants.IS_VIP)){
-            Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
-        }
-
         binding.toolbar.tittle.setText(getString(R.string.languages));
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
         if (!Stash.getBoolean("backShow")) {
             binding.toolbar.back.setVisibility(View.GONE);
+            if (!Stash.getBoolean(Constants.IS_VIP)){
+                Stash.put(Constants.IS_VIP, false);
+                Ads.init(this);
+                Ads.showBanner(binding.adView);
+                Ads.showInterstitial(this, this);
+            }
         }
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)) {

@@ -62,9 +62,9 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+//            Ads.init(this);
+//            Ads.showBanner(binding.adView);
+//            Ads.showInterstitial(this, this);
         }
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){

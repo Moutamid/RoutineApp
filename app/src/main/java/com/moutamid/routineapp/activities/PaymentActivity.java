@@ -38,8 +38,8 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showInterstitial(this, this);
+//            Ads.init(this);
+//            Ads.showInterstitial(this, this);
         }
 
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);

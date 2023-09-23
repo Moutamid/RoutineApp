@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             Stash.put(Constants.IS_VIP, true);
         } else {
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.adView);
+//            Ads.init(this);
+//            Ads.showBanner(binding.adView);
 //            Ads.showInterstitial(this, this);
         }
 

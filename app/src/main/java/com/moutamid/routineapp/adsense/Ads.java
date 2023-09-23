@@ -23,23 +23,35 @@ public class Ads {
     public static AdRequest adRequest;
     public static String TAG = "ADS_CHECK";
 
-    public static void init(Context context){
-        MobileAds.initialize(context, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+    /*
+    *
+      <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_Banner_ID">
+    </com.google.android.gms.ads.AdView>
+
+    *
+    * */
+
+    public static void init(Context context) {
+        MobileAds.initialize(context, initializationStatus -> {
         });
-
         adRequest = new AdRequest.Builder().build();
-
     }
 
-    public static void showBanner(AdView mAdView){
+    public static void showBanner(AdView mAdView) {
         mAdView.loadAd(adRequest);
     }
 
     public static void showInterstitial(Context context, Activity activity) {
-        InterstitialAd.load(context,context.getResources().getString(R.string.AD_Interstitial_ID), adRequest,
+        InterstitialAd.load(context, context.getResources().getString(R.string.AD_Interstitial_ID), adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -60,7 +72,7 @@ public class Ads {
     }
 
     private static void callBack(Activity activity) {
-        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override
             public void onAdClicked() {
                 // Called when a click is recorded for an ad.

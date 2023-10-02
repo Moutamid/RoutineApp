@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -44,13 +45,14 @@ public class CompletedActivity extends AppCompatActivity {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
-        if (!Stash.getBoolean(Constants.IS_VIP)) {
+        if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-//            Ads.init(this);
-//            Ads.showBanner(binding.adView);
-//            Ads.showInterstitial(this, this);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        } else {
+            binding.adView.setVisibility(View.GONE);
         }
-
         Constants.initDialog(this);
 
         RoutineModel model = (RoutineModel) Stash.getObject("CONGRATS", RoutineModel.class);

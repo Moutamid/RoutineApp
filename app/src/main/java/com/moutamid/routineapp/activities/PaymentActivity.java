@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseInfo;
@@ -38,8 +39,11 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-//            Ads.init(this);
-//            Ads.showInterstitial(this, this);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        } else {
+            binding.adView.setVisibility(View.GONE);
         }
 
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);

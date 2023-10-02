@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseInfo;
@@ -73,10 +74,11 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         if (bp.isSubscribed(Constants.VIP_MONTH) || bp.isSubscribed(Constants.VIP_LIFE)){
             Stash.put(Constants.IS_VIP, true);
+            binding.adView.setVisibility(View.GONE);
         } else {
             Stash.put(Constants.IS_VIP, false);
-//            Ads.init(this);
-//            Ads.showBanner(binding.adView);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
 //            Ads.showInterstitial(this, this);
         }
 

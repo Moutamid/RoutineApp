@@ -47,9 +47,11 @@ public class TimerActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-//            Ads.init(this);
-//            Ads.showBanner(binding.adView);
-//            Ads.showInterstitial(this, this);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        } else {
+            binding.adView.setVisibility(View.GONE);
         }
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);

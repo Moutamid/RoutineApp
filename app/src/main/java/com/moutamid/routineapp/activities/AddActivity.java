@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.view.View;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
@@ -37,9 +38,11 @@ public class AddActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-//            Ads.init(this);
-//            Ads.showBanner(binding.adView);
-//            Ads.showInterstitial(this, this);
+            Ads.init(this);
+            Ads.showBanner(binding.adView);
+            Ads.showInterstitial(this, this);
+        } else {
+            binding.adView.setVisibility(View.GONE);
         }
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());

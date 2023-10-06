@@ -49,7 +49,7 @@ public class CompletedActivity extends AppCompatActivity {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -104,8 +104,7 @@ public class CompletedActivity extends AppCompatActivity {
         Constants.databaseReference().child(Constants.HISTORY).child(Constants.auth().getCurrentUser().getUid())
                 .child(date).setValue(model).addOnSuccessListener(unused -> {
                     Constants.dismissDialog();
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -117,8 +116,7 @@ public class CompletedActivity extends AppCompatActivity {
         Constants.databaseReference().child(Constants.HISTORY).child(Constants.auth().getCurrentUser().getUid())
                 .child(date).setValue(historyModel).addOnSuccessListener(unused -> {
                     Constants.dismissDialog();
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

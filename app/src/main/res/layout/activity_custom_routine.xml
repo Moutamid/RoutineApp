@@ -14,8 +14,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/adView"
         android:layout_below="@id/toolbar"
-        android:layout_above="@id/save"
         android:fillViewport="true">
 
         <LinearLayout
@@ -82,10 +82,10 @@
                 android:layout_marginTop="7sp"
                 android:fontFamily="@font/baloo"
                 android:gravity="end"
-                android:visibility="gone"
                 android:text="Total time 00:22h"
                 android:textColor="@color/light"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -125,9 +125,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/airbnb"
                 android:text="@string/add_context"
-                android:layout_marginTop="10dp"
                 android:textColor="@color/dark"
                 android:textSize="16sp" />
 
@@ -308,16 +308,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/airbnb"
+                        android:gravity="center"
                         android:text="@string/add_time"
                         android:textColor="@color/light"
-                        android:gravity="center"
                         android:textSize="16sp" />
 
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
-
 
 
         </LinearLayout>
@@ -328,29 +327,26 @@
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/adView"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="12sp"
         android:layout_marginTop="12sp"
         android:layout_marginEnd="12sp"
         android:layout_marginBottom="12sp"
         android:fontFamily="@font/airbnb"
         android:text="@string/save"
-        android:textColor="@color/text_white"
         android:textAllCaps="true"
+        android:textColor="@color/text_white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_above="@id/save"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/AD_Banner_ID">
-    </com.google.android.gms.ads.AdView>
-
+        ads:adUnitId="@string/AD_Banner_ID"/>
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.moutamid.routineapp.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fxn.stash.Stash;
 import com.google.android.material.card.MaterialCardView;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.activities.RoutineStartActivity;
+import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -25,11 +28,13 @@ import java.util.List;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineVH> implements Filterable {
     Context context;
+    Activity activity;
     ArrayList<RoutineModel> list;
     ArrayList<RoutineModel> listAll;
 
-    public RoutineAdapter(Context context, ArrayList<RoutineModel> list) {
+    public RoutineAdapter(Context context, Activity activity, ArrayList<RoutineModel> list) {
         this.context = context;
+        this.activity = activity;
         this.list = list;
         listAll = new ArrayList<>(list);
     }
@@ -114,7 +119,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
         holder.itemView.setOnClickListener(v -> {
             Stash.put(Constants.MODEL, model);
-            context.startActivity(new Intent(context, RoutineStartActivity.class));
+            Ads.showInterstitial(context, activity, RoutineStartActivity.class);
         });
 
         holder.routine_card.setStrokeColor(Stash.getInt(Constants.COLOR_TEXT, context.getResources().getColor(R.color.text)));

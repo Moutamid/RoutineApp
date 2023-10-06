@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         } else {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
+            Ads.loadIntersAD(this);
             Ads.showBanner(binding.adView);
 //            Ads.showInterstitial(this, this);
         }
@@ -88,12 +89,10 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         binding.insights.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new InsightsFragment()).commit());
 
         binding.settings.setOnClickListener(v -> {
-            startActivity(new Intent(this, SettingActivity.class));
-            finish();
+            Ads.showInterstitial(this, this, SettingActivity.class);
         });
         binding.add.setOnClickListener(v -> {
-            startActivity(new Intent(this, AddActivity.class));
-            finish();
+            Ads.showInterstitial(this, this, AddActivity.class);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

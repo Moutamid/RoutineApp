@@ -50,6 +50,8 @@ public class HomeFragment extends Fragment {
         String today = Constants.getToday();
         updateCalender(today);
 
+        list = new ArrayList<>();
+
         binding.monday.setOnClickListener(v -> updateClick("Mon"));
         binding.tuesday.setOnClickListener(v -> updateClick("Tue"));
         binding.wednessday.setOnClickListener(v -> updateClick("Wed"));
@@ -60,9 +62,6 @@ public class HomeFragment extends Fragment {
 
         binding.routineRC.setLayoutManager(new LinearLayoutManager(context));
         binding.routineRC.setHasFixedSize(false);
-
-        list = new ArrayList<>();
-
 
         binding.inCompleted.setOnClickListener(v -> {
             boolean show = binding.routineRC.getVisibility() == View.VISIBLE;
@@ -130,109 +129,103 @@ public class HomeFragment extends Fragment {
     private void getData() {
         Constants.showDialog();
         Constants.databaseReference().child(Constants.Routines).child(Constants.auth().getCurrentUser().getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            list.clear();
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                .get().addOnSuccessListener(snapshot -> {
+                    if (snapshot.exists()) {
+                        list.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 //                            RoutineModel model = dataSnapshot.getValue(RoutineModel.class);
 
-                                RoutineModel model = new RoutineModel();
-                                String ID = dataSnapshot.child("id").getValue(String.class);
-                                String name = dataSnapshot.child("name").getValue(String.class);
-                                String context = dataSnapshot.child("context").getValue(String.class);
-                                int minutes = dataSnapshot.child("minutes").getValue(Integer.class);
-                                long reminder = dataSnapshot.child("reminder").getValue(Long.class);
+                            RoutineModel model = new RoutineModel();
+                            String ID = dataSnapshot.child("id").getValue(String.class);
+                            String name = dataSnapshot.child("name").getValue(String.class);
+                            String context = dataSnapshot.child("context").getValue(String.class);
+                            int minutes = dataSnapshot.child("minutes").getValue(Integer.class);
+                            long reminder = dataSnapshot.child("reminder").getValue(Long.class);
 
-                                ArrayList<String> days = new ArrayList<>();
-                                ArrayList<AddStepsChildModel> steps = new ArrayList<>();
+                            ArrayList<String> days = new ArrayList<>();
+                            ArrayList<AddStepsChildModel> steps = new ArrayList<>();
 
-                                if (reminder != 0) {
-                                    times.add(reminder);
-                                }
-
-                                for (DataSnapshot day : dataSnapshot.child("days").getChildren()) {
-                                    String d = day.getValue(String.class);
-                                    days.add(d);
-                                }
-
-                                for (DataSnapshot step : dataSnapshot.child("steps").getChildren()) {
-                                    AddStepsChildModel d = step.getValue(AddStepsChildModel.class);
-                                    steps.add(d);
-                                }
-
-                                CompletedDaysModel completedDays = dataSnapshot.child("daysCompleted").getValue(CompletedDaysModel.class);
-
-                                model.setID(ID);
-                                model.setName(name);
-                                model.setContext(context);
-                                model.setMinutes(minutes);
-                                model.setDays(days);
-                                model.setSteps(steps);
-                                model.setDaysCompleted(completedDays);
-                                model.setReminder(reminder);
-
-                                list.add(model);
+                            if (reminder != 0) {
+                                times.add(reminder);
                             }
 
+                            for (DataSnapshot day : dataSnapshot.child("days").getChildren()) {
+                                String d = day.getValue(String.class);
+                                days.add(d);
+                            }
 
-                            if (list.size() > 0) {
-                                for (int i = 0; i < list.size(); i++) {
-                                    RoutineModel model = list.get(i);
-                                    String ID = model.getID();
+                            for (DataSnapshot step : dataSnapshot.child("steps").getChildren()) {
+                                AddStepsChildModel d = step.getValue(AddStepsChildModel.class);
+                                steps.add(d);
+                            }
 
-                                    ArrayList<StepsLocalModel> localList = Stash.getArrayList(ID, StepsLocalModel.class);
-                                    if (localList.size() == 0) {
-                                        for (AddStepsChildModel childModel : model.getSteps()) {
-                                            localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
-                                        }
-                                        Stash.put(ID, localList);
+                            CompletedDaysModel completedDays = dataSnapshot.child("daysCompleted").getValue(CompletedDaysModel.class);
+
+                            model.setID(ID);
+                            model.setName(name);
+                            model.setContext(context);
+                            model.setMinutes(minutes);
+                            model.setDays(days);
+                            model.setSteps(steps);
+                            model.setDaysCompleted(completedDays);
+                            model.setReminder(reminder);
+
+                            list.add(model);
+                        }
+
+
+                        if (list.size() > 0) {
+                            for (int i = 0; i < list.size(); i++) {
+                                RoutineModel model = list.get(i);
+                                String ID = model.getID();
+
+                                ArrayList<StepsLocalModel> localList = Stash.getArrayList(ID, StepsLocalModel.class);
+                                if (localList.size() == 0) {
+                                    for (AddStepsChildModel childModel : model.getSteps()) {
+                                        localList.add(new StepsLocalModel(ID, childModel.getName(), childModel.getTime(), false));
                                     }
+                                    Stash.put(ID, localList);
                                 }
                             }
-
-                            adapter = new RoutineAdapter(requireContext(), list);
-                            binding.routineRC.setAdapter(adapter);
-
-                            String today = Constants.getToday();
-                            if (today.equalsIgnoreCase("Sun")) {
-                                today = getString(R.string.sunday);
-                            }
-                            if (today.equalsIgnoreCase("Mon")) {
-                                today = getString(R.string.monday);
-                            }
-                            if (today.equalsIgnoreCase("Tue")) {
-                                today = getString(R.string.tuesday);
-                            }
-                            if (today.equalsIgnoreCase("Wed")) {
-                                today = getString(R.string.wednesday);
-                            }
-                            if (today.equalsIgnoreCase("Thu")) {
-                                today = getString(R.string.thursday);
-                            }
-                            if (today.equalsIgnoreCase("Fri")) {
-                                today = getString(R.string.friday);
-                            }
-                            if (today.equalsIgnoreCase("Sat")) {
-                                today = getString(R.string.saturday);
-                            }
-
-                            adapter.getFilter().filter(today);
-                            Stash.put(Constants.TIME_LIST, times);
                         }
-                        if (getActivity() != null) {
-                            Constants.dismissDialog();
+
+                        adapter = new RoutineAdapter(binding.getRoot().getContext(), getActivity(), list);
+                        binding.routineRC.setAdapter(adapter);
+
+                        String today = Constants.getToday();
+                        if (today.equalsIgnoreCase("Sun")) {
+                            today = getString(R.string.sunday);
                         }
+                        if (today.equalsIgnoreCase("Mon")) {
+                            today = getString(R.string.monday);
+                        }
+                        if (today.equalsIgnoreCase("Tue")) {
+                            today = getString(R.string.tuesday);
+                        }
+                        if (today.equalsIgnoreCase("Wed")) {
+                            today = getString(R.string.wednesday);
+                        }
+                        if (today.equalsIgnoreCase("Thu")) {
+                            today = getString(R.string.thursday);
+                        }
+                        if (today.equalsIgnoreCase("Fri")) {
+                            today = getString(R.string.friday);
+                        }
+                        if (today.equalsIgnoreCase("Sat")) {
+                            today = getString(R.string.saturday);
+                        }
+
+                        adapter.getFilter().filter(today);
+                        Stash.put(Constants.TIME_LIST, times);
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        if (getActivity() != null) {
-                            Constants.dismissDialog();
-                        }
-                        Toast.makeText(binding.getRoot().getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (getActivity() != null) {
+                        Constants.dismissDialog();
                     }
+                }).addOnFailureListener(e -> {
+                    if (getActivity() != null) {
+                        Constants.dismissDialog();
+                    }
+                    Toast.makeText(binding.getRoot().getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 

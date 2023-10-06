@@ -73,7 +73,6 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -352,7 +351,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Stash.clear(Constants.Steps);
+        Ads.showInterstitial(this, this, RoutineStartActivity.class);
     }
 }

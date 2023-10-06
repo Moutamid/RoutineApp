@@ -2,10 +2,12 @@ package com.moutamid.routineapp.adsense;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.fxn.stash.Stash;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -50,7 +52,8 @@ public class Ads {
         mAdView.loadAd(adRequest);
     }
 
-    public static void showInterstitial(Context context, Activity activity) {
+    public static void loadIntersAD(Context context) {
+
         InterstitialAd.load(context, context.getResources().getString(R.string.AD_Interstitial_ID), adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
@@ -59,7 +62,6 @@ public class Ads {
                         // an ad is loaded.
                         mInterstitialAd = interstitialAd;
                         Log.i(TAG, "onAdLoaded");
-                        callBack(activity);
                     }
 
                     @Override
@@ -67,52 +69,26 @@ public class Ads {
                         // Handle the error
                         Log.d(TAG, loadAdError.toString());
                         mInterstitialAd = null;
+
                     }
                 });
     }
 
-    private static void callBack(Activity activity) {
-        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override
-            public void onAdClicked() {
-                // Called when a click is recorded for an ad.
-                Log.d(TAG, "Ad was clicked.");
-            }
-
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                // Called when ad is dismissed.
-                // Set the ad reference to null so you don't show the ad a second time.
-                Log.d(TAG, "Ad dismissed fullscreen content.");
-                mInterstitialAd = null;
-            }
-
-            @Override
-            public void onAdFailedToShowFullScreenContent(AdError adError) {
-                // Called when ad fails to show.
-                Log.e(TAG, "Ad failed to show fullscreen content.");
-                mInterstitialAd = null;
-            }
-
-            @Override
-            public void onAdImpression() {
-                // Called when an impression is recorded for an ad.
-                Log.d(TAG, "Ad recorded an impression.");
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-                // Called when ad is shown.
-                Log.d(TAG, "Ad showed fullscreen content.");
-            }
-        });
-
+    public static void showInterstitial(Context context, Activity activity, Class intent){
         if (mInterstitialAd != null) {
             mInterstitialAd.show(activity);
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent();
+                    context.startActivity(new Intent(context, intent));
+                    activity.finish();
+                }
+            });
         } else {
-            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+            context.startActivity(new Intent(context, intent));
+            activity.finish();
         }
-
     }
 
 }

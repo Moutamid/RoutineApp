@@ -41,7 +41,7 @@ public class SettingActivity extends AppCompatActivity {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -262,7 +262,6 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(SettingActivity.this, MainActivity.class));
-        finish();
+        Ads.showInterstitial(this, this, MainActivity.class);
     }
 }

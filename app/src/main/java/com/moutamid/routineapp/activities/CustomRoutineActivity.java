@@ -64,7 +64,7 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -297,16 +297,14 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             binding.totalTime.setText(formattedTime);
         }
 
-        adapter = new AddStepsChildAdapter(CustomRoutineActivity.this, list, model -> {
-
-        });
+        adapter = new AddStepsChildAdapter(CustomRoutineActivity.this, list, null);
         binding.stepsRC.setAdapter(adapter);
     }
 
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Stash.clear(Constants.Steps);
+        Ads.showInterstitial(this, this, AddActivity.class);
     }
 }

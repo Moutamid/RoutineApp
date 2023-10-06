@@ -40,7 +40,7 @@ public class AddActivity extends AppCompatActivity {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -49,32 +49,32 @@ public class AddActivity extends AppCompatActivity {
 
         binding.custom.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "ALL");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
         binding.morning.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "MORNING");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
         binding.evening.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "EVENING");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
         binding.work.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "WORK");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
         binding.brain.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "SELFCARE");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
         binding.study.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "STUDY");
-            startActivity(new Intent(this, CustomRoutineActivity.class));
+            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
         });
 
     }
@@ -95,7 +95,6 @@ public class AddActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        Ads.showInterstitial(this, this, MainActivity.class);
     }
 }

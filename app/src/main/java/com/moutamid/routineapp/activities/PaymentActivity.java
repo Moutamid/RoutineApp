@@ -37,14 +37,14 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
-        if (!Stash.getBoolean(Constants.IS_VIP)){
+/*        if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
             Ads.showInterstitial(this, this);
         } else {
             binding.adView.setVisibility(View.GONE);
-        }
+        }*/
 
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);
         bp.initialize();

@@ -14,12 +14,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/adView"
         android:layout_below="@id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/adView"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -304,6 +304,17 @@
 
         </LinearLayout>
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_above="@id/start"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/AD_Banner_ID">
+        </com.google.android.gms.ads.AdView>
+
         <Button
             android:id="@+id/start"
             android:layout_width="match_parent"
@@ -319,17 +330,6 @@
             android:fontFamily="@font/airbnb" />
 
     </RelativeLayout>
-
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/AD_Banner_ID">
-    </com.google.android.gms.ads.AdView>
 
 
 </RelativeLayout>

@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.fxn.stash.Stash;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.RoutineStartAdapter;
 import com.moutamid.routineapp.adsense.Ads;
@@ -55,7 +56,7 @@ public class RoutineStartActivity extends AppCompatActivity {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -63,8 +64,7 @@ public class RoutineStartActivity extends AppCompatActivity {
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
         binding.edit.setOnClickListener(v -> {
-            startActivity(new Intent(this, EditRoutineActivity.class));
-            finish();
+            Ads.showInterstitial(this, this, EditRoutineActivity.class);
         });
 
         model = (RoutineModel) Stash.getObject(Constants.MODEL, RoutineModel.class);
@@ -112,8 +112,7 @@ public class RoutineStartActivity extends AppCompatActivity {
             if (getAllDone()) {
                 Stash.put(Constants.ROUTINE_LIST, model);
                 Stash.put(Constants.DAY, model);
-                startActivity(new Intent(this, TimerActivity.class));
-                finish();
+                Ads.showInterstitial(this, this, TimerActivity.class);
             } else {
                 Toast.makeText(this, getString(R.string.you_already_finish_all_task), Toast.LENGTH_SHORT).show();
             }
@@ -307,5 +306,10 @@ public class RoutineStartActivity extends AppCompatActivity {
         binding.time.setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.edit.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.start.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
+    }
+
+    @Override
+    public void onBackPressed() {
+        Ads.showInterstitial(this, this, MainActivity.class);
     }
 }

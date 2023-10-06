@@ -49,7 +49,7 @@ public class TimerActivity extends AppCompatActivity {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
+            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }
@@ -125,8 +125,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private void finishTask() {
         Stash.put("CONGRATS", model);
-        startActivity(new Intent(this, CompletedActivity.class));
-        finish();
+        Ads.showInterstitial(this, this, CompletedActivity.class);
     }
 
     private void setValue(StepsLocalModel stepsModel, int count) {

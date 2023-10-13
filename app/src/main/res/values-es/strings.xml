@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">TDAH - organizador y rutinas</string>
 
-    <string name="AD_App_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="AD_Banner_ID" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="AD_Interstitial_ID" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="AD_App_ID" translatable="false">ca-app-pub-1329542702858699~9661424176</string>
+    <string name="AD_Banner_ID" translatable="false">ca-app-pub-1329542702858699/1745560079</string>
+    <string name="AD_Interstitial_ID" translatable="false">ca-app-pub-1329542702858699/7681209193</string>
 
     <string name="privacy">Al continuar, aceptas los <u>Términos de Servicio</u> y la <u>Política de Privacidad</u></string>
     <string name="hello_blank_fragment">Hola fragmento en blanco</string>

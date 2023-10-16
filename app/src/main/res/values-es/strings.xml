@@ -62,7 +62,7 @@
     <string name="supercharge_your_experience_with_our">Potencia tu experiencia con nuestro</string>
     <string name="monthly_subscription">Suscripción mensual</string>
     <string name="elevate_your_experience_with_a">Mejora tu experiencia con una</string>
-    <string name="lifetime_subscription">Suscripción de por vida</string>
+    <string name="lifetime_subscription">Suscripción Anual</string>
     <string name="edit_t">Editar\t</string>
     <string name="if_you_start_now">Si comienzas ahora</string>
     <string name="last_7_days">Últimos 7 días</string>
@@ -161,7 +161,7 @@
     <string name="password_is_empty">¡La contraseña está vacía!</string>
     <string name="become_a_pro_member">Conviértete en miembro profesional</string>
     <string name="_1_99_month">1,99€ / mes</string>
-    <string name="_9_99_month">9,99€ / mes</string>
+    <string name="_9_99_month">9,99€ / año</string>
     <string name="start_routine">Iniciar rutina</string>
     <string name="steps"> pasos</string>
     <string name="step"> paso</string>

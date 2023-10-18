@@ -74,13 +74,14 @@ public class Ads {
                 });
     }
 
-    public static void showInterstitial(Context context, Activity activity, Class intent){
+    public static void showInterstitial(Context context, Activity activity, Class intent) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show(activity);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
+                    mInterstitialAd = null;
                     context.startActivity(new Intent(context, intent));
                     activity.finish();
                 }

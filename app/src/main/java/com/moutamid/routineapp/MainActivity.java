@@ -89,7 +89,9 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         binding.insights.setOnClickListener(v -> getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new InsightsFragment()).commit());
 
         binding.settings.setOnClickListener(v -> {
-            Ads.showInterstitial(this, this, SettingActivity.class);
+            startActivity(new Intent(this, SettingActivity.class));
+            finish();
+//            Ads.showInterstitial(this, this, SettingActivity.class);
         });
         binding.add.setOnClickListener(v -> {
             Ads.showInterstitial(this, this, AddActivity.class);

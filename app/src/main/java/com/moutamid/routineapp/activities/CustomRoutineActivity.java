@@ -64,7 +64,7 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
-            Ads.loadIntersAD(this);
+//            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);
         }

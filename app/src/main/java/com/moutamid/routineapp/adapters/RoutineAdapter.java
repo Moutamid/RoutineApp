@@ -119,7 +119,8 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.RoutineV
 
         holder.itemView.setOnClickListener(v -> {
             Stash.put(Constants.MODEL, model);
-            Ads.showInterstitial(context, activity, RoutineStartActivity.class);
+            context.startActivity(new Intent(context, RoutineStartActivity.class));
+            activity.finish();
         });
 
         holder.routine_card.setStrokeColor(Stash.getInt(Constants.COLOR_TEXT, context.getResources().getColor(R.color.text)));

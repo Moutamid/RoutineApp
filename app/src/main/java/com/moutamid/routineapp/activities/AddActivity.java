@@ -49,32 +49,38 @@ public class AddActivity extends AppCompatActivity {
 
         binding.custom.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "ALL");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
         binding.morning.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "MORNING");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
         binding.evening.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "EVENING");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
         binding.work.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "WORK");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
         binding.brain.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "SELFCARE");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
         binding.study.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "STUDY");
-            Ads.showInterstitial(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
         });
 
     }
@@ -95,6 +101,7 @@ public class AddActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Ads.showInterstitial(this, this, MainActivity.class);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

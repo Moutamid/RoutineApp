@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.fxn.stash.Stash;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
 import com.moutamid.routineapp.adsense.Ads;
@@ -352,6 +354,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
     @Override
     public void onBackPressed() {
         Stash.clear(Constants.Steps);
-        Ads.showInterstitial(this, this, RoutineStartActivity.class);
+        startActivity(new Intent(this, RoutineStartActivity.class));
+        finish();
     }
 }

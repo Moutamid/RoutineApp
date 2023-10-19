@@ -305,6 +305,7 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
     @Override
     public void onBackPressed() {
         Stash.clear(Constants.Steps);
-        Ads.showInterstitial(this, this, AddActivity.class);
+        startActivity(new Intent(this, AddActivity.class));
+        finish();
     }
 }

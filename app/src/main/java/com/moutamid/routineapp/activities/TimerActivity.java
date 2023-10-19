@@ -125,7 +125,8 @@ public class TimerActivity extends AppCompatActivity {
 
     private void finishTask() {
         Stash.put("CONGRATS", model);
-        Ads.showInterstitial(this, this, CompletedActivity.class);
+        startActivity(new Intent(this, CompletedActivity.class));
+        finish();
     }
 
     private void setValue(StepsLocalModel stepsModel, int count) {

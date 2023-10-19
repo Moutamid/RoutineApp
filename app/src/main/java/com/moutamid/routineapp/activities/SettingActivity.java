@@ -262,6 +262,7 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Ads.showInterstitial(this, this, MainActivity.class);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

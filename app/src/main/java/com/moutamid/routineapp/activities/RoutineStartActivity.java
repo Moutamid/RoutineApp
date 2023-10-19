@@ -64,7 +64,8 @@ public class RoutineStartActivity extends AppCompatActivity {
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
         binding.edit.setOnClickListener(v -> {
-            Ads.showInterstitial(this, this, EditRoutineActivity.class);
+            startActivity(new Intent(this, EditRoutineActivity.class));
+            finish();
         });
 
         model = (RoutineModel) Stash.getObject(Constants.MODEL, RoutineModel.class);
@@ -112,7 +113,8 @@ public class RoutineStartActivity extends AppCompatActivity {
             if (getAllDone()) {
                 Stash.put(Constants.ROUTINE_LIST, model);
                 Stash.put(Constants.DAY, model);
-                Ads.showInterstitial(this, this, TimerActivity.class);
+                startActivity(new Intent(this, TimerActivity.class));
+                finish();
             } else {
                 Toast.makeText(this, getString(R.string.you_already_finish_all_task), Toast.LENGTH_SHORT).show();
             }
@@ -310,6 +312,7 @@ public class RoutineStartActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Ads.showInterstitial(this, this, MainActivity.class);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

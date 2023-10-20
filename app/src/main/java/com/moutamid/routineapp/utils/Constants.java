@@ -60,7 +60,7 @@ public class Constants {
     public static final String DARK_MODE = "DARK_MODE";
     public static final String COLOR = "COLOR";
     public static final String COLOR_TEXT = "COLOR_TEXT";
-    public static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArBueEiTWfZk7O+BE104DZiZh6Dj8tIMJdZter0tO2KH0MUzn1UB14nrg6bb5IGup29NEvG6UI0ZelHgxClkYvLxzgXjagFgFKN46U6kijHxsccY9evn06NWNyJbPFoAkTQyVIPk44SBufx7g4H5f0azOtY28DL3fg5nvLDJ7yPAejGSvdZXuiVGopwS1A05QrjrgA6ol1YOUzxu22Vanb4ncIDTdF35MA2arbVf74fYFcqkJgWcfWkENRDxoj8IPo1tzWH2rO1/vaILmosJKd1SOrMhrmmyLita0AzJXH/d59Gwu3ed53Ct/Qcq9bDIX3TOALPdQ+NaRkapT2w0twQIDAQAB";
+    public static final String LICENSE_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgJMiq7qhNcmNRDFMzPWGLx9MOfmFV9/myZ/Boi7+GZPvftT/6jzOa0baSiJ5HSX8bsBwvWRvIpz2y4GJyVEHhcOYoPR0dRZMUQ5LvsxTAdXWAZk/Arr+jhivV0ttJsqpgsr6BJDNtVky7gtK/4aN3PLbyhQz16He/rR/TA5XnqOkNqo6R2uN34mLR0eVaxY52p9MaaOY4z2G1th2KJB9B2TgQGq8FVLu9KJddZwfRPX1zwCR8XKyQcs0OYeWCXKqY4JmB/Wpoflg2UnWNO7IldndlqUjZmy5AM3KbPztPBHI9kIZ27qCLHWju7Fph6ZTl9YciX3o9Y2Y8di6NwdVtQIDAQAB";
     public static final  String VIP_MONTH = "vip.month.com.moutamid.routineapp";
     public static final  String VIP_LIFE = "vip.lifetime.com.moutamid.routineapp";
     public static final  String IS_VIP = "IS_VIP";

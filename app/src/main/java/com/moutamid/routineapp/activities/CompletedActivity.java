@@ -45,7 +45,7 @@ public class CompletedActivity extends AppCompatActivity {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
-        if (!Stash.getBoolean(Constants.IS_VIP)){
+        if (!Stash.getBoolean(Constants.IS_VIP)) {
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
             Ads.showBanner(binding.adView);
@@ -100,11 +100,13 @@ public class CompletedActivity extends AppCompatActivity {
     }
 
     private void addHistory(String date) {
-        HistoryModel model = new HistoryModel( new Date().getTime(), date, 1);
+        HistoryModel model = new HistoryModel(new Date().getTime(), date, 1);
         Constants.databaseReference().child(Constants.HISTORY).child(Constants.auth().getCurrentUser().getUid())
                 .child(date).setValue(model).addOnSuccessListener(unused -> {
                     Constants.dismissDialog();
-                    Ads.showInterstitial(this, this, MainActivity.class);
+                    startActivity(new Intent(this, MainActivity.class));
+                    finish();
+//                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -116,7 +118,9 @@ public class CompletedActivity extends AppCompatActivity {
         Constants.databaseReference().child(Constants.HISTORY).child(Constants.auth().getCurrentUser().getUid())
                 .child(date).setValue(historyModel).addOnSuccessListener(unused -> {
                     Constants.dismissDialog();
-                    Ads.showInterstitial(this, this, MainActivity.class);
+                    startActivity(new Intent(this, MainActivity.class));
+                    finish();
+//                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

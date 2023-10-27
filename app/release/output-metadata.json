@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 9,
-      "versionName": "9.0",
-      "outputFile": "RoutineApp-9.0-release.apk"
+      "versionCode": 13,
+      "versionName": "13.0",
+      "outputFile": "RoutineApp-13.0-release.apk"
     }
   ],
   "elementType": "File"

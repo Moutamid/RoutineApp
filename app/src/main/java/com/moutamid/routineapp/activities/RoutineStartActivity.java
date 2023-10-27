@@ -55,7 +55,7 @@ public class RoutineStartActivity extends AppCompatActivity {
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
             Ads.init(this);
-            Ads.showBanner(binding.adView);
+            Ads.showBanner(binding.bannerAd, binding.placeholder);
 //            Ads.loadIntersAD(this);
         } else {
             binding.adView.setVisibility(View.GONE);

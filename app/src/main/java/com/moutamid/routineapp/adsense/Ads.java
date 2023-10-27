@@ -1,14 +1,18 @@
 package com.moutamid.routineapp.adsense;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
 import com.fxn.stash.Stash;
 import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -48,11 +52,30 @@ public class Ads {
         adRequest = new AdRequest.Builder().build();
     }
 
-    public static void showBanner(AdView mAdView) {
+    public static void showBanner(AdView mAdView, ImageView adPlaceholder) {
         mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                mAdView.setVisibility(View.GONE);
+                adPlaceholder.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mAdView.setVisibility(View.VISIBLE);
+                adPlaceholder.setVisibility(View.GONE);
+            }
+        });
     }
 
-    public static void loadIntersAD(Context context) {
+    public static void loadIntersAD(Context context, Activity activity, Class intent) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Ad is Loading");
+        progressDialog.show();
 
         InterstitialAd.load(context, context.getResources().getString(R.string.AD_Interstitial_ID), adRequest,
                 new InterstitialAdLoadCallback() {
@@ -62,6 +85,8 @@ public class Ads {
                         // an ad is loaded.
                         mInterstitialAd = interstitialAd;
                         Log.i(TAG, "onAdLoaded");
+                        progressDialog.dismiss();
+                        showInterstitial(context, activity, intent);
                     }
 
                     @Override
@@ -69,9 +94,11 @@ public class Ads {
                         // Handle the error
                         Log.d(TAG, loadAdError.toString());
                         mInterstitialAd = null;
-
+                        progressDialog.dismiss();
+                        showInterstitial(context, activity, intent);
                     }
                 });
+
     }
 
     public static void showInterstitial(Context context, Activity activity, Class intent) {

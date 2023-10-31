@@ -48,34 +48,44 @@ public class AddActivity extends AppCompatActivity {
 
         binding.custom.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "ALL");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
-//            startActivity(new Intent(this, CustomRoutineActivity.class));
-//            finish();
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
         binding.morning.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "MORNING");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
         binding.evening.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "EVENING");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
         binding.work.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "WORK");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
         binding.brain.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "SELFCARE");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
         binding.study.setOnClickListener(v -> {
             Stash.put(Constants.STEPS_LIST, "STUDY");
-            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
+            startActivity(new Intent(this, CustomRoutineActivity.class));
+            finish();
+//            Ads.loadIntersAD(this, this, CustomRoutineActivity.class);
         });
 
     }

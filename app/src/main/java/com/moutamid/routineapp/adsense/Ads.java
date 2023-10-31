@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -95,6 +96,7 @@ public class Ads {
                         Log.d(TAG, loadAdError.toString());
                         mInterstitialAd = null;
                         progressDialog.dismiss();
+                        Toast.makeText(context, "Ad Load Failed", Toast.LENGTH_SHORT).show();
                         showInterstitial(context, activity, intent);
                     }
                 });

@@ -1,4 +1,4 @@
-package com.moutamid.routineapp.utils;
+ package com.moutamid.routineapp.utils;
 
 import com.fxn.stash.Stash;
 import com.google.firebase.auth.FirebaseAuth;

@@ -21,7 +21,6 @@ import com.google.android.material.timepicker.TimeFormat;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.bottomsheets.AddStepsFragment;
 import com.moutamid.routineapp.databinding.ActivityEditRoutineBinding;
 import com.moutamid.routineapp.listners.BottomSheetDismissListener;
@@ -73,13 +72,7 @@ public class EditRoutineActivity extends AppCompatActivity implements BottomShee
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
-
-
 
         binding.toolbar.delete.setOnClickListener(v -> {
             new AlertDialog.Builder(this).setTitle(getString(R.string.delete_routine))

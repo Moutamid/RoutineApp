@@ -21,7 +21,6 @@ import com.google.android.material.timepicker.TimeFormat;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.AddStepsChildAdapter;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.bottomsheets.AddStepsFragment;
 import com.moutamid.routineapp.databinding.ActivityCustomRoutineBinding;
 import com.moutamid.routineapp.listners.BottomSheetDismissListener;
@@ -62,11 +61,6 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.loadIntersAD(this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){

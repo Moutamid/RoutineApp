@@ -19,7 +19,6 @@ import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.adapters.RoutineStartAdapter;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityRoutineStartBinding;
 import com.moutamid.routineapp.databinding.UpdateDaysBottomsheetBinding;
 import com.moutamid.routineapp.models.CompletedDaysModel;
@@ -54,11 +53,6 @@ public class RoutineStartActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.loadIntersAD(this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());

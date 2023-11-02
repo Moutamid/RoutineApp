@@ -9,7 +9,6 @@ import android.view.View;
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityLanguageBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -37,9 +36,6 @@ public class LanguageActivity extends AppCompatActivity {
             binding.toolbar.back.setVisibility(View.GONE);
             if (!Stash.getBoolean(Constants.IS_VIP)){
                 Stash.put(Constants.IS_VIP, false);
-//                Ads.init(this);
-//                Ads.showBanner(binding.adView);
-//                Ads.showInterstitial(this, this);
             }
         }
 

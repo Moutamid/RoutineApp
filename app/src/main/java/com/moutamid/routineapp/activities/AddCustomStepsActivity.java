@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityAddCustomStepsBinding;
 import com.moutamid.routineapp.models.AddStepsChildModel;
 import com.moutamid.routineapp.utils.Constants;
@@ -40,10 +39,6 @@ public class AddCustomStepsActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
 
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());

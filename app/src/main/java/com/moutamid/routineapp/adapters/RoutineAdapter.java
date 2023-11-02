@@ -18,7 +18,6 @@ import com.google.android.material.card.MaterialCardView;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.activities.RoutineStartActivity;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.utils.Constants;
 

@@ -11,7 +11,6 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityPaymentBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -36,15 +35,6 @@ public class PaymentActivity extends AppCompatActivity implements BillingProcess
         } else {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
-
-/*        if (!Stash.getBoolean(Constants.IS_VIP)){
-            Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.adView);
-            Ads.showInterstitial(this, this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
-        }*/
 
         bp = BillingProcessor.newBillingProcessor(this, Constants.LICENSE_KEY, this);
         bp.initialize();

@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.R;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityTimerBinding;
 import com.moutamid.routineapp.models.RoutineModel;
 import com.moutamid.routineapp.models.StepsLocalModel;
@@ -47,11 +46,6 @@ public class TimerActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.loadIntersAD(this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);

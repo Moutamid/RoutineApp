@@ -39,7 +39,9 @@ public class AddStepsChildAdapter extends RecyclerView.Adapter<AddStepsChildAdap
         holder.title.setText(model.getName());
 
         holder.itemView.setOnClickListener(v -> {
-            listner.onClick(list.get(holder.getAdapterPosition()));
+            if (listner != null){
+                listner.onClick(list.get(holder.getAdapterPosition()));
+            }
         });
 
     }

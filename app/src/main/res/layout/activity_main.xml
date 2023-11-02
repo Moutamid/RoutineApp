@@ -42,35 +42,8 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/adView"
+        android:layout_above="@id/bottom_nav"
         android:layout_below="@id/toolbar" />
-
-    <RelativeLayout
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_nav">
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/bannerAd"
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:visibility="gone"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/AD_Banner_ID">
-        </com.google.android.gms.ads.AdView>
-
-        <ImageView
-            android:id="@+id/placeholder"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="50dp"
-            android:src="@drawable/ad_placeholder"
-            android:scaleType="centerCrop" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/bottom_nav"

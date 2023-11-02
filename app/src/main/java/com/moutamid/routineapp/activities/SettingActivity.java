@@ -14,7 +14,6 @@ import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.SplashScreenActivity;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivitySettingBinding;
 import com.moutamid.routineapp.utils.Constants;
 
@@ -39,11 +38,6 @@ public class SettingActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.loadIntersAD(this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
 
         Constants.changeTheme(this);

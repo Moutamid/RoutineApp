@@ -15,7 +15,6 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.anjlab.android.iab.v3.SkuDetails;
 import com.fxn.stash.Stash;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityMainBinding;
 import com.moutamid.routineapp.fragments.HomeFragment;
 import com.moutamid.routineapp.fragments.InsightsFragment;
@@ -74,12 +73,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
 
         if (bp.isSubscribed(Constants.VIP_MONTH) || bp.isSubscribed(Constants.VIP_LIFE)){
             Stash.put(Constants.IS_VIP, true);
-            binding.adView.setVisibility(View.GONE);
         } else {
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.showInterstitial(this, this);
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new HomeFragment()).commit();
@@ -90,12 +85,10 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
         binding.settings.setOnClickListener(v -> {
             startActivity(new Intent(this, SettingActivity.class));
             finish();
-//            Ads.showInterstitial(this, this, SettingActivity.class);
         });
         binding.add.setOnClickListener(v -> {
             startActivity(new Intent(this, AddActivity.class));
             finish();
-//            Ads.loadIntersAD(this, this, AddActivity.class);
         });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

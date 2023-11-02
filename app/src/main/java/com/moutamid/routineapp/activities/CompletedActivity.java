@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.fxn.stash.Stash;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
-import com.moutamid.routineapp.adsense.Ads;
 import com.moutamid.routineapp.databinding.ActivityCompletedBinding;
 import com.moutamid.routineapp.models.HistoryModel;
 import com.moutamid.routineapp.models.RoutineModel;
@@ -47,12 +46,8 @@ public class CompletedActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)) {
             Stash.put(Constants.IS_VIP, false);
-            Ads.init(this);
-            Ads.showBanner(binding.bannerAd, binding.placeholder);
-//            Ads.loadIntersAD(this);
-        } else {
-            binding.adView.setVisibility(View.GONE);
         }
+
         Constants.initDialog(this);
 
         RoutineModel model = (RoutineModel) Stash.getObject("CONGRATS", RoutineModel.class);
@@ -106,7 +101,6 @@ public class CompletedActivity extends AppCompatActivity {
                     Constants.dismissDialog();
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
-//                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -120,7 +114,6 @@ public class CompletedActivity extends AppCompatActivity {
                     Constants.dismissDialog();
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
-//                    Ads.showInterstitial(this, this, MainActivity.class);
                 }).addOnFailureListener(e -> {
                     Constants.dismissDialog();
                     Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();

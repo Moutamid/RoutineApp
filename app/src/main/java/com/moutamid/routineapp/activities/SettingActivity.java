@@ -11,6 +11,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fxn.stash.Stash;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.moutamid.routineapp.MainActivity;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.SplashScreenActivity;
@@ -20,6 +26,47 @@ import com.moutamid.routineapp.utils.Constants;
 public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding binding;
     int currentTheme;
+
+    private void showAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+        binding.adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                binding.placeholder.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +75,21 @@ public class SettingActivity extends AppCompatActivity {
         Log.d("COLOR123", theme+"");
         setTheme(theme);
         setContentView(binding.getRoot());
-
-
+        
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
             Constants.setLocale(getBaseContext(), Constants.EN);
         } else {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
+            showAd();
         }
 
         Constants.changeTheme(this);

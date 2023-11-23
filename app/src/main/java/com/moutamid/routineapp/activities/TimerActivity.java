@@ -9,6 +9,12 @@ import android.os.CountDownTimer;
 import android.view.View;
 
 import com.fxn.stash.Stash;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.moutamid.routineapp.R;
 import com.moutamid.routineapp.databinding.ActivityTimerBinding;
 import com.moutamid.routineapp.models.RoutineModel;
@@ -29,6 +35,53 @@ public class TimerActivity extends AppCompatActivity {
     RoutineModel model;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, RoutineStartActivity.class));
+        finish();
+    }
+
+    private void showAd() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+        binding.adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                binding.placeholder.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+        });
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTimerBinding.inflate(getLayoutInflater());
@@ -36,7 +89,11 @@ public class TimerActivity extends AppCompatActivity {
         setTheme(theme);
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
-
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
             Constants.setLocale(getBaseContext(), Constants.EN);
@@ -46,6 +103,7 @@ public class TimerActivity extends AppCompatActivity {
 
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
+            showAd();
         }
 
         model = (RoutineModel) Stash.getObject(Constants.ROUTINE_LIST, RoutineModel.class);
@@ -99,12 +157,9 @@ public class TimerActivity extends AppCompatActivity {
 
     private void taskComplete() {
         ArrayList<StepsLocalModel> mainList = Stash.getArrayList(model.getID(), StepsLocalModel.class);
-        for (int i =0; i<mainList.size(); i++){
-            StepsLocalModel list = mainList.get(i);
-            for (StepsLocalModel list2 : stepsList){
-                if (list.getName().equals(list2.getName())){
-                    mainList.get(i).setCompleted(true);
-                }
+        for (StepsLocalModel list : mainList){
+            if (list.getName().equals(stepsList.get(count).getName())){
+                mainList.get(count).setCompleted(true);
             }
         }
         Stash.put(model.getID(), mainList);

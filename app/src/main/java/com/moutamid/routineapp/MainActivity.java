@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements BillingProcessor.
             }
         });
 
+        Log.d("onCreate123", "onCreate: " + Constants.auth().getCurrentUser().getUid());
+
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
             Constants.setLocale(getBaseContext(), Constants.EN);
         } else {

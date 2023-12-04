@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -13,6 +14,11 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import com.fxn.stash.Stash;
 import com.google.android.gms.ads.AdListener;
@@ -47,12 +53,14 @@ import java.util.UUID;
 
 public class CustomRoutineActivity extends AppCompatActivity implements BottomSheetDismissListener {
     ActivityCustomRoutineBinding binding;
+    private static final String TAG = "CustomRoutineActivity";
     List<String> context;
     ArrayAdapter<String> partiesAdapter;
     ArrayList<AddStepsChildModel> list;
     AddStepsChildAdapter adapter;
     int minute = 0;
     long reminder = 0;
+    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +75,27 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
+            public void onInitializationComplete(InitializationStatus initializationStatus) {}
         });
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this,getString(R.string.AD_Interstitial_ID), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i(TAG, "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d(TAG, loadAdError.toString());
+                        mInterstitialAd = null;
+                    }
+                });
         if (!Stash.getBoolean(Constants.IS_VIP)){
             Stash.put(Constants.IS_VIP, false);
             showAd();
@@ -160,8 +186,14 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
                             Stash.put(ID, localList);
                             Stash.clear(Constants.Steps);
                             Toast.makeText(this, getString(R.string.routine_created), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(CustomRoutineActivity.this, MainActivity.class));
-                            finish();
+                            if (!Stash.getBoolean(Constants.IS_VIP)){
+                                showAdInter();
+                            } else {
+                                Log.d("TAG", "User account is premium");
+                                startActivity(new Intent(CustomRoutineActivity.this, MainActivity.class));
+                                finish();
+                            }
+
                         }).addOnFailureListener(e -> {
                             Constants.dismissDialog();
                             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -169,6 +201,52 @@ public class CustomRoutineActivity extends AppCompatActivity implements BottomSh
             }
         });
 
+    }
+
+    private void showAdInter() {
+        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+            @Override
+            public void onAdClicked() {
+                // Called when a click is recorded for an ad.
+                Log.d(TAG, "Ad was clicked.");
+            }
+
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                // Called when ad is dismissed.
+                // Set the ad reference to null so you don't show the ad a second time.
+                Log.d(TAG, "Ad dismissed fullscreen content.");
+                mInterstitialAd = null;
+                startActivity(new Intent(CustomRoutineActivity.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                // Called when ad fails to show.
+                Log.e(TAG, "Ad failed to show fullscreen content.");
+                mInterstitialAd = null;
+            }
+
+            @Override
+            public void onAdImpression() {
+                // Called when an impression is recorded for an ad.
+                Log.d(TAG, "Ad recorded an impression.");
+            }
+
+            @Override
+            public void onAdShowedFullScreenContent() {
+                // Called when ad is shown.
+                Log.d(TAG, "Ad showed fullscreen content.");
+            }
+        });
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(CustomRoutineActivity.this);
+        } else {
+            Log.d("TAG", "The interstitial ad wasn't ready yet.");
+            startActivity(new Intent(CustomRoutineActivity.this, MainActivity.class));
+            finish();
+        }
     }
 
     private void showAd() {

@@ -32,7 +32,6 @@ public class SignUpActivity extends AppCompatActivity {
             Constants.setLocale(getBaseContext(), Constants.ES);
         }
 
-        Constants.initDialog(this);
         binding.toolbar.tittle.setText(getString(R.string.create_account));
         binding.toolbar.back.setOnClickListener(v -> onBackPressed());
 
@@ -75,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Constants.initDialog(this);
         binding.name.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.email.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.password.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));

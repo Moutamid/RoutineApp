@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         Constants.changeTheme(this);
         setContentView(binding.getRoot());
 
-        Constants.initDialog(this);
+
 
 
         if (Stash.getBoolean(Constants.LANGUAGE, true)){
@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Constants.initDialog(this);
         updateViews();
     }
 

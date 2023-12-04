@@ -30,7 +30,7 @@ public class ForgotActivity extends AppCompatActivity {
         }
 
 
-        Constants.initDialog(this);
+
 
         binding.toolbar.tittle.setText(getString(R.string.forgot_password));
 
@@ -55,6 +55,7 @@ public class ForgotActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Constants.initDialog(this);
         binding.email.getEditText().setTextColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
         binding.next.setBackgroundColor(Stash.getInt(Constants.COLOR, getResources().getColor(R.color.light)));
     }

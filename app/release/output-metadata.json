@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 15,
-      "versionName": "15.0",
-      "outputFile": "RoutineApp-15.0-release.apk"
+      "versionCode": 16,
+      "versionName": "16.0",
+      "outputFile": "RoutineApp-16.0-release.apk"
     }
   ],
   "elementType": "File"
